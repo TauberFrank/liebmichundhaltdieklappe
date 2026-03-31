@@ -597,6 +597,32 @@
     #root.w1 footer a { color: #888 !important; }
 
     /* =====================================================
+       TOGGLE-HINWEIS (Welt 1 only: blinkende Pfeile)
+    ===================================================== */
+    #toggle-hint {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: #888;
+      flex-shrink: 0;
+    }
+    #root.w2 #toggle-hint { display: none !important; }
+    .toggle-arrow {
+      display: inline-block;
+      animation: arrowBlink 1.2s step-end infinite;
+      color: #B8964A;
+      font-size: 0.85rem;
+    }
+    .toggle-arrow:nth-child(2) { animation-delay: 0.2s; }
+    .toggle-arrow:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes arrowBlink {
+      0%,100% { opacity: 1; }
+      50%     { opacity: 0; }
+    }
+
+    /* =====================================================
        NAV TOGGLE SWITCH
     ===================================================== */
     .nav-toggle-wrap {
@@ -931,6 +957,13 @@
       <span class="nav-seminar-badge">AUSGEBUCHT</span>
     </a>
   </div>
+  <!-- Blinkender Hinweis auf Toggle (nur Welt 1) -->
+  <div id="toggle-hint">
+    <span style="white-space:nowrap; color:#999; font-size:0.68rem;">andere Seite?</span>
+    <span class="toggle-arrow">›</span>
+    <span class="toggle-arrow">›</span>
+    <span class="toggle-arrow">›</span>
+  </div>
   <!-- WELT-TOGGLE als echter Schalter -->
   <div class="nav-toggle-wrap">
     <span class="nav-toggle-label w1-only">Klaron</span>
@@ -995,84 +1028,116 @@
 ============================================================ -->
 <section id="figuren" style="background:#F8F2E8; padding:4rem 2rem; border-top:1px solid #D4B896;">
   <!-- WELT 1: sachlich -->
-  <div class="w1-only section-elegant" style="max-width:800px; margin:0 auto;">
+  <div class="w1-only section-elegant" style="max-width:860px; margin:0 auto;">
     <p style="font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; color:#B8964A; margin-bottom:0.4rem;">Personen</p>
     <h2 style="font-size:1.8rem; font-weight:400; margin-bottom:0.4rem; color:#2C1810;">Die Beteiligten.</h2>
     <p style="font-size:0.85rem; color:#888; font-style:italic; margin-bottom:2.5rem; line-height:1.6;">
-      Alle Namen sind Pseudonyme. Übereinstimmungen mit lebenden Personen wären rein zufällig<br>
+      Alle Namen sind Pseudonyme. Übereinstimmungen mit lebenden Personen wären rein zufällig
       — und gleichzeitig sehr eindeutig.
     </p>
-    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:2rem;">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:2rem; margin-bottom:2rem;">
+      <!-- FRANK -->
       <div>
-        <img src="img/hero-frank-belinda.webp" alt="Franklin"
+        <img src="img/hero-frank-belinda.webp" alt="Frank"
           style="width:100%; aspect-ratio:4/3; object-fit:cover; object-position:left; border:1px solid #D4B896; margin-bottom:0.75rem;">
-        <h3 style="font-size:1.1rem; font-weight:600; margin-bottom:0.2rem; color:#2C1810;">Franklin</h3>
-        <p style="font-size:0.82rem; color:#888; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.4rem;">Autor / Erzähler / Geschädigter</p>
+        <h3 style="font-size:1.1rem; font-weight:600; margin-bottom:0.2rem; color:#2C1810;">Frank</h3>
+        <p style="font-size:0.82rem; color:#888; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.4rem;">Erzähler · Ex-Partner von Belinda</p>
         <p style="font-size:0.9rem; color:#5C4030; line-height:1.65;">
-          Hat alles versucht. Hat alles dokumentiert. Hat dieses Buch geschrieben.
-          Lebt heute mit Vanessa — und einem gesunden Argwohn.
+          Klaron. Strukturiert, direkt, loyal. Hat die Beziehung ausgehalten.
+          Hat alles dokumentiert. Hat dieses Buch geschrieben.
         </p>
       </div>
+      <!-- BELINDA -->
       <div>
         <img src="img/fakten-sammlung.webp" alt="Belinda"
           style="width:100%; aspect-ratio:4/3; object-fit:cover; border:1px solid #D4B896; margin-bottom:0.75rem;">
         <h3 style="font-size:1.1rem; font-weight:600; margin-bottom:0.2rem; color:#2C1810;">Belinda</h3>
-        <p style="font-size:0.82rem; color:#888; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.4rem;">Die Borderlinerin</p>
+        <p style="font-size:0.82rem; color:#888; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.4rem;">Die Borderlinerin · Ex-Partnerin von Frank</p>
         <p style="font-size:0.9rem; color:#5C4030; line-height:1.65;">
-          Führt Buch über Franklins Fehler. Kennt keine eigenen.
-          Hat laut eigener Aussage sehr viel gelitten — vergisst dabei, wessen Handlungen das bewirkt haben.
+          Vielleichta. Führt Buch über die Fehler der anderen — besonders präzise über Franks.
+          Kennt das System von innen. Lebt darin.
         </p>
       </div>
+      <!-- JOHANNA -->
       <div>
         <img src="img/systemkonflikt.webp" alt="Johanna"
           style="width:100%; aspect-ratio:4/3; object-fit:cover; border:1px solid #D4B896; margin-bottom:0.75rem;">
         <h3 style="font-size:1.1rem; font-weight:600; margin-bottom:0.2rem; color:#2C1810;">Johanna</h3>
-        <p style="font-size:0.82rem; color:#888; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.4rem;">Franklins Tochter</p>
+        <p style="font-size:0.82rem; color:#888; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.4rem;">Franklins Tochter · 16 · Moralisch: Franks</p>
         <p style="font-size:0.9rem; color:#5C4030; line-height:1.65;">
-          Technisch begabt. Emotional resilient. Hat das Seminar besucht, bevor es überhaupt existierte —
-          präventiv, wie sie sagt.
+          Hat kein Kontrollzentrum — denkt selbst. Hochreflektiert, überfordert.
+          Franklin ist ihr Vater. Frank war für sie da.
+          Entscheidet sich für Klaron. Seminar: präventiv gebucht.
         </p>
       </div>
+      <!-- FRANKLIN -->
       <div>
-        <img src="img/tisch-harmonie.webp" alt="Vanessa"
-          style="width:100%; aspect-ratio:4/3; object-fit:cover; object-position:right; border:1px solid #D4B896; margin-bottom:0.75rem;">
-        <h3 style="font-size:1.1rem; font-weight:600; margin-bottom:0.2rem; color:#2C1810;">Vanessa</h3>
-        <p style="font-size:0.82rem; color:#888; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.4rem;">Franklins neue Partnerin</p>
+        <img src="img/guck-alles-intakt.webp" alt="Franklin"
+          style="width:100%; aspect-ratio:4/3; object-fit:cover; border:1px solid #D4B896; margin-bottom:0.75rem;">
+        <h3 style="font-size:1.1rem; font-weight:600; margin-bottom:0.2rem; color:#2C1810;">Franklin</h3>
+        <p style="font-size:0.82rem; color:#888; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.4rem;">Belindas Ex-Mann · Johannas Vater</p>
         <p style="font-size:0.9rem; color:#5C4030; line-height:1.65;">
-          Schreibt keine Protokolle. Stellt keine Rechnungen.
-          Gilt daher in manchen Kreisen als suspekt.
+          War vor Frank mit Belinda verheiratet. Verdeckter Narzissmus.
+          Strategie: alles aussitzen. Typischer Satz: „Das bringt doch nix."
+          Gibt dennoch Seminare. Erscheint um 10:03. Geht um 11:47.
         </p>
+      </div>
+    </div>
+    <!-- Nebencharaktere -->
+    <div style="border-top:1px solid #D4B896; padding-top:1.5rem;">
+      <p style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:#B8964A; margin-bottom:1rem;">Weitere Beteiligte</p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:1rem;">
+        <div style="padding:0.75rem; border:1px solid #D4B896;">
+          <strong style="font-size:0.95rem; color:#2C1810;">Gurke</strong>
+          <span style="font-size:0.75rem; color:#888; display:block; margin-bottom:0.3rem;">Platonische Freundin von Frank</span>
+          <p style="font-size:0.85rem; color:#5C4030; line-height:1.5;">Narzissmus-Beziehung selbst überlebt. Bitter, klug, messerscharf. Emotionale Bodenstation.</p>
+        </div>
+        <div style="padding:0.75rem; border:1px solid #D4B896;">
+          <strong style="font-size:0.95rem; color:#2C1810;">Vanessa</strong>
+          <span style="font-size:0.75rem; color:#888; display:block; margin-bottom:0.3rem;">Horsts Partnerin (Horst = Franklins Vater)</span>
+          <p style="font-size:0.85rem; color:#5C4030; line-height:1.5;">Systemloyal. Konfliktscheu. Nickt. Regelmäßig und ohne erkennbaren Auslöser.</p>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- WELT 2: Chaos -->
-  <div class="w2-only" style="display:none; max-width:900px; margin:0 auto;">
+  <div class="w2-only" style="display:none; max-width:960px; margin:0 auto;">
     <div style="background:#000; border:5px solid #FFD700; padding:1rem; margin-bottom:1.5rem; text-align:center;">
       <p style="font-family:'Press Start 2P',monospace; font-size:clamp(0.55rem,1.5vw,0.8rem); color:#FFD700; text-shadow:2px 2px 0 #CC0000;">
         ★ DIE CAST ★ ECHTE PSEUDONYME ★ KEIN EINZIGES DAVON ERFUNDEN ★
       </p>
     </div>
-    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem;">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(165px,1fr)); gap:1rem; margin-bottom:1rem;">
+      <!-- FRANK -->
       <div style="background:#CC0000; border:4px solid #000; padding:0.75rem; transform:rotate(-1deg); box-shadow:5px 5px 0 #000;">
         <img src="img/hero-frank-belinda.webp" style="width:100%; aspect-ratio:4/3; object-fit:cover; object-position:left; border:2px solid #FFD700; margin-bottom:0.5rem;">
-        <p style="font-family:Anton,Impact,sans-serif; font-size:1.3rem; color:#FFD700; text-shadow:2px 2px 0 #000;">FRANKLIN</p>
-        <p style="font-size:0.7rem; color:#FFF; font-family:Arial,sans-serif; line-height:1.5;">Der Typ, dem das passiert ist. Hat DIESES BUCH geschrieben.</p>
+        <p style="font-family:Anton,Impact,sans-serif; font-size:1.3rem; color:#FFD700; text-shadow:2px 2px 0 #000;">FRANK</p>
+        <p style="font-size:0.7rem; color:#FFF; font-family:Arial,sans-serif; line-height:1.5;">Klaron. Der Typ, dem das passiert ist. Hat dieses Buch geschrieben.</p>
       </div>
+      <!-- BELINDA -->
       <div style="background:#0000CC; border:4px solid #FFD700; padding:0.75rem; transform:rotate(1.5deg); box-shadow:5px 5px 0 #000;">
         <img src="img/fakten-sammlung.webp" style="width:100%; aspect-ratio:4/3; object-fit:cover; border:2px solid #FF0000; margin-bottom:0.5rem;">
         <p style="font-family:'Permanent Marker',cursive; font-size:1.3rem; color:#FF6600; text-shadow:1px 1px 0 #000;">Belinda 🔥</p>
-        <p style="font-size:0.7rem; color:#FFD700; font-family:Arial,sans-serif; line-height:1.5;">Die Borderlinerin. Dozentin. Buchführt. Gibt Seminare.</p>
+        <p style="font-size:0.7rem; color:#FFD700; font-family:Arial,sans-serif; line-height:1.5;">Vielleichta. Borderlinerin. Buchführt. War mit Franklin verheiratet. Dann kam Frank.</p>
       </div>
+      <!-- JOHANNA -->
       <div style="background:#FF8800; border:4px solid #000; padding:0.75rem; transform:rotate(-0.5deg); box-shadow:5px 5px 0 #CC0000;">
         <img src="img/systemkonflikt.webp" style="width:100%; aspect-ratio:4/3; object-fit:cover; border:2px solid #000; margin-bottom:0.5rem;">
         <p style="font-family:Boogaloo,cursive; font-size:1.3rem; color:#000;">Johanna ⚡</p>
-        <p style="font-size:0.7rem; color:#000; font-family:Arial,sans-serif; line-height:1.5;">Franklins Tochter. Technisch. Präventiv gebucht.</p>
+        <p style="font-size:0.7rem; color:#000; font-family:Arial,sans-serif; line-height:1.5;">Franklins Tochter biologisch — Franks Tochter moralisch. Denkt selbst. Erschreckend klar für 16.</p>
       </div>
-      <div style="background:#009900; border:4px solid #FFFF00; padding:0.75rem; transform:rotate(1deg); box-shadow:5px 5px 0 #000;">
+      <!-- FRANKLIN -->
+      <div style="background:#330099; border:4px solid #FF00FF; padding:0.75rem; transform:rotate(0.8deg); box-shadow:5px 5px 0 #000;">
+        <img src="img/guck-alles-intakt.webp" style="width:100%; aspect-ratio:4/3; object-fit:cover; border:2px solid #FF00FF; margin-bottom:0.5rem;">
+        <p style="font-family:Righteous,sans-serif; font-size:1.1rem; color:#FFD700;">Franklin 🌫️</p>
+        <p style="font-size:0.7rem; color:#FFF; font-family:Arial,sans-serif; line-height:1.5;">War VOR Frank mit Belinda verheiratet. Johannas Vater. Gibt Seminare. „Das bringt doch nix."</p>
+      </div>
+      <!-- VANESSA -->
+      <div style="background:#004400; border:4px solid #FFFF00; padding:0.75rem; transform:rotate(-1.2deg); box-shadow:5px 5px 0 #000;">
         <img src="img/tisch-harmonie.webp" style="width:100%; aspect-ratio:4/3; object-fit:cover; object-position:right; border:2px solid #FFFF00; margin-bottom:0.5rem;">
         <p style="font-family:Pacifico,cursive; font-size:1.1rem; color:#FFFF00; text-shadow:2px 2px 0 #000;">Vanessa ✨</p>
-        <p style="font-size:0.7rem; color:#FFF; font-family:Arial,sans-serif; line-height:1.5;">Neue Partnerin. Stellt keine Rechnungen. Verdächtig normal.</p>
+        <p style="font-size:0.7rem; color:#FFF; font-family:Arial,sans-serif; line-height:1.5;">Horsts Partnerin (Horst = Franklins Vater). Nickt. Ohne erkennbaren Grund.</p>
       </div>
     </div>
   </div>
@@ -1161,7 +1226,7 @@
     <p style="font-size:0.92rem; color:#888; margin-bottom:3rem; line-height:1.7;">
       Diese Typen beschreiben keine allgemeinen Partnerprobleme.
       Sie beschreiben die Verhaltensmuster einer Person mit Borderline-Struktur —
-      so wie Franklin sie erlebt hat. Wenn Sie jemanden darin erkennen: Es ist nicht Ihre Einbildung.
+      so wie Frank sie erlebt hat. Wenn Sie jemanden darin erkennen: Es ist nicht Ihre Einbildung.
     </p>
 
     <div class="type-card">
