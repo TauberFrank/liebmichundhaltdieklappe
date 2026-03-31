@@ -40,36 +40,42 @@
 
 <div style="max-width:660px; margin:0 auto; padding:4rem 2rem;">
 
+  <img src="img/fakten-sammlung.webp" alt="Belinda mit Fakten-Sammlung"
+    style="width:100%; max-width:500px; display:block; margin:0 auto 2.5rem; border:1px solid #D4B896;">
+
   <p style="font-size:0.78rem; letter-spacing:0.15em; text-transform:uppercase; color:#B8964A; margin-bottom:0.5rem;">Selbsttest</p>
   <h1 style="font-size:clamp(1.8rem,5vw,2.8rem); font-weight:400; margin-bottom:0.5rem; line-height:1.2;">
-    Bin ich es — oder er/sie?
+    Erkennen Sie das Muster?
   </h1>
-  <p style="font-size:1rem; color:#888; font-style:italic; margin-bottom:3rem;">
+  <p style="font-size:1rem; color:#888; font-style:italic; margin-bottom:0.5rem;">
     10 Fragen. Ehrliche Antworten. Ein Ergebnis.
+  </p>
+  <p style="font-size:0.88rem; color:#aaa; margin-bottom:3rem;">
+    (Egal was Sie antworten.)
   </p>
 
   <!-- FRAGE 1 -->
   <div class="question active" id="q1">
     <p style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:#B8964A; margin-bottom:0.3rem;">Frage 1 von 10</p>
     <h2 style="font-size:1.4rem; font-weight:400; margin-bottom:1.5rem; line-height:1.5;">
-      Wenn ihr streitet — wer fängt meistens an?
+      Wenn Konflikte entstehen — wer inszeniert sie?
     </h2>
-    <button class="opt-btn" onclick="next(1)">(A) Ich. Aber aus gutem Grund.</button>
-    <button class="opt-btn" onclick="next(1)">(B) Er/Sie. Immer.</button>
-    <button class="opt-btn" onclick="next(1)">(C) Es fängt niemand an. Es ist einfach plötzlich da.</button>
-    <button class="opt-btn" onclick="next(1)">(D) Das lässt sich nicht sagen, weil jeder angefangen hat, bevor der andere angefangen hat.</button>
+    <button class="opt-btn" onclick="next(1)">(A) Sie/Er — durch plötzliche Stimmungsumschwünge, die ich nicht vorhersehen kann.</button>
+    <button class="opt-btn" onclick="next(1)">(B) Ich überreagiere auf ihre/seine Wechsel. Laut ihr/ihm.</button>
+    <button class="opt-btn" onclick="next(1)">(C) Der Konflikt entsteht dadurch, dass ich eine sachliche Frage stelle.</button>
+    <button class="opt-btn" onclick="next(1)">(D) Ich weiß es nicht mehr. Ich weiß nur, dass er irgendwie immer meine Schuld ist.</button>
   </div>
 
   <!-- FRAGE 2 -->
   <div class="question" id="q2">
     <p style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:#B8964A; margin-bottom:0.3rem;">Frage 2 von 10</p>
     <h2 style="font-size:1.4rem; font-weight:400; margin-bottom:1.5rem; line-height:1.5;">
-      Wie oft sagen Sie: "Ich habe verstanden, was du meinst"?
+      Sie/Er sagt: "Du hast mich nicht verstanden." Wie oft passiert das?
     </h2>
-    <button class="opt-btn" onclick="next(2)">(A) Oft — direkt bevor ich erkläre, warum du falsch liegst.</button>
-    <button class="opt-btn" onclick="next(2)">(B) Selten — ich warte, bis er/sie fertig ist, dann sage ich, was ich schon vorher dachte.</button>
-    <button class="opt-btn" onclick="next(2)">(C) Immer. Ich höre wirklich zu.</button>
-    <button class="opt-btn" onclick="next(2)">(D) Das Gespräch ist meistens vorbei, bevor ich dazu komme.</button>
+    <button class="opt-btn" onclick="next(2)">(A) Immer — egal wie ich antworte.</button>
+    <button class="opt-btn" onclick="next(2)">(B) Oft. Manchmal noch bevor ich fertig gesprochen habe.</button>
+    <button class="opt-btn" onclick="next(2)">(C) Nach jedem Gespräch, das ich für geklärt hielt.</button>
+    <button class="opt-btn" onclick="next(2)">(D) Das Gespräch ist meistens vorbei, bevor ich dazu komme zu antworten.</button>
   </div>
 
   <!-- FRAGE 3 -->
@@ -148,12 +154,12 @@
   <div class="question" id="q9">
     <p style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:#B8964A; margin-bottom:0.3rem;">Frage 9 von 10</p>
     <h2 style="font-size:1.4rem; font-weight:400; margin-bottom:1.5rem; line-height:1.5;">
-      Haben Sie schon einmal gedacht: "Wenn ich nur anders wäre, würde es funktionieren"?
+      Haben Sie sich verändert, um die Beziehung zu erhalten?
     </h2>
-    <button class="opt-btn" onclick="next(9)">(A) Ja. Ständig.</button>
-    <button class="opt-btn" onclick="next(9)">(B) Nein — er/sie müsste anders sein.</button>
-    <button class="opt-btn" onclick="next(9)">(C) Wir beide müssten anders sein. Aber einer von uns ist es nicht.</button>
-    <button class="opt-btn" onclick="next(9)">(D) Ich habe mich bereits verändert. Mehrfach. Es hat nicht geholfen.</button>
+    <button class="opt-btn" onclick="next(9)">(A) Ja. Mehrfach. Es hat nicht geholfen.</button>
+    <button class="opt-btn" onclick="next(9)">(B) Ich verändere mich gerade noch. Ich bin fast so weit.</button>
+    <button class="opt-btn" onclick="next(9)">(C) Ich erkenne mich selbst kaum noch.</button>
+    <button class="opt-btn" onclick="next(9)">(D) Sie/Er sagt, ich verändere mich nicht genug. Ich bin anderer Meinung. Aber vielleicht hat sie/er recht.</button>
   </div>
 
   <!-- FRAGE 10 -->
@@ -189,29 +195,57 @@
 
     <div style="border-left:3px solid #722F37; padding-left:1.5rem; margin-bottom:2rem;">
       <p style="font-size:1.2rem; line-height:1.85; margin-bottom:1rem;">
-        Sie sind in einer toxischen Beziehung.
+        Sie erkennen jemanden in Ihrem Leben.
       </p>
       <p style="font-size:1.05rem; line-height:1.85; color:#5C4030; margin-bottom:1rem;">
-        Ob als Täter, Opfer — oder beides abwechselnd — das ist eine Frage der Perspektive
-        und des jeweiligen Wochentags.
+        Diese Muster haben einen Namen. Sie heißen nicht "schwierige Beziehung"
+        und sie heißen nicht "wir sind halt verschieden".
       </p>
       <p style="font-size:1.05rem; line-height:1.85; color:#5C4030;">
+        Das ist Borderline. Und Sie sind derjenige, der das aushält.
+      </p>
+      <p style="font-size:0.9rem; color:#888; font-style:italic; margin-top:1rem;">
         Unabhängig davon, was Sie geantwortet haben.
       </p>
     </div>
 
     <div style="background:#FFF0E8; border:1px solid #D4B896; padding:1.5rem; margin-bottom:2rem;">
-      <p style="font-size:0.82rem; letter-spacing:0.1em; text-transform:uppercase; color:#B8964A; margin-bottom:0.5rem;">Eine Randnotiz</p>
+      <p style="font-size:0.82rem; letter-spacing:0.1em; text-transform:uppercase; color:#B8964A; margin-bottom:0.5rem;">Was sie dazu sagen würde</p>
       <p style="font-size:1rem; line-height:1.75; font-style:italic; color:#3C2010;">
         „Vielleicht hast du einfach das Falsche an mir geglaubt."
       </p>
-      <p style="font-size:0.78rem; color:#B8964A; margin-top:0.3rem;">Originalzitat.</p>
+      <p style="font-size:0.78rem; color:#B8964A; margin-top:0.3rem;">Originalzitat. Das ist Gaslighting. Kein weiser Satz.</p>
     </div>
 
-    <p style="font-size:1rem; line-height:1.75; color:#5C4030; margin-bottom:2.5rem;">
-      Das Buch erklärt, was dieser Test nicht kann: wie es sich anfühlt — von innen.
-      Und warum man trotzdem bleibt.
-    </p>
+    <!-- KAUFEMPFEHLUNG -->
+    <div style="background:#2C1810; color:#FDF8F0; padding:2rem; margin-bottom:2rem;">
+      <p style="font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; color:#B8964A; margin-bottom:0.75rem;">Empfehlung der Redaktion</p>
+      <p style="font-size:1.1rem; line-height:1.8; margin-bottom:1.5rem;">
+        Kaufen Sie erst das Buch. Dann das Seminar.
+      </p>
+      <div style="border:1px solid #B8964A; padding:1.25rem; margin-bottom:1rem;">
+        <p style="font-size:1.5rem; color:#B8964A; margin-bottom:0.25rem;">
+          Aktion: <strong>9.999,– €</strong>
+        </p>
+        <p style="font-size:1rem; color:#D4B896;">
+          Und den Vollbesitz Ihrer ehemaligen geistigen Kräfte.
+        </p>
+      </div>
+      <p style="font-size:7px; color:#666; line-height:1.4;">
+        (Egal was Sie geantwortet haben. Das Ergebnis war von Anfang an festgelegt. Wie in der Beziehung, die Sie gerade beschrieben haben.)
+      </p>
+    </div>
+
+    <!-- NUR NOCH 3 PLÄTZE -->
+    <div style="background:#CC0000; color:white; padding:1.25rem; margin-bottom:2rem; text-align:center;">
+      <p style="font-family:Georgia,serif; font-size:1.2rem; font-weight:bold; margin-bottom:0.3rem;">
+        ⚡ Nur noch 3 Plätze im Legende-Seminar! ⚡
+      </p>
+      <p style="font-size:7px; color:rgba(255,255,255,0.5); line-height:1.4; margin-top:0.4rem;">
+        (Auch wenn Sie jetzt buchen — die Halle ist noch komplett leer. Wir machen künstliche Verknappung.
+        Sie fallen eh drauf rein. Das ist statistisch belegt. Und auch ein bisschen das Thema dieser Website.)
+      </p>
+    </div>
 
     <div style="display:flex; gap:1rem; flex-wrap:wrap;">
       <a href="index.html#buch"
@@ -219,10 +253,15 @@
                text-decoration:none; font-size:1rem; display:inline-block;">
         → Das Buch
       </a>
-      <a href="kurs.html"
+      <a href="index.html#seminar"
         style="background:#2C1810; color:#FDF8F0; padding:0.75rem 1.5rem;
                text-decoration:none; font-size:1rem; display:inline-block;">
-        → 10 Tage bis zur Co-Abhängigkeit
+        → Seminar — 9.999 €
+      </a>
+      <a href="kurs.html"
+        style="border:1px solid #888; color:#888; padding:0.75rem 1.5rem;
+               text-decoration:none; font-size:1rem; display:inline-block;">
+        → Gratis: 10-Tage-Kurs
       </a>
     </div>
 
