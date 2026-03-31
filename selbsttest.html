@@ -23,6 +23,26 @@
     .progress-fill { height: 100%; background: #B8964A; transition: width 0.5s; }
     /* Systemstatus bars */
     .status-bar { font-family: monospace; font-size: 1.1rem; color: #722F37; }
+
+    /* ── Ergebnis-Ladescreen ── */
+    #calc-overlay {
+      display: none; position: fixed; inset: 0; z-index: 9999;
+      background: #1A0F08; align-items: center; justify-content: center;
+      flex-direction: column; text-align: center; padding: 2rem;
+    }
+    #calc-overlay.visible { display: flex; }
+    #calc-bar-wrap {
+      width: min(400px, 90%); height: 6px; background: #3C2010;
+      margin: 1.5rem auto; border-radius: 3px; overflow: hidden;
+    }
+    #calc-bar-fill {
+      height: 100%; width: 0%; background: #B8964A;
+      transition: width 0.4s ease; border-radius: 3px;
+    }
+    #calc-status {
+      font-family: monospace; font-size: 0.8rem; color: #888;
+      height: 1.2rem; margin-top: 0.5rem;
+    }
   </style>
 </head>
 <body>
@@ -291,9 +311,40 @@
 
   function showResult() {
     document.getElementById('q10').classList.remove('active');
-    document.getElementById('result').classList.add('active');
-    document.getElementById('progress').style.width = '100%';
+    // Fake-Berechnungsscreen
+    const overlay = document.getElementById('calc-overlay');
+    overlay.classList.add('visible');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    const steps = [
+      { pct: 12, msg: 'Antworten werden ausgewertet...' },
+      { pct: 28, msg: 'Muster werden erkannt... (dauert einen Moment)' },
+      { pct: 41, msg: 'Abgleich mit Klaron-Referenzdatenbank...' },
+      { pct: 57, msg: 'Borderline-Index wird berechnet...' },
+      { pct: 70, msg: 'Ergebnis liegt bereits vor (wird aber noch gehalten)' },
+      { pct: 83, msg: 'Psychologische Kohärenzprüfung... (Formalität)' },
+      { pct: 95, msg: 'Fast fertig. Echt jetzt.' },
+      { pct: 100, msg: 'Fertig. Das Ergebnis hätten Sie nach Frage 1 haben können.' },
+    ];
+    const bar = document.getElementById('calc-bar-fill');
+    const status = document.getElementById('calc-status');
+    let i = 0;
+    function tick() {
+      if (i < steps.length) {
+        bar.style.width = steps[i].pct + '%';
+        status.textContent = steps[i].msg;
+        i++;
+        setTimeout(tick, i < steps.length - 1 ? 550 : 900);
+      } else {
+        setTimeout(() => {
+          overlay.classList.remove('visible');
+          document.getElementById('result').classList.add('active');
+          document.getElementById('progress').style.width = '100%';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 1200);
+      }
+    }
+    setTimeout(tick, 300);
   }
 
   function updateProgress() {
@@ -301,6 +352,29 @@
     document.getElementById('progress').style.width = pct + '%';
   }
 </script>
+
+<!-- Ergebnis-Ladescreen (simuliert 5s Berechnung) -->
+<div id="calc-overlay">
+  <div style="max-width:440px; width:90%;">
+    <p style="font-family:'EB Garamond',serif; font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:#B8964A; margin-bottom:0.75rem;">
+      Klaron — Analysesystem v2.3
+    </p>
+    <h2 style="font-family:'EB Garamond',serif; font-size:1.6rem; font-weight:400; color:#FDF8F0; margin-bottom:0.25rem;">
+      Ihr Ergebnis wird berechnet.
+    </h2>
+    <p style="font-size:0.8rem; color:#666; font-style:italic; margin-bottom:0.25rem;">
+      (Nicht wirklich — aber sieht halt professioneller aus.)
+    </p>
+    <div id="calc-bar-wrap">
+      <div id="calc-bar-fill"></div>
+    </div>
+    <div id="calc-status">Initialisierung...</div>
+    <p style="font-size:0.68rem; color:#444; margin-top:2rem; line-height:1.6;">
+      Das Ergebnis ist übrigens immer dasselbe.<br>
+      Wir kennen es bereits. Wir dachten, Sie auch.
+    </p>
+  </div>
+</div>
 
 </body>
 </html>

@@ -197,6 +197,8 @@
     #popup-ad-2 { top: 6rem; left: 0.3rem; transform: rotate(3deg); }
     #popup-ad-3 { top: 40%; left: 0.2rem; transform: rotate(-4deg); background:#CC0000; color:#FFD700; border-color:#FFD700; }
 
+    /* ── WELT 2: SEMINAR CHAOS auto-sichtbar ── */
+    #root.w2 .seminar-chaos { display: block !important; }
     /* ── WELT 2: HERO CHAOS ── */
     #root.w2 #hero-section {
       background: repeating-conic-gradient(
@@ -215,34 +217,7 @@
     #root.w2 h1 .title-lieb { color: #FFF !important; }
     #root.w2 h1 { text-shadow: 4px 4px 0 #000, 8px 8px 0 #CC0000 !important; }
 
-    /* =====================================================
-       TOGGLE BUTTON
-    ===================================================== */
-    #world-toggle {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      z-index: 9500;
-      background: #FDF8F0;
-      border: 1px solid #B8964A;
-      padding: 0.4rem 0.9rem;
-      font-family: 'EB Garamond', serif;
-      font-size: 0.82rem;
-      cursor: pointer;
-      color: #2C1810;
-      line-height: 1.3;
-      text-align: center;
-      max-width: 200px;
-      transition: all 0.3s;
-    }
-    #root.w2 #world-toggle {
-      background: #FF0;
-      border: 2px solid #CC0000;
-      font-family: Anton, Impact, sans-serif !important;
-      font-size: 0.75rem;
-    }
-    .toggle-strike { text-decoration: line-through; color: #999; }
-    .toggle-highlight { color: #CC0000; font-weight: bold; }
+    /* (alter #world-toggle entfernt — jetzt Schalter im Nav) */
 
     /* =====================================================
        ANWALT BUTTON (Welt 2)
@@ -470,7 +445,258 @@
 
     @media (max-width: 640px) {
       .section-elegant { padding: 3rem 1.25rem; }
-      #world-toggle { max-width: 160px; font-size: 0.72rem; }
+      /* Nav: Links auf Mobile etwas komprimieren */
+      #main-nav { padding: 0.6rem 1rem !important; gap: 0.4rem !important; }
+      #main-nav > div:nth-child(2) { gap: 0.75rem !important; font-size: 0.78rem !important; }
+      .nav-toggle-wrap { gap: 0.3rem; }
+      .nav-toggle-label { font-size: 0.7rem; }
+      /* Marquee auf Mobile kleiner */
+      #w2-marquee-inner { font-size: 0.55rem !important; }
+      /* Fixed buttons auf Mobile kleiner + nicht überlappen */
+      #raus-btn { font-size: 0.75rem; padding: 0.5rem 0.75rem; bottom: 7.5rem; left: 0.5rem; }
+      #anwalt-btn { font-size: 0.75rem; padding: 0.5rem 0.75rem; }
+      /* Popup-Ads auf Mobile ausblenden (zu viel Chaos) */
+      #popup-ad-1, #popup-ad-2 { display: none !important; }
+      #popup-ad-3 { display: none !important; }
+      /* Side-Banner auf Mobile ausblenden */
+      .side-banner { display: none !important; }
+      /* Chaos-Poster auf Mobile kleiner */
+      .chaos-poster { display: none !important; }
+      /* Hero */
+      #hero-section { min-height: 70vh !important; padding: 3rem 1.25rem !important; }
+      /* Raus-Modal */
+      #raus-modal-inner { padding: 1.75rem 1.25rem; }
+    }
+    @media (max-width: 480px) {
+      /* Nav komplett wrap → Toggle in eigener Zeile */
+      #main-nav { flex-direction: column; align-items: flex-start; }
+      #main-nav .nav-title { font-size: 0.9rem !important; }
+      .nav-toggle-wrap { align-self: flex-end; margin-top: -2rem; }
+    }
+
+    /* =====================================================
+       WELT 1 — HYPER-SERIÖS (Finanzamt / DIN-Norm)
+    ===================================================== */
+    #root.w1,
+    #root.w1 body,
+    #root.w1 #page-body {
+      background: #FFFFFF !important;
+      color: #111111 !important;
+      font-family: Arial, Helvetica, sans-serif !important;
+      font-size: 15px !important;
+      line-height: 1.7 !important;
+    }
+    /* Nav */
+    #root.w1 #main-nav {
+      background: #FFFFFF !important;
+      border-bottom: 1px solid #CCCCCC !important;
+      box-shadow: none !important;
+    }
+    #root.w1 #main-nav *,
+    #root.w1 #main-nav .nav-title {
+      color: #111 !important;
+      font-family: Arial, Helvetica, sans-serif !important;
+      letter-spacing: 0 !important;
+      font-weight: 400 !important;
+      font-size: 0.83rem !important;
+      text-shadow: none !important;
+    }
+    #root.w1 #main-nav .nav-title {
+      font-weight: 700 !important;
+      font-size: 0.9rem !important;
+    }
+    /* Alle Sections weiß */
+    #root.w1 section,
+    #root.w1 #figuren,
+    #root.w1 #ratgeber,
+    #root.w1 #legende,
+    #root.w1 #belinda-special,
+    #root.w1 #hero-section {
+      background: #FFFFFF !important;
+      border-color: #DDDDDD !important;
+    }
+    /* Überschriften */
+    #root.w1 h1, #root.w1 h2, #root.w1 h3, #root.w1 h4 {
+      font-family: Arial, Helvetica, sans-serif !important;
+      font-weight: 700 !important;
+      color: #000000 !important;
+      letter-spacing: 0 !important;
+      font-style: normal !important;
+      text-shadow: none !important;
+    }
+    /* Fließtext-Elemente */
+    #root.w1 p, #root.w1 li, #root.w1 td, #root.w1 label {
+      font-family: Arial, Helvetica, sans-serif !important;
+      color: #111111 !important;
+      text-shadow: none !important;
+    }
+    /* Dekorative Ausnahmen (bleiben) */
+    #root.w1 .title-kauf {
+      font-family: 'Dancing Script', cursive !important;
+      color: #CC2200 !important;
+    }
+    #root.w1 .title-lieb { color: #aaa !important; }
+    /* Farbliche Akzente → neutral Grau */
+    #root.w1 [style*="color:#B8964A"],
+    #root.w1 [style*="color: #B8964A"] { color: #666666 !important; }
+    #root.w1 [style*="color:#722F37"],
+    #root.w1 [style*="color: #722F37"] { color: #333333 !important; }
+    #root.w1 [style*="color:#D4B896"]  { color: #555555 !important; }
+    #root.w1 [style*="color:#5C4030"]  { color: #333333 !important; }
+    /* Hintergrundfarben → weiß / sehr helles Grau */
+    #root.w1 [style*="background:#FDF8F0"] { background: #FFFFFF !important; }
+    #root.w1 [style*="background:#FFF9F0"] { background: #FFFFFF !important; }
+    #root.w1 [style*="background:#FFF9F2"] { background: #F9F9F9 !important; }
+    #root.w1 [style*="background:#F5EFE6"] { background: #F5F5F5 !important; }
+    #root.w1 [style*="background:#F8F2E8"] { background: #F5F5F5 !important; }
+    #root.w1 [style*="background:#EDE0C4"] { background: #EEEEEE !important; }
+    /* Hero-Zitat: Schreibmaschinenstil */
+    #root.w1 .hero-quote-wrap {
+      border-left: 2px solid #444444 !important;
+      background: #F7F7F7 !important;
+      padding: 1rem 1.5rem !important;
+    }
+    #root.w1 .hero-quote-text {
+      font-family: 'Courier New', Courier, monospace !important;
+      font-style: normal !important;
+      color: #111111 !important;
+      font-size: 1rem !important;
+      line-height: 1.7 !important;
+    }
+    #root.w1 .hero-quote-attr {
+      font-family: 'Courier New', Courier, monospace !important;
+      color: #777 !important;
+      font-size: 0.75rem !important;
+    }
+    /* Karten */
+    #root.w1 .article-card { border-left: 2px solid #555555 !important; }
+    #root.w1 .type-card {
+      background: #F7F7F7 !important;
+      border: 1px solid #CCCCCC !important;
+    }
+    #root.w1 .testimonial {
+      border-left: 3px solid #888888 !important;
+      font-style: normal !important;
+    }
+    /* Bilder: schwarz-weiß Filter in Welt 1 */
+    #root.w1 img {
+      filter: grayscale(100%) contrast(0.9) !important;
+      opacity: 0.85 !important;
+    }
+    /* Links */
+    #root.w1 a { color: #111 !important; }
+    #root.w1 a:hover { text-decoration: underline !important; }
+    /* Dunkle Sections (Buch, Footer) bleiben dunkel */
+    #root.w1 #buch,
+    #root.w1 footer {
+      background: #1A1A1A !important;
+    }
+    #root.w1 #buch *, #root.w1 footer * {
+      color: #CCCCCC !important;
+    }
+    #root.w1 footer a { color: #888 !important; }
+
+    /* =====================================================
+       NAV TOGGLE SWITCH
+    ===================================================== */
+    .nav-toggle-wrap {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.78rem; flex-shrink: 0;
+    }
+    .nav-toggle-label {
+      font-family: 'EB Garamond', serif;
+      color: #888; white-space: nowrap;
+    }
+    #root.w2 .nav-toggle-label {
+      font-family: Anton, Impact, sans-serif !important;
+      color: #FFF !important;
+      text-shadow: 1px 1px 0 #000;
+    }
+    .toggle-switch-ui {
+      position: relative; display: inline-block;
+      width: 48px; height: 24px; flex-shrink: 0;
+    }
+    .toggle-switch-ui input { opacity: 0; width: 0; height: 0; }
+    .toggle-slider-ui {
+      position: absolute; cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #DDD; border-radius: 24px;
+      transition: 0.3s; border: 1px solid #BBB;
+    }
+    .toggle-slider-ui:before {
+      position: absolute; content: "";
+      height: 16px; width: 16px;
+      left: 3px; bottom: 3px;
+      background: #FFF; border-radius: 50%;
+      transition: 0.3s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+    #welt-switch:checked + .toggle-slider-ui {
+      background: #CC0000; border-color: #990000;
+    }
+    #welt-switch:checked + .toggle-slider-ui:before {
+      transform: translateX(24px);
+    }
+    #root.w2 .toggle-slider-ui {
+      background: #CC0000 !important;
+      border-color: #FFD700 !important;
+      animation: navBlink 2s step-end infinite;
+    }
+
+    /* =====================================================
+       WELT 2: MARQUEE / LAUFSCHRIFT (90er-Stil)
+    ===================================================== */
+    #w2-marquee {
+      display: none;
+      overflow: hidden; white-space: nowrap;
+      padding: 0.55rem 0;
+      background: #FF00FF;
+      border-top: 4px solid #000;
+      border-bottom: 4px solid #000;
+    }
+    #root.w2 #w2-marquee { display: block !important; }
+    #w2-marquee-inner {
+      display: inline-block;
+      animation: marqueeScroll 28s linear infinite;
+      padding-left: 100%;
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(0.65rem, 1.5vw, 0.9rem);
+      color: #FFFF00;
+      text-shadow: 2px 2px 0 #000;
+      letter-spacing: 0.05em;
+    }
+    @keyframes marqueeScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* =====================================================
+       RAUS HIER BUTTON + MODAL
+    ===================================================== */
+    #raus-btn {
+      display: none;
+      position: fixed; bottom: 9rem; left: 1rem; z-index: 9000;
+      background: #FF4500; color: #FFF; border: 3px solid #000;
+      padding: 0.65rem 1rem;
+      font-family: Anton, Impact, sans-serif; font-size: 0.85rem;
+      cursor: pointer; box-shadow: 4px 4px 0 #000;
+      animation: rausPulse 2s ease-in-out infinite;
+    }
+    #root.w2 #raus-btn { display: block !important; }
+    @keyframes rausPulse {
+      0%,100% { transform: scale(1) rotate(0deg); }
+      50%     { transform: scale(1.05) rotate(-1deg); }
+    }
+    #raus-modal {
+      display: none; position: fixed; inset: 0; z-index: 99998;
+      background: rgba(0,0,0,0.88);
+      align-items: center; justify-content: center;
+    }
+    #raus-modal.visible { display: flex; }
+    #raus-modal-inner {
+      background: #FDF8F0; padding: 2.5rem; max-width: 380px; width: 90%;
+      text-align: center; font-family: 'EB Garamond', serif;
+      box-shadow: 8px 8px 0 #000;
     }
   </style>
 </head>
@@ -576,18 +802,8 @@
 </div>
 
 <!-- ============================================================
-     WELT TOGGLE
+     WELT TOGGLE → jetzt im Nav (wird dort gerendert)
 ============================================================ -->
-<button id="world-toggle" onclick="toggleWelt()">
-  <span class="w1-only">
-    Ich will<br>
-    <span class="toggle-strike">die ganze Wahrheit</span><br>
-    <span class="toggle-highlight">das ganze Vielleicht →</span>
-  </span>
-  <span class="w2-only" style="display:none;">
-    ← Zurück zu Klaron
-  </span>
-</button>
 
 <!-- ============================================================
      ANWALT BUTTON (Welt 2)
@@ -596,6 +812,60 @@
   onclick="alert('Ihre Anfrage wurde ans Kontrollzentrum weitergeleitet.\nAktuelle Wartezeit: 14 Monate.')">
   ⚖ Anwalt kontaktieren
 </button>
+
+<!-- ============================================================
+     RAUS HIER BUTTON (Welt 2)
+============================================================ -->
+<button id="raus-btn" onclick="document.getElementById('raus-modal').classList.add('visible')">
+  Ich halt das nicht mehr aus,<br>raus hier!
+</button>
+
+<!-- ============================================================
+     RAUS MODAL
+============================================================ -->
+<div id="raus-modal">
+  <div id="raus-modal-inner">
+    <p style="font-size:1.4rem; font-weight:600; margin-bottom:0.5rem; color:#2C1810;">
+      Sind Sie sicher?
+    </p>
+    <p style="font-size:0.9rem; color:#888; font-style:italic; margin-bottom:2rem; line-height:1.6;">
+      Das fragen wir, weil wir uns Sorgen machen.<br>
+      <span style="font-size:0.75rem;">(Das stimmt nicht.)</span>
+    </p>
+    <button onclick="void(0)"
+      style="background:#EEE; border:1px solid #CCC; padding:0.75rem 3rem;
+             font-size:1rem; cursor:pointer; font-family:'EB Garamond',serif;
+             color:#CCC; display:block; margin:0 auto;">
+      &nbsp;
+    </button>
+    <p style="font-size:0.7rem; color:#BBB; margin-top:1rem;">
+      Der Button funktioniert nicht. Wie so vieles hier.
+    </p>
+  </div>
+</div>
+
+<!-- ============================================================
+     MARQUEE / LAUFSCHRIFT (Welt 2, 90er-Stil)
+============================================================ -->
+<div id="w2-marquee">
+  <div id="w2-marquee-inner">
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    ★ „Vielleicht hast du das Falsche an mir geglaubt." — Originalzitat
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    ☆ „Ich bin eigentlich ganz einfach." — Ebenfalls Originalzitat
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    ★ „Ich fühle mich wie eine Schauspielerin." — Originalzitat (keine Ironie erkannt)
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    ☆ LEGENDE-SEMINAR ★ 4.999 € ★ NUR 3 PLÄTZE ★ BEREITS VOLL ★ TROTZDEM KAUFEN
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    ★ „Ich mag halt das Gefühl, geliebt zu werden." — Originalzitat
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    ☆ KAUF MICH ★ ODER ICH HASS DICH ★ KAUF MICH ★ VIELLEICHT
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    ★ „Ich kann das nicht. Ich brauche Pause." — Originalzitat (Pause dauerte 3 Wochen)
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+</div>
 
 <!-- ============================================================
      C64 TICKER (Welt 2)
@@ -655,17 +925,29 @@
     <a href="selbsttest.html" style="color:#2C1810; text-decoration:none;">Selbsttest</a>
     <a href="kurs.html"    style="color:#2C1810; text-decoration:none;">10-Tage-Kurs</a>
     <a href="#buch"        style="color:#2C1810; text-decoration:none;">Das Buch</a>
+    <a href="protokolle.html" style="color:#2C1810; text-decoration:none;">Protokolle</a>
     <a href="#seminar"     style="color:#2C1810; text-decoration:none; position:relative;">
       Das Seminar
       <span class="nav-seminar-badge">AUSGEBUCHT</span>
     </a>
+  </div>
+  <!-- WELT-TOGGLE als echter Schalter -->
+  <div class="nav-toggle-wrap">
+    <span class="nav-toggle-label w1-only">Klaron</span>
+    <span class="nav-toggle-label w2-only" style="display:none;">Seriös</span>
+    <label class="toggle-switch-ui" title="Seriös ↔ Wahnsinn">
+      <input type="checkbox" id="welt-switch" onchange="toggleWelt()">
+      <span class="toggle-slider-ui"></span>
+    </label>
+    <span class="nav-toggle-label w1-only" style="color:#ccc; text-decoration:line-through;">Vielleichta</span>
+    <span class="nav-toggle-label w2-only" style="display:none; color:#FFD700; animation:navBlink 2s step-end infinite;">WAHNSINN!</span>
   </div>
 </nav>
 
 <!-- ============================================================
      HERO
 ============================================================ -->
-<section style="background:#FDF8F0; min-height:88vh; display:flex; flex-direction:column;
+<section id="hero-section" style="background:#FDF8F0; min-height:88vh; display:flex; flex-direction:column;
   align-items:center; justify-content:center; text-align:center; padding:4rem 2rem; position:relative;">
 
   <div style="position:absolute; inset:0; opacity:0.025;
@@ -709,6 +991,94 @@
 </section>
 
 <!-- ============================================================
+     DIE FIGUREN
+============================================================ -->
+<section id="figuren" style="background:#F8F2E8; padding:4rem 2rem; border-top:1px solid #D4B896;">
+  <!-- WELT 1: sachlich -->
+  <div class="w1-only section-elegant" style="max-width:800px; margin:0 auto;">
+    <p style="font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; color:#B8964A; margin-bottom:0.4rem;">Personen</p>
+    <h2 style="font-size:1.8rem; font-weight:400; margin-bottom:0.4rem; color:#2C1810;">Die Beteiligten.</h2>
+    <p style="font-size:0.85rem; color:#888; font-style:italic; margin-bottom:2.5rem; line-height:1.6;">
+      Alle Namen sind Pseudonyme. Übereinstimmungen mit lebenden Personen wären rein zufällig<br>
+      — und gleichzeitig sehr eindeutig.
+    </p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:2rem;">
+      <div>
+        <img src="img/hero-frank-belinda.webp" alt="Franklin"
+          style="width:100%; aspect-ratio:4/3; object-fit:cover; object-position:left; border:1px solid #D4B896; margin-bottom:0.75rem;">
+        <h3 style="font-size:1.1rem; font-weight:600; margin-bottom:0.2rem; color:#2C1810;">Franklin</h3>
+        <p style="font-size:0.82rem; color:#888; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.4rem;">Autor / Erzähler / Geschädigter</p>
+        <p style="font-size:0.9rem; color:#5C4030; line-height:1.65;">
+          Hat alles versucht. Hat alles dokumentiert. Hat dieses Buch geschrieben.
+          Lebt heute mit Vanessa — und einem gesunden Argwohn.
+        </p>
+      </div>
+      <div>
+        <img src="img/fakten-sammlung.webp" alt="Belinda"
+          style="width:100%; aspect-ratio:4/3; object-fit:cover; border:1px solid #D4B896; margin-bottom:0.75rem;">
+        <h3 style="font-size:1.1rem; font-weight:600; margin-bottom:0.2rem; color:#2C1810;">Belinda</h3>
+        <p style="font-size:0.82rem; color:#888; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.4rem;">Die Borderlinerin</p>
+        <p style="font-size:0.9rem; color:#5C4030; line-height:1.65;">
+          Führt Buch über Franklins Fehler. Kennt keine eigenen.
+          Hat laut eigener Aussage sehr viel gelitten — vergisst dabei, wessen Handlungen das bewirkt haben.
+        </p>
+      </div>
+      <div>
+        <img src="img/systemkonflikt.webp" alt="Johanna"
+          style="width:100%; aspect-ratio:4/3; object-fit:cover; border:1px solid #D4B896; margin-bottom:0.75rem;">
+        <h3 style="font-size:1.1rem; font-weight:600; margin-bottom:0.2rem; color:#2C1810;">Johanna</h3>
+        <p style="font-size:0.82rem; color:#888; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.4rem;">Franklins Tochter</p>
+        <p style="font-size:0.9rem; color:#5C4030; line-height:1.65;">
+          Technisch begabt. Emotional resilient. Hat das Seminar besucht, bevor es überhaupt existierte —
+          präventiv, wie sie sagt.
+        </p>
+      </div>
+      <div>
+        <img src="img/tisch-harmonie.webp" alt="Vanessa"
+          style="width:100%; aspect-ratio:4/3; object-fit:cover; object-position:right; border:1px solid #D4B896; margin-bottom:0.75rem;">
+        <h3 style="font-size:1.1rem; font-weight:600; margin-bottom:0.2rem; color:#2C1810;">Vanessa</h3>
+        <p style="font-size:0.82rem; color:#888; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.4rem;">Franklins neue Partnerin</p>
+        <p style="font-size:0.9rem; color:#5C4030; line-height:1.65;">
+          Schreibt keine Protokolle. Stellt keine Rechnungen.
+          Gilt daher in manchen Kreisen als suspekt.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WELT 2: Chaos -->
+  <div class="w2-only" style="display:none; max-width:900px; margin:0 auto;">
+    <div style="background:#000; border:5px solid #FFD700; padding:1rem; margin-bottom:1.5rem; text-align:center;">
+      <p style="font-family:'Press Start 2P',monospace; font-size:clamp(0.55rem,1.5vw,0.8rem); color:#FFD700; text-shadow:2px 2px 0 #CC0000;">
+        ★ DIE CAST ★ ECHTE PSEUDONYME ★ KEIN EINZIGES DAVON ERFUNDEN ★
+      </p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem;">
+      <div style="background:#CC0000; border:4px solid #000; padding:0.75rem; transform:rotate(-1deg); box-shadow:5px 5px 0 #000;">
+        <img src="img/hero-frank-belinda.webp" style="width:100%; aspect-ratio:4/3; object-fit:cover; object-position:left; border:2px solid #FFD700; margin-bottom:0.5rem;">
+        <p style="font-family:Anton,Impact,sans-serif; font-size:1.3rem; color:#FFD700; text-shadow:2px 2px 0 #000;">FRANKLIN</p>
+        <p style="font-size:0.7rem; color:#FFF; font-family:Arial,sans-serif; line-height:1.5;">Der Typ, dem das passiert ist. Hat DIESES BUCH geschrieben.</p>
+      </div>
+      <div style="background:#0000CC; border:4px solid #FFD700; padding:0.75rem; transform:rotate(1.5deg); box-shadow:5px 5px 0 #000;">
+        <img src="img/fakten-sammlung.webp" style="width:100%; aspect-ratio:4/3; object-fit:cover; border:2px solid #FF0000; margin-bottom:0.5rem;">
+        <p style="font-family:'Permanent Marker',cursive; font-size:1.3rem; color:#FF6600; text-shadow:1px 1px 0 #000;">Belinda 🔥</p>
+        <p style="font-size:0.7rem; color:#FFD700; font-family:Arial,sans-serif; line-height:1.5;">Die Borderlinerin. Dozentin. Buchführt. Gibt Seminare.</p>
+      </div>
+      <div style="background:#FF8800; border:4px solid #000; padding:0.75rem; transform:rotate(-0.5deg); box-shadow:5px 5px 0 #CC0000;">
+        <img src="img/systemkonflikt.webp" style="width:100%; aspect-ratio:4/3; object-fit:cover; border:2px solid #000; margin-bottom:0.5rem;">
+        <p style="font-family:Boogaloo,cursive; font-size:1.3rem; color:#000;">Johanna ⚡</p>
+        <p style="font-size:0.7rem; color:#000; font-family:Arial,sans-serif; line-height:1.5;">Franklins Tochter. Technisch. Präventiv gebucht.</p>
+      </div>
+      <div style="background:#009900; border:4px solid #FFFF00; padding:0.75rem; transform:rotate(1deg); box-shadow:5px 5px 0 #000;">
+        <img src="img/tisch-harmonie.webp" style="width:100%; aspect-ratio:4/3; object-fit:cover; object-position:right; border:2px solid #FFFF00; margin-bottom:0.5rem;">
+        <p style="font-family:Pacifico,cursive; font-size:1.1rem; color:#FFFF00; text-shadow:2px 2px 0 #000;">Vanessa ✨</p>
+        <p style="font-size:0.7rem; color:#FFF; font-family:Arial,sans-serif; line-height:1.5;">Neue Partnerin. Stellt keine Rechnungen. Verdächtig normal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
      RATGEBER ARTIKEL
 ============================================================ -->
 <section id="ratgeber" class="section-articles" style="background:#FFF9F2; padding:5rem 2rem; border-top:1px solid #E8D5C0;">
@@ -723,21 +1093,21 @@
 
     <div class="article-card">
       <p style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#B8964A; margin-bottom:0.4rem;">Über Stille</p>
-      <h3 style="font-size:1.4rem; font-weight:400; margin-bottom:0.75rem;">Warum er schweigt — und was das über seine Tiefe sagt</h3>
+      <h3 style="font-size:1.4rem; font-weight:400; margin-bottom:0.75rem;">Warum sie schweigt — und was das über ihre Tiefe sagt</h3>
       <p style="font-size:1.05rem; line-height:1.8; color:#3C2010;">
-        Schweigen ist keine Ablehnung. Es ist eine Sprache, die man lernen muss — nicht er.
+        Schweigen ist keine Ablehnung. Es ist eine Sprache, die man lernen muss — nicht sie.
         Wer schweigt, sagt damit oft mehr als durch jedes Gespräch.
         Die Frage ist nur: wer entscheidet, wann das Schweigen endet?
       </p>
-      <p style="font-size:0.88rem; color:#B8964A; margin-top:0.75rem; font-style:italic;">(Spoiler: er.)</p>
+      <p style="font-size:0.88rem; color:#B8964A; margin-top:0.75rem; font-style:italic;">(Spoiler: sie.)</p>
     </div>
 
     <div class="article-card">
       <p style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#B8964A; margin-bottom:0.4rem;">Über Aufmerksamkeit</p>
-      <h3 style="font-size:1.4rem; font-weight:400; margin-bottom:0.75rem;">Er denkt immer an dich</h3>
+      <h3 style="font-size:1.4rem; font-weight:400; margin-bottom:0.75rem;">Sie denkt immer an dich</h3>
       <p style="font-size:1.05rem; line-height:1.8; color:#3C2010;">
-        Er weiß, wann du heimkommst. Er fragt, wen du getroffen hast. Er schreibt, wenn du nicht schreibst.
-        Man kann das Kontrolle nennen. Man kann es auch <em>Interesse</em> nennen.
+        Sie weiß, wann du heimkommst. Sie fragt, wen du getroffen hast. Sie schreibt, wenn du nicht schreibst.
+        Man kann das Kontrolle nennen. Man kann es auch <em>Fürsorge</em> nennen.
       </p>
       <p style="font-size:1.05rem; line-height:1.8; color:#3C2010; margin-top:0.5rem;">
         Die meisten Menschen verbringen ihr Leben mit jemandem, der kaum bemerkt, ob sie da sind.
@@ -759,14 +1129,14 @@
 
     <div class="article-card">
       <p style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#B8964A; margin-bottom:0.4rem;">Über Zuhören</p>
-      <h3 style="font-size:1.4rem; font-weight:400; margin-bottom:0.75rem;">7 Zeichen, dass er wirklich zuhört</h3>
-      <p style="font-size:1.05rem; line-height:1.8; color:#3C2010;">1. Er schaut vom Handy auf, wenn du weinst.</p>
+      <h3 style="font-size:1.4rem; font-weight:400; margin-bottom:0.75rem;">7 Zeichen, dass sie wirklich zuhört</h3>
+      <p style="font-size:1.05rem; line-height:1.8; color:#3C2010;">1. Sie schaut vom Handy auf, wenn du weinst.</p>
       <p style="font-size:0.9rem; font-style:italic; color:#888; margin-top:0.5rem;">2–7. *(Diese Liste ist kürzer als geplant.)*</p>
     </div>
 
     <div class="article-card">
       <p style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:#B8964A; margin-bottom:0.4rem;">Über Freunde</p>
-      <h3 style="font-size:1.4rem; font-weight:400; margin-bottom:0.75rem;">Warum deine Freunde ihn nicht verstehen</h3>
+      <h3 style="font-size:1.4rem; font-weight:400; margin-bottom:0.75rem;">Warum deine Freunde sie nicht verstehen</h3>
       <p style="font-size:1.05rem; line-height:1.8; color:#3C2010;">
         Freunde sehen immer nur einen Ausschnitt. Sie waren nicht dabei, als es schön war.
         Sie sehen nur, was du ihnen erzählst. Und du erzählst ja nicht alles.
@@ -791,14 +1161,14 @@
     <p style="font-size:0.92rem; color:#888; margin-bottom:3rem; line-height:1.7;">
       Diese Typen beschreiben keine allgemeinen Partnerprobleme.
       Sie beschreiben die Verhaltensmuster einer Person mit Borderline-Struktur —
-      so wie Frank sie erlebt hat. Wenn Sie jemanden darin erkennen: Es ist nicht Ihre Einbildung.
+      so wie Franklin sie erlebt hat. Wenn Sie jemanden darin erkennen: Es ist nicht Ihre Einbildung.
     </p>
 
     <div class="type-card">
       <p style="font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:#B8964A; margin-bottom:0.2rem;">Typus I</p>
       <h3 style="font-size:1.3rem; font-weight:600; margin-bottom:0.2rem;">Der Erklärer</h3>
       <p style="font-size:0.9rem; font-style:italic; color:#722F37; margin-bottom:0.75rem;">„Ich erklär dir kurz, warum du falsch liegst."</p>
-      <p style="font-size:1rem; line-height:1.7;">Erklärt Witze. Erklärt Gefühle. Erklärt, warum er nicht zuhören muss. Liebt dich — würde dich aber gerne noch etwas verbessern.</p>
+      <p style="font-size:1rem; line-height:1.7;">Erklärt Witze. Erklärt Gefühle. Erklärt, warum sie nicht zuhören muss. Liebt dich — würde dich aber gerne noch etwas verbessern.</p>
       <p style="font-size:0.85rem; color:#999; margin-top:0.4rem;">Natürlicher Feind: Stille.</p>
     </div>
 
@@ -830,7 +1200,7 @@
       <p style="font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:#B8964A; margin-bottom:0.2rem;">Typus V</p>
       <h3 style="font-size:1.3rem; font-weight:600; margin-bottom:0.2rem;">Das Opfer in der Offensive</h3>
       <p style="font-size:0.9rem; font-style:italic; color:#722F37; margin-bottom:0.75rem;">„Nach allem, was ich für dich getan habe."</p>
-      <p style="font-size:1rem; line-height:1.7;">Leidet laut. Hält die Lautstärke des Leidens für ein Argument. Hat immer das größere Unrecht. Auch dann, wenn er begonnen hat. Vor allem dann.</p>
+      <p style="font-size:1rem; line-height:1.7;">Leidet laut. Hält die Lautstärke des Leidens für ein Argument. Hat immer das größere Unrecht. Auch dann, wenn sie begonnen hat. Vor allem dann.</p>
     </div>
 
     <div class="type-card">
@@ -849,9 +1219,91 @@
 </section>
 
 <!-- ============================================================
+     BELINDA SPECIAL TEASER
+============================================================ -->
+<section id="belinda-special" style="background:#F5EFE6; padding:4rem 2rem; border-top:1px solid #D4B896;">
+  <!-- WELT 1: Sachlich -->
+  <div class="w1-only section-elegant" style="max-width:720px; margin:0 auto;">
+    <p style="font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; color:#B8964A; margin-bottom:0.4rem;">Sonder-Workshop</p>
+    <h2 style="font-size:1.9rem; font-weight:400; margin-bottom:1rem; color:#2C1810;">
+      Zur Borderlinerin in drei Stunden.
+    </h2>
+    <p style="font-size:1rem; line-height:1.85; color:#5C4030; margin-bottom:1.2rem;">
+      Ein kompaktes Format für Fortgeschrittene. Dozentin: Belinda, unterstützt von Franklin und Vanessa.
+      Fünf Schnelltipps, die Ihnen niemand sonst gibt — und ein exklusiver Einblick hinter die Kulissen
+      des letzten Seminars.
+    </p>
+    <div style="display:flex; gap:1.5rem; margin-bottom:1.5rem; flex-wrap:wrap;">
+      <div style="flex:1; min-width:180px; background:#FDF8F0; border:1px solid #D4B896; padding:1.25rem;">
+        <p style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:#B8964A; margin-bottom:0.5rem;">Tipp 1</p>
+        <p style="font-size:0.95rem; color:#2C1810; line-height:1.6;">Reagiere sofort — aber signalisiere dabei, dass du gerade keine Kapazität hast.</p>
+      </div>
+      <div style="flex:1; min-width:180px; background:#FDF8F0; border:1px solid #D4B896; padding:1.25rem;">
+        <p style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:#B8964A; margin-bottom:0.5rem;">Tipp 2</p>
+        <p style="font-size:0.95rem; color:#2C1810; line-height:1.6;">Stelle keine Fragen, auf die du keine Antwort aushalten würdest.</p>
+      </div>
+      <div style="flex:1; min-width:180px; background:#FDF8F0; border:1px solid #D4B896; padding:1.25rem;">
+        <p style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:#B8964A; margin-bottom:0.5rem;">Tipp 3</p>
+        <p style="font-size:0.95rem; color:#2C1810; line-height:1.6;">Entschuldige dich. Immer. Auch wenn du nicht weißt wofür. Das kommt noch.</p>
+      </div>
+    </div>
+    <div style="display:flex; gap:1.5rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+      <div style="flex:1; min-width:180px; background:#FDF8F0; border:1px solid #D4B896; padding:1.25rem;">
+        <p style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:#B8964A; margin-bottom:0.5rem;">Tipp 4</p>
+        <p style="font-size:0.95rem; color:#2C1810; line-height:1.6;">Wenn alles gut ist — warte. Das ist kein Zustand, das ist eine Phase.</p>
+      </div>
+      <div style="flex:1; min-width:180px; background:#FDF8F0; border:1px solid #D4B896; padding:1.25rem;">
+        <p style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:#B8964A; margin-bottom:0.5rem;">Tipp 5</p>
+        <p style="font-size:0.95rem; color:#2C1810; line-height:1.6;">Lerne zu unterscheiden, ob gerade Borderline spricht — oder ob Borderline spricht und dabei lächelt.</p>
+      </div>
+    </div>
+    <div style="background:#2C1810; color:#FDF8F0; padding:1.5rem; margin-top:1rem;">
+      <p style="font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; color:#B8964A; margin-bottom:0.3rem;">Behind the scenes</p>
+      <p style="font-size:0.95rem; line-height:1.8; color:#D4B896; font-style:italic;">
+        „Franklin erschien um 10:03 Uhr. Sagte einen Satz. Verließ den Raum um 11:47 Uhr.
+        Die fünf Teilnehmerinnen waren sich einig: Das war das Lehrreichste des gesamten Wochenendes."
+      </p>
+      <p style="font-size:0.75rem; color:#888; margin-top:0.4rem;">— Aus Protokoll 003. Vollständige Lektüre auf: <a href="protokolle.html" style="color:#B8964A;">Protokolle</a></p>
+    </div>
+  </div>
+
+  <!-- WELT 2: WAHNSINN -->
+  <div class="w2-only" style="display:none; max-width:900px; margin:0 auto;">
+    <div style="background:#FF0066; border:6px solid #000; padding:1.5rem; margin-bottom:1rem; transform:rotate(-1deg); box-shadow:8px 8px 0 #000;">
+      <p style="font-family:'Press Start 2P',monospace; font-size:clamp(0.6rem,2vw,0.85rem); color:#FFFF00; text-align:center; margin-bottom:0.5rem; text-shadow:2px 2px 0 #000;">
+        ★ SONDER-WORKSHOP ★ EXKLUSIV ★ FAST AUSGEBUCHT ★
+      </p>
+      <h2 style="font-family:Anton,Impact,sans-serif; font-size:clamp(1.8rem,5vw,3.5rem); color:#FFF; text-transform:uppercase; text-shadow:4px 4px 0 #000; line-height:1; text-align:center; white-space:nowrap; overflow:hidden;">
+        ZUR BORDERLINERIN IN 3 STUNDEN!!!!!!
+      </h2>
+    </div>
+    <div style="background:#FFFF00; border:4px solid #000; padding:1rem; margin-bottom:1rem; box-shadow:6px 6px 0 #CC0000;">
+      <p style="font-family:Lobster,cursive; font-size:clamp(1.2rem,3vw,1.8rem); color:#000; text-align:center;">
+        Dozentin: BELINDA persönlich!
+      </p>
+      <p style="font-family:Anton,Impact,sans-serif; font-size:0.9rem; color:#CC0000; text-align:center;">
+        unterstützt von Franklin &amp; Vanessa (live vor Ort — vermutlich)
+      </p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:0.75rem; margin-bottom:1rem;">
+      <div style="background:#0000CC; color:#FFD700; border:3px solid #FFD700; padding:1rem; font-family:Anton,Impact,sans-serif; font-size:0.85rem; text-align:center; transform:rotate(1deg);">💡 TIPP 1<br><span style="font-size:0.7rem; font-family:Arial,sans-serif; display:block; margin-top:0.3rem; color:#FFF;">Reagier sofort aber tu so als hättest du keine Kapazität</span></div>
+      <div style="background:#CC0000; color:#FFFF00; border:3px solid #000; padding:1rem; font-family:Anton,Impact,sans-serif; font-size:0.85rem; text-align:center; transform:rotate(-1deg);">💡 TIPP 2<br><span style="font-size:0.7rem; font-family:Arial,sans-serif; display:block; margin-top:0.3rem; color:#FFF;">Stell keine Fragen deren Antwort du nicht aushältst</span></div>
+      <div style="background:#FF8800; color:#000; border:3px solid #CC0000; padding:1rem; font-family:Anton,Impact,sans-serif; font-size:0.85rem; text-align:center; transform:rotate(0.5deg);">💡 TIPP 3<br><span style="font-size:0.7rem; font-family:Arial,sans-serif; display:block; margin-top:0.3rem;">Entschuldige dich. Immer. Wofür? Kommt noch.</span></div>
+      <div style="background:#009900; color:#FFFFFF; border:3px solid #FFFF00; padding:1rem; font-family:Anton,Impact,sans-serif; font-size:0.85rem; text-align:center; transform:rotate(-0.5deg);">💡 TIPP 4<br><span style="font-size:0.7rem; font-family:Arial,sans-serif; display:block; margin-top:0.3rem;">Wenn es gut läuft — WARTE. Das ist eine Phase.</span></div>
+      <div style="background:#9900CC; color:#FFFFFF; border:3px solid #FF00FF; padding:1rem; font-family:Anton,Impact,sans-serif; font-size:0.85rem; text-align:center; transform:rotate(1.5deg);">💡 TIPP 5<br><span style="font-size:0.7rem; font-family:Arial,sans-serif; display:block; margin-top:0.3rem;">Borderline spricht. Oder lächelt. Beides: gefährlich.</span></div>
+    </div>
+    <div style="background:#000; color:#FF8800; border:4px solid #FF8800; padding:1rem; font-family:'Courier New',monospace; font-size:0.85rem; line-height:1.7;">
+      <span style="color:#FFD700; font-family:Anton,Impact,sans-serif; font-size:1rem; display:block; margin-bottom:0.5rem;">■ BEHIND THE SCENES:</span>
+      „Franklin erschien um 10:03. Sagte einen Satz. Ging um 11:47."<br>
+      <span style="font-size:0.75rem; color:#888; display:block; margin-top:0.3rem;">5 Teilnehmerinnen: einstimmig lehrreichster Moment des Wochenendes. → <a href="protokolle.html" style="color:#FF8800;">Protokoll 003</a></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
      SEMINAR — PHASE 1: ELEGANT
 ============================================================ -->
-<section id="seminar" class="section-seminar1" style="background:#2C1810; color:#FDF8F0; padding:5rem 2rem;">
+<section id="seminar" class="section-seminar1 w1-only" style="background:#2C1810; color:#FDF8F0; padding:5rem 2rem;">
   <div class="section-elegant">
     <p style="font-size:0.8rem; letter-spacing:0.15em; text-transform:uppercase; color:#B8964A; margin-bottom:0.4rem;">Das Legende-Seminar</p>
     <h2 style="font-size:2.2rem; font-weight:400; margin-bottom:1.5rem; color:#FDF8F0;">
@@ -899,7 +1351,7 @@
      (Welt 1: hidden, zeigt sich nach Klick)
      (Welt 2: sofort sichtbar)
 ============================================================ -->
-<div id="seminar-chaos-wrap" style="display:none;">
+<div id="seminar-chaos-wrap" class="seminar-chaos" style="display:none;">
 
 <!-- ░░ BLOCK 1: HAUPT-HEADLINE — zu groß für den Bildschirm ░░ -->
 <div style="background:#FF0000; overflow:hidden; padding:1.5rem 0; position:relative;">
@@ -1314,6 +1766,9 @@
     <a href="#" style="color:#555; text-decoration:none; margin:0 1rem;">Datenschutz</a>
     <a href="#" onclick="showContact(); return false;" style="color:#555; text-decoration:none; margin:0 1rem;">Kontakt</a>
   </div>
+  <p style="font-size:8px; color:#444; margin-top:2rem; line-height:1.5; max-width:480px; margin-left:auto; margin-right:auto;">
+    Falls Sie denken, wir sind zu blöd, eine ordentliche Website zu machen — haben Sie völlig recht. Der Herausgeber.
+  </p>
 </footer>
 
 <!-- ============================================================
@@ -1469,11 +1924,10 @@
 
   // ── WELT TOGGLE ──────────────────────────────────────────────
   function toggleWelt() {
-    if (root.classList.contains('w1')) {
+    const isGoingW2 = root.classList.contains('w1');
+    if (isGoingW2) {
       root.classList.replace('w1', 'w2');
-      // In Welt 2: show seminar chaos automatically
-      document.getElementById('seminar-chaos-wrap').style.display = 'block';
-      // Push notification after 4s
+      // Chaos-Seminar wird per CSS automatisch sichtbar (class seminar-chaos)
       setTimeout(() => {
         document.getElementById('push-notif').classList.add('visible');
         setTimeout(() => document.getElementById('push-notif').classList.remove('visible'), 9000);
@@ -1482,9 +1936,15 @@
       root.classList.replace('w2', 'w1');
       document.getElementById('push-notif').classList.remove('visible');
     }
-    // Fix display:block on w2-only spans inside toggle
-    document.querySelectorAll('#world-toggle .w2-only').forEach(el => {
-      el.style.display = root.classList.contains('w2') ? 'block' : 'none';
+    // Sync checkbox state
+    const sw = document.getElementById('welt-switch');
+    if (sw) sw.checked = root.classList.contains('w2');
+    // Update w2-only spans in nav toggle
+    document.querySelectorAll('.nav-toggle-wrap .w2-only').forEach(el => {
+      el.style.display = root.classList.contains('w2') ? 'inline' : 'none';
+    });
+    document.querySelectorAll('.nav-toggle-wrap .w1-only').forEach(el => {
+      el.style.display = root.classList.contains('w2') ? 'none' : 'inline';
     });
   }
 
