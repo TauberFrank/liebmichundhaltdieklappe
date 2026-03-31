@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stories — Lieb mich und halt die Klappe</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'EB Garamond', Georgia, serif; background: #FDF8F0; color: #2C1810; margin: 0; }
+    .story-card {
+      border-top: 1px solid #D4B896;
+      padding: 3rem 0;
+      cursor: pointer;
+    }
+    .story-card:hover .story-title { color: #722F37; }
+    .story-teaser { display: none; max-height: 0; overflow: hidden; transition: max-height 0.6s ease; }
+    .story-teaser.open { display: block; max-height: 2000px; }
+    .cliffhanger {
+      border-left: 3px solid #722F37;
+      padding: 1rem 1.5rem;
+      margin-top: 1.5rem;
+      font-style: italic;
+      color: #722F37;
+    }
+    .systemstatus {
+      font-family: monospace; font-size: 0.85rem;
+      color: #B8964A; margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+<nav style="border-bottom:1px solid #D4B896; padding:1rem 2rem; background:#FDF8F0; display:flex; justify-content:space-between; align-items:center;">
+  <a href="index.html" style="color:#B8964A; text-decoration:none; font-size:0.9rem;">
+    ← Lieb mich — und halt die Klappe!
+  </a>
+</nav>
+
+<div style="max-width:700px; margin:0 auto; padding:5rem 2rem;">
+
+  <p style="font-size:0.78rem; letter-spacing:0.15em; text-transform:uppercase; color:#B8964A; margin-bottom:0.5rem;">Stories</p>
+  <h1 style="font-size:clamp(1.8rem,5vw,2.8rem); font-weight:400; margin-bottom:0.75rem; line-height:1.25;">
+    Aus dem Buch.
+  </h1>
+  <p style="font-size:1.1rem; font-style:italic; color:#888; margin-bottom:0.5rem;">
+    Wahre Geschichten. Echte Zitate. Sehr echte Gefühle.
+  </p>
+  <p style="font-size:0.9rem; color:#aaa; margin-bottom:4rem;">
+    Jede Geschichte hat eine Zeile, die im Buch steht — und einen Cliffhanger.
+  </p>
+
+  <!-- STORY 1 -->
+  <div class="story-card" onclick="toggle('s1')">
+    <div class="systemstatus" id="sys1">Systemstatus Klaron: ██████████░ 91 %</div>
+    <p style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:#888; margin-bottom:0.4rem;">Kapitel 1 — Das Betriebsfest</p>
+    <h2 class="story-title" style="font-size:1.5rem; font-weight:400; margin-bottom:0.75rem; transition:color 0.2s;">
+      Zwei Cocktails. Sein Schritt. Kein Zufall.
+    </h2>
+    <p style="font-size:1rem; color:#B8964A; font-style:italic;">
+      „Ich brauche kein Geld. Ich brauche einen Mann."
+    </p>
+    <p style="font-size:0.8rem; color:#aaa; margin-top:0.5rem;">↓ Aufklappen</p>
+
+    <div class="story-teaser" id="s1">
+      <div style="height:1.5rem;"></div>
+      <p style="font-size:1.05rem; line-height:1.85; color:#3C2010; margin-bottom:1rem;">
+        Betriebsfest. Grill. Bierbänke. Menschen, die Smalltalk führen, als hinge ihr Gehalt davon ab.
+      </p>
+      <p style="font-size:1.05rem; line-height:1.85; color:#3C2010; margin-bottom:1rem;">
+        Er sucht das Klo — aber findet Belinda. Also fast.
+        Erst findet er zwei volle Cocktails. In seinem Schritt.
+      </p>
+      <p style="font-size:1.05rem; line-height:1.85; color:#3C2010; margin-bottom:1rem;">
+        „Oh mein Gott, ich bin so schusselig!", ruft sie.
+        Rennt zur Bar. Kommt mit acht Servietten zurück.
+        Fängt an, ihn abzutupfen. Auch — dort.
+      </p>
+      <p style="font-size:1.05rem; line-height:1.85; color:#3C2010; margin-bottom:1rem;">
+        „Ich bin Belinda", sagt sie.
+        „Ich war mal trocken", sagt er.
+        Sie lacht. Er friert.
+      </p>
+      <p style="font-size:1.05rem; line-height:1.85; color:#3C2010; margin-bottom:1rem;">
+        Nicht wegen der Flüssigkeit.
+      </p>
+      <div class="cliffhanger">
+        Vier Tage lang denkt er an sie. Dann sagt er: „Ich will dich."<br>
+        Sie starrt ihn an, als hätte das Kontrollzentrum gerade gebruzelt.<br>
+        Dann küsst sie ihn.<br><br>
+        <em>Dann beginnt der Rest.</em>
+      </div>
+      <div style="margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid #E8D5C0;">
+        <p style="font-size:0.8rem; color:#aaa; font-style:italic;">
+          Wenn Sie sich in diesem Kapitel wiedererkannt haben: Das ist normal.<br>
+          Falls Sie sich sehr stark wiedererkennen — ein Therapeut schadet nie.<br>
+          <em>Nur so als Hinweis.</em>
+        </p>
+        <p style="font-size:0.82rem; color:#888; margin-top:0.5rem;">
+          Das vollständige Kapitel steht im Buch.
+          <a href="index.html#buch" style="color:#B8964A; text-decoration:none;">→ Leseprobe &amp; Kauflink</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card" onclick="toggle('s2')">
+    <div class="systemstatus" id="sys2">Systemstatus Klaron: ████████░░░ 72 %</div>
+    <p style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:#888; margin-bottom:0.4rem;">Kapitel 2 — Beweise (Teil 1 von ca. 417)</p>
+    <h2 class="story-title" style="font-size:1.5rem; font-weight:400; margin-bottom:0.75rem; transition:color 0.2s;">
+      "Das ist Biologie!" — "Also eine Meinung."
+    </h2>
+    <p style="font-size:1rem; color:#B8964A; font-style:italic;">
+      „Ich finde, du redest zu viel."
+    </p>
+    <p style="font-size:0.8rem; color:#aaa; margin-top:0.5rem;">↓ Aufklappen</p>
+
+    <div class="story-teaser" id="s2">
+      <div style="height:1.5rem;"></div>
+      <p style="font-size:1.05rem; line-height:1.85; color:#3C2010; margin-bottom:1rem;">
+        „Lass uns was essen gehen", sagt er.
+      </p>
+      <p style="font-size:1.05rem; line-height:1.85; color:#3C2010; margin-bottom:1rem;">
+        Belinda: „Warum?"<br>
+        Er: „Weil man sonst stirbt."<br>
+        Sie: „Ist das deine Wahrheit oder eine offizielle Vorschrift?"
+      </p>
+      <p style="font-size:1.05rem; line-height:1.85; color:#3C2010; margin-bottom:1rem;">
+        Sie zückt ein Notizbuch mit der Aufschrift
+        <em>"Modellierung Mensch: Fakten-Sammlung".</em>
+      </p>
+      <p style="font-size:1.05rem; line-height:1.85; color:#3C2010; margin-bottom:1rem;">
+        Er: „Das ist Biologie!"<br>
+        Sie: „Also eine Meinung."<br>
+        Er: „Nein. Eine Tatsache."<br>
+        Sie: „Zeig mir ein Beweiszertifikat. Oder wir canceln das Thema."
+      </p>
+      <p style="font-size:1.05rem; line-height:1.85; color:#3C2010; margin-bottom:1rem;">
+        Während er nach Worten sucht,
+        fängt sie an, sich auszuziehen.
+      </p>
+      <div class="cliffhanger">
+        Er dominiert sie angestrengt aber optimistisch ins Restaurant.<br>
+        Sie bestellt. Dann ändert sie die Bestellung. Dann schaut sie sich die Bestellungen der Nebentische an.<br>
+        Dann verscheucht sie den Kellner.<br><br>
+        <em>Und dann sagt sie, dass sie keinen Hunger hat.</em>
+      </div>
+      <div style="margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid #E8D5C0;">
+        <p style="font-size:0.8rem; color:#aaa; font-style:italic;">
+          Falls Sie sich hier wiedererkannt haben: Bitte wenden Sie sich an einen Therapeuten.<br>
+          Ernsthaft. Nicht als Scherz. Ein bisschen als Scherz. Aber hauptsächlich ernst.
+        </p>
+        <p style="font-size:0.82rem; color:#888; margin-top:0.5rem;">
+          <a href="index.html#buch" style="color:#B8964A; text-decoration:none;">→ Leseprobe &amp; Kauflink</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card" onclick="toggle('s3')">
+    <div class="systemstatus" id="sys3">Systemstatus Klaron: ██████░░░░░ 55 %</div>
+    <p style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:#888; margin-bottom:0.4rem;">Kapitel 3 — Entspanntheit, verfickt nochmal</p>
+    <h2 class="story-title" style="font-size:1.5rem; font-weight:400; margin-bottom:0.75rem; transition:color 0.2s;">
+      Belinda hat Pudding. Johanna hat Mathe. Frank hat eine Frage.
+    </h2>
+    <p style="font-size:1rem; color:#B8964A; font-style:italic;">
+      „Kinder regeln sowas."
+    </p>
+    <p style="font-size:0.8rem; color:#aaa; margin-top:0.5rem;">↓ Aufklappen</p>
+
+    <div class="story-teaser" id="s3">
+      <div style="height:1.5rem;"></div>
+      <p style="font-size:1.05rem; line-height:1.85; color:#3C2010; margin-bottom:1rem;">
+        Wohnzimmer. Frank mit klarer Idee. Belinda mit Pudding.
+        Johanna mit Trigonometrie und Tränen in den Augen.
+      </p>
+      <p style="font-size:1.05rem; line-height:1.85; color:#3C2010; margin-bottom:1rem;">
+        Frank: „Johanna ist überfordert mit dem Mathe-Modul.
+        Wir sollten das besprechen — gemeinsam."<br>
+        Belinda: „Ich find, man muss da mal locker bleiben. Kinder regeln sowas."<br>
+        Frank: „Ja. Und Eichhörnchen organisieren ihre Steuererklärung."
+      </p>
+      <p style="font-size:1.05rem; line-height:1.85; color:#3C2010; margin-bottom:1rem;">
+        Sie ruft Franklin an. Lautsprecher.
+        Franklin klingt wie ein IKEA-Stuhl, der schon mal zusammengebrochen ist.
+      </p>
+      <p style="font-size:1.05rem; line-height:1.85; color:#3C2010; margin-bottom:1rem;">
+        Franklin: „Also… ich hab da Vertrauen. In euch alle."<br>
+        Franklin: „Ich misch mich da nicht ein. Hab da richtig Respekt."<br>
+        Franklin: „Ich leg jetzt auf. Ich hab Gruppentreffen der alleinerziehenden Väter."
+      </p>
+      <p style="font-size:1.05rem; line-height:1.85; color:#3C2010; margin-bottom:1rem;">
+        Belinda strahlt: „Siehst du? Er sieht das auch entspannt."
+      </p>
+      <p style="font-size:1.05rem; line-height:1.85; color:#3C2010; margin-bottom:1rem;">
+        Frank: „Natürlich. Der entspannt sogar bei Wohnungsbränden."
+      </p>
+      <div class="cliffhanger">
+        Im Kontrollzentrum: Belinda 3 macht Yoga.
+        Belinda 8 schreit „Gefühlsverstopfung!"
+        Belinda 14 schlägt Kuscheltaktik vor.<br><br>
+        Belinda (rutscht näher, haucht): „Ich find's ja schön, wie du dich kümmerst.
+        Aber musst du immer so viel denken?"<br><br>
+        <em>Frank, in sich hinein: Ich bin nicht der Vater.
+        Ich bin das Anti-Franklin-Modul — mit Pflichtbewusstsein und Restwürde.
+        Und das ist in diesem Haushalt ungefähr so beliebt wie Brokkoli beim Kindergeburtstag.</em>
+      </div>
+      <div style="margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid #E8D5C0;">
+        <p style="font-size:0.8rem; color:#aaa; font-style:italic;">
+          Wenn Sie das "Kuscheltaktik"-Muster kennen: Bitte rufen Sie heute noch Ihre Therapeutin an.<br>
+          Der Verfasser hat es in echt ausgehalten. Das bedeutet nicht, dass Sie das müssen.
+        </p>
+        <p style="font-size:0.82rem; color:#888; margin-top:0.5rem;">
+          <a href="index.html#buch" style="color:#B8964A; text-decoration:none;">→ Leseprobe &amp; Kauflink</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 4 -->
+  <div class="story-card" onclick="toggle('s4')">
+    <div class="systemstatus" id="sys4">Systemstatus Klaron: ████░░░░░░░ 36 %</div>
+    <p style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:#888; margin-bottom:0.4rem;">Kapitel 4 — Die zwei Seiten</p>
+    <h2 class="story-title" style="font-size:1.5rem; font-weight:400; margin-bottom:0.75rem; transition:color 0.2s;">
+      Belinda 1 liegt in seinen Armen. Belinda 2 unterschreibt die Verträge.
+    </h2>
+    <p style="font-size:1rem; color:#B8964A; font-style:italic;">
+      „Ich fühle mich wie eine Schauspielerin."
+    </p>
+    <p style="font-size:0.8rem; color:#aaa; margin-top:0.5rem;">↓ Aufklappen</p>
+
+    <div class="story-teaser" id="s4">
+      <div style="height:1.5rem;"></div>
+      <p style="font-size:1.05rem; line-height:1.85; color:#3C2010; margin-bottom:1rem;">
+        Sie liegt in seinen Armen, sagt: „Ich hab sowas noch nie gefühlt."
+        Er atmet tief. Stille.
+      </p>
+      <p style="font-size:1.05rem; line-height:1.85; color:#3C2010; margin-bottom:1rem;">
+        Drei Stunden später — nach einer simplen Nachfrage,
+        ob sie mal über die Steuererklärung sprechen —
+        sagt sie: „Ich fühle mich wie eine Schauspielerin."
+      </p>
+      <p style="font-size:1.05rem; line-height:1.85; color:#3C2010; margin-bottom:1rem;">
+        Er: „Vorhin warst du ganz anders."<br>
+        Sie: „Ich war nie anders."
+      </p>
+      <p style="font-size:1.05rem; line-height:1.85; color:#3C2010; margin-bottom:1rem;">
+        Im Kontrollzentrum rotieren die 20 Belindas im Kreis.
+        „Kollision erkannt. Einfach negieren."
+      </p>
+      <div class="cliffhanger">
+        Er fragt: „Das war echt heute früh."<br>
+        Sie sagt: „Vielleicht in deinem Kopf."<br><br>
+        <em>Und er merkt: Er hat sich in Belinda 1 verliebt.
+        Aber Belinda 2 unterschreibt die Verträge.</em>
+      </div>
+      <div style="margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid #E8D5C0;">
+        <p style="font-size:0.8rem; color:#aaa; font-style:italic;">
+          Wenn Sie das Muster "ich war mir eben selbst wichtig" aus eigenem Erleben kennen:<br>
+          Therapeut. Jetzt. Nicht morgen. Der Verfasser hat das in echt ausgehalten.<br>
+          <em>Stellen Sie sich nicht so an. (Vielleicht.)</em>
+        </p>
+        <p style="font-size:0.82rem; color:#888; margin-top:0.5rem;">
+          <a href="index.html#buch" style="color:#B8964A; text-decoration:none;">→ Leseprobe &amp; Kauflink</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 5 -->
+  <div class="story-card" onclick="toggle('s5')">
+    <div class="systemstatus" id="sys5">Systemstatus Klaron: █░░░░░░░░░░ 09 %</div>
+    <p style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:#888; margin-bottom:0.4rem;">Kapitel 5 — Widersprüche</p>
+    <h2 class="story-title" style="font-size:1.5rem; font-weight:400; margin-bottom:0.75rem; transition:color 0.2s;">
+      "Ihr seid mein Allerliebstes." — Zwei Tage später.
+    </h2>
+    <p style="font-size:1rem; color:#B8964A; font-style:italic;">
+      „Vielleicht hast du einfach das Falsche an mir geglaubt."
+    </p>
+    <p style="font-size:0.8rem; color:#aaa; margin-top:0.5rem;">↓ Aufklappen</p>
+
+    <div class="story-teaser" id="s5">
+      <div style="height:1.5rem;"></div>
+      <p style="font-size:1.05rem; line-height:1.85; color:#3C2010; margin-bottom:1rem;">
+        Im Auto. Er sagt: „Es fühlt sich schön an, mit dir und Johanna zusammen zu sein."
+        Belinda lächelt: „Ihr seid mein Allerliebstes."
+      </p>
+      <p style="font-size:1.05rem; line-height:1.85; color:#3C2010; margin-bottom:1rem;">
+        Zwei Tage später — nach einem banalen Streit über Brötchen
+        oder Leben, er weiß es nicht mehr genau — sagt sie:
+        „Ich könnte jetzt einfach zurück zu meiner Exfreundin aus dem Swingerclub."
+      </p>
+      <p style="font-size:1.05rem; line-height:1.85; color:#3C2010; margin-bottom:1rem;">
+        Er: „Und was ist mit Johanna?"<br>
+        Sie: „Die wird schon klarkommen. Kinder sind resilient."<br>
+        Er: „Vor zwei Tagen war sie dein Mittelpunkt."<br>
+        Sie: „Heute bin ich meiner."
+      </p>
+      <div class="cliffhanger">
+        Er sitzt daneben. Zählt die Loopings in seinem Kopf.
+        Und denkt:<br><br>
+        <em>Das hier ist nicht Liebe. Das ist emotionale Jonglage — ohne Sicherheitsnetz.</em><br><br>
+        Und bleibt trotzdem.
+      </div>
+      <div style="margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid #E8D5C0;">
+        <p style="font-size:0.8rem; color:#722F37; font-style:italic; font-weight:600;">
+          Wenn Sie bis hier gelesen haben und mehrere dieser Kapitel kennen:<br>
+          Bitte legen Sie dieses Buch kurz weg und rufen jemanden an, dem Sie vertrauen.<br>
+          Der Verfasser hat das alles in echt erlebt und ausgehalten.<br>
+          Er würde heute wahrscheinlich sagen: Sie müssen das nicht.<br>
+          <em>Aber er sagt es vielleicht nicht. Weil er immer noch hofft, dass es sich erklärt.</em>
+        </p>
+        <p style="font-size:0.82rem; color:#888; margin-top:0.75rem;">
+          <a href="index.html#buch" style="color:#B8964A; text-decoration:none;">→ Leseprobe &amp; Kauflink</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEHR -->
+  <div style="padding:3rem 0; border-top:1px solid #D4B896; text-align:center;">
+    <p style="font-size:1rem; color:#888; font-style:italic; margin-bottom:1.5rem;">
+      Es gibt mehr Kapitel. Alle mit einem Cliffhanger.<br>
+      Keiner davon endet so, wie man hofft.
+    </p>
+    <a href="index.html#buch"
+      style="border:1px solid #2C1810; color:#2C1810; padding:0.75rem 1.5rem;
+             text-decoration:none; font-size:1rem; display:inline-block;">
+      → Das vollständige Buch
+    </a>
+  </div>
+
+</div>
+
+<script>
+  function toggle(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>

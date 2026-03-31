@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selbsttest — Lieb mich und halt die Klappe</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'EB Garamond', Georgia, serif; background: #FDF8F0; color: #2C1810; margin: 0; }
+    .question { display: none; }
+    .question.active { display: block; }
+    .opt-btn {
+      display: block; width: 100%; text-align: left;
+      border: 1px solid #D4B896; background: #FFF9F0;
+      padding: 0.9rem 1.25rem; margin-bottom: 0.6rem;
+      font-family: 'EB Garamond', serif; font-size: 1.05rem;
+      cursor: pointer; color: #2C1810; line-height: 1.5;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .opt-btn:hover { background: #F5EAD5; border-color: #B8964A; }
+    .progress-bar { height: 3px; background: #E8D5C0; }
+    .progress-fill { height: 100%; background: #B8964A; transition: width 0.5s; }
+    /* Systemstatus bars */
+    .status-bar { font-family: monospace; font-size: 1.1rem; color: #722F37; }
+  </style>
+</head>
+<body>
+
+<nav style="border-bottom:1px solid #D4B896; padding:1rem 2rem; background:#FDF8F0;">
+  <a href="index.html" style="color:#B8964A; text-decoration:none; font-size:0.9rem;">
+    ← Lieb mich — und halt die Klappe!
+  </a>
+</nav>
+
+<!-- Progress -->
+<div class="progress-bar">
+  <div class="progress-fill" id="progress" style="width:0%"></div>
+</div>
+
+<div style="max-width:660px; margin:0 auto; padding:4rem 2rem;">
+
+  <p style="font-size:0.78rem; letter-spacing:0.15em; text-transform:uppercase; color:#B8964A; margin-bottom:0.5rem;">Selbsttest</p>
+  <h1 style="font-size:clamp(1.8rem,5vw,2.8rem); font-weight:400; margin-bottom:0.5rem; line-height:1.2;">
+    Bin ich es — oder er/sie?
+  </h1>
+  <p style="font-size:1rem; color:#888; font-style:italic; margin-bottom:3rem;">
+    10 Fragen. Ehrliche Antworten. Ein Ergebnis.
+  </p>
+
+  <!-- FRAGE 1 -->
+  <div class="question active" id="q1">
+    <p style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:#B8964A; margin-bottom:0.3rem;">Frage 1 von 10</p>
+    <h2 style="font-size:1.4rem; font-weight:400; margin-bottom:1.5rem; line-height:1.5;">
+      Wenn ihr streitet — wer fängt meistens an?
+    </h2>
+    <button class="opt-btn" onclick="next(1)">(A) Ich. Aber aus gutem Grund.</button>
+    <button class="opt-btn" onclick="next(1)">(B) Er/Sie. Immer.</button>
+    <button class="opt-btn" onclick="next(1)">(C) Es fängt niemand an. Es ist einfach plötzlich da.</button>
+    <button class="opt-btn" onclick="next(1)">(D) Das lässt sich nicht sagen, weil jeder angefangen hat, bevor der andere angefangen hat.</button>
+  </div>
+
+  <!-- FRAGE 2 -->
+  <div class="question" id="q2">
+    <p style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:#B8964A; margin-bottom:0.3rem;">Frage 2 von 10</p>
+    <h2 style="font-size:1.4rem; font-weight:400; margin-bottom:1.5rem; line-height:1.5;">
+      Wie oft sagen Sie: "Ich habe verstanden, was du meinst"?
+    </h2>
+    <button class="opt-btn" onclick="next(2)">(A) Oft — direkt bevor ich erkläre, warum du falsch liegst.</button>
+    <button class="opt-btn" onclick="next(2)">(B) Selten — ich warte, bis er/sie fertig ist, dann sage ich, was ich schon vorher dachte.</button>
+    <button class="opt-btn" onclick="next(2)">(C) Immer. Ich höre wirklich zu.</button>
+    <button class="opt-btn" onclick="next(2)">(D) Das Gespräch ist meistens vorbei, bevor ich dazu komme.</button>
+  </div>
+
+  <!-- FRAGE 3 -->
+  <div class="question" id="q3">
+    <p style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:#B8964A; margin-bottom:0.3rem;">Frage 3 von 10</p>
+    <h2 style="font-size:1.4rem; font-weight:400; margin-bottom:1.5rem; line-height:1.5;">
+      Er/Sie sagt: "Das habe ich nie gesagt." Was denken Sie?
+    </h2>
+    <button class="opt-btn" onclick="next(3)">(A) Dann habe ich mich wohl getäuscht.</button>
+    <button class="opt-btn" onclick="next(3)">(B) Ich notiere jetzt alles.</button>
+    <button class="opt-btn" onclick="next(3)">(C) Das ist mir schon zu oft passiert, als dass ich es noch glaube.</button>
+    <button class="opt-btn" onclick="next(3)">(D) Ich zeige ihm/ihr den Screenshot.</button>
+  </div>
+
+  <!-- FRAGE 4 -->
+  <div class="question" id="q4">
+    <p style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:#B8964A; margin-bottom:0.3rem;">Frage 4 von 10</p>
+    <h2 style="font-size:1.4rem; font-weight:400; margin-bottom:1.5rem; line-height:1.5;">
+      Wann fühlen Sie sich in dieser Beziehung am wohlsten?
+    </h2>
+    <button class="opt-btn" onclick="next(4)">(A) Wenn er/sie ruhig und liebevoll ist — also manchmal.</button>
+    <button class="opt-btn" onclick="next(4)">(B) Wenn wir nicht gerade sprechen.</button>
+    <button class="opt-btn" onclick="next(4)">(C) In den ersten Stunden nach einem Streit. Dann ist kurz alles gut.</button>
+    <button class="opt-btn" onclick="next(4)">(D) Ich denke gerade intensiv nach.</button>
+  </div>
+
+  <!-- FRAGE 5 -->
+  <div class="question" id="q5">
+    <p style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:#B8964A; margin-bottom:0.3rem;">Frage 5 von 10</p>
+    <h2 style="font-size:1.4rem; font-weight:400; margin-bottom:1.5rem; line-height:1.5;">
+      Wie lautet die häufigste Entschuldigung, die Sie hören?
+    </h2>
+    <button class="opt-btn" onclick="next(5)">(A) "Es tut mir leid, dass du das so siehst."</button>
+    <button class="opt-btn" onclick="next(5)">(B) "Du weißt doch, wie ich bin."</button>
+    <button class="opt-btn" onclick="next(5)">(C) Es gibt keine Entschuldigungen. Nur Erklärungen, warum du es falsch verstanden hast.</button>
+    <button class="opt-btn" onclick="next(5)">(D) Keine. Das Thema ist einfach plötzlich erledigt.</button>
+  </div>
+
+  <!-- FRAGE 6 -->
+  <div class="question" id="q6">
+    <p style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:#B8964A; margin-bottom:0.3rem;">Frage 6 von 10</p>
+    <h2 style="font-size:1.4rem; font-weight:400; margin-bottom:1.5rem; line-height:1.5;">
+      Was sagen Ihre Freunde über die Beziehung?
+    </h2>
+    <button class="opt-btn" onclick="next(6)">(A) Nichts — ich erzähle ihnen nur die schönen Seiten.</button>
+    <button class="opt-btn" onclick="next(6)">(B) Sie sagen, ich soll gehen. Aber die verstehen das nicht.</button>
+    <button class="opt-btn" onclick="next(6)">(C) Ich habe aufgehört, davon zu erzählen.</button>
+    <button class="opt-btn" onclick="next(6)">(D) Ich habe kaum noch Freunde, mit denen ich darüber spreche.</button>
+  </div>
+
+  <!-- FRAGE 7 -->
+  <div class="question" id="q7">
+    <p style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:#B8964A; margin-bottom:0.3rem;">Frage 7 von 10</p>
+    <h2 style="font-size:1.4rem; font-weight:400; margin-bottom:1.5rem; line-height:1.5;">
+      Wenn er/sie schweigt — was denken Sie?
+    </h2>
+    <button class="opt-btn" onclick="next(7)">(A) Was habe ich falsch gemacht?</button>
+    <button class="opt-btn" onclick="next(7)">(B) Ich warte. Es hört irgendwann auf.</button>
+    <button class="opt-btn" onclick="next(7)">(C) Ich weiß, dass ich mich gleich entschuldigen werde. Wofür weiß ich noch nicht.</button>
+    <button class="opt-btn" onclick="next(7)">(D) Ich kann nicht mehr unterscheiden, ob er/sie schläft oder wütend ist.</button>
+  </div>
+
+  <!-- FRAGE 8 -->
+  <div class="question" id="q8">
+    <p style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:#B8964A; margin-bottom:0.3rem;">Frage 8 von 10</p>
+    <h2 style="font-size:1.4rem; font-weight:400; margin-bottom:1.5rem; line-height:1.5;">
+      Wie häufig sagen Sie "Ich liebe dich"?
+    </h2>
+    <button class="opt-btn" onclick="next(8)">(A) Oft — und meistens als Frage.</button>
+    <button class="opt-btn" onclick="next(8)">(B) Seltener als früher.</button>
+    <button class="opt-btn" onclick="next(8)">(C) Immer dann, wenn ich nicht weiß, was ich sonst sagen soll.</button>
+    <button class="opt-btn" onclick="next(8)">(D) Ich warte, bis er/sie es zuerst sagt. Das Warten dauert manchmal Wochen.</button>
+  </div>
+
+  <!-- FRAGE 9 -->
+  <div class="question" id="q9">
+    <p style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:#B8964A; margin-bottom:0.3rem;">Frage 9 von 10</p>
+    <h2 style="font-size:1.4rem; font-weight:400; margin-bottom:1.5rem; line-height:1.5;">
+      Haben Sie schon einmal gedacht: "Wenn ich nur anders wäre, würde es funktionieren"?
+    </h2>
+    <button class="opt-btn" onclick="next(9)">(A) Ja. Ständig.</button>
+    <button class="opt-btn" onclick="next(9)">(B) Nein — er/sie müsste anders sein.</button>
+    <button class="opt-btn" onclick="next(9)">(C) Wir beide müssten anders sein. Aber einer von uns ist es nicht.</button>
+    <button class="opt-btn" onclick="next(9)">(D) Ich habe mich bereits verändert. Mehrfach. Es hat nicht geholfen.</button>
+  </div>
+
+  <!-- FRAGE 10 -->
+  <div class="question" id="q10">
+    <p style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:#B8964A; margin-bottom:0.3rem;">Frage 10 von 10</p>
+    <h2 style="font-size:1.4rem; font-weight:400; margin-bottom:1.5rem; line-height:1.5;">
+      Warum machen Sie diesen Test?
+    </h2>
+    <button class="opt-btn" onclick="showResult()">(A) Aus Neugier.</button>
+    <button class="opt-btn" onclick="showResult()">(B) Weil ich mir nicht sicher bin, ob ich es bin oder er/sie.</button>
+    <button class="opt-btn" onclick="showResult()">(C) Weil irgendjemand diesen Link geschickt hat.</button>
+    <button class="opt-btn" onclick="showResult()">(D) Ich weiß es nicht mehr genau.</button>
+  </div>
+
+  <!-- ERGEBNIS -->
+  <div class="question" id="result">
+
+    <p style="font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:#B8964A; margin-bottom:0.5rem;">Auswertung</p>
+    <h2 style="font-size:1.8rem; font-weight:400; margin-bottom:2rem; line-height:1.3;">
+      Das Ergebnis liegt vor.
+    </h2>
+
+    <!-- Systemstatus -->
+    <div style="background:#1A0F08; color:#FDF8F0; padding:1.5rem; font-family:monospace; font-size:0.9rem; margin-bottom:2rem; line-height:2;">
+      <div style="color:#B8964A; margin-bottom:0.75rem; font-family:'EB Garamond',serif; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase;">Systemstatus — Klaron-Analyse</div>
+      Hoffnung auf Einsicht &nbsp;&nbsp;&nbsp; <span class="status-bar">███████████</span> 100%<br>
+      Realitätspuffer &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="status-bar">████░░░░░░░</span> 38%<br>
+      Erklärungsversuche &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="status-bar">█████████░░</span> 82%<br>
+      Eigene Grenzen &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="status-bar">███░░░░░░░░</span> 28%<br>
+      Co-Abhängigkeit &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="status-bar" style="color:#CC0000;">████████░░░</span> 74%<br>
+      <span style="color:#888; font-size:0.75rem;">… Analyse abgeschlossen.</span>
+    </div>
+
+    <div style="border-left:3px solid #722F37; padding-left:1.5rem; margin-bottom:2rem;">
+      <p style="font-size:1.2rem; line-height:1.85; margin-bottom:1rem;">
+        Sie sind in einer toxischen Beziehung.
+      </p>
+      <p style="font-size:1.05rem; line-height:1.85; color:#5C4030; margin-bottom:1rem;">
+        Ob als Täter, Opfer — oder beides abwechselnd — das ist eine Frage der Perspektive
+        und des jeweiligen Wochentags.
+      </p>
+      <p style="font-size:1.05rem; line-height:1.85; color:#5C4030;">
+        Unabhängig davon, was Sie geantwortet haben.
+      </p>
+    </div>
+
+    <div style="background:#FFF0E8; border:1px solid #D4B896; padding:1.5rem; margin-bottom:2rem;">
+      <p style="font-size:0.82rem; letter-spacing:0.1em; text-transform:uppercase; color:#B8964A; margin-bottom:0.5rem;">Eine Randnotiz</p>
+      <p style="font-size:1rem; line-height:1.75; font-style:italic; color:#3C2010;">
+        „Vielleicht hast du einfach das Falsche an mir geglaubt."
+      </p>
+      <p style="font-size:0.78rem; color:#B8964A; margin-top:0.3rem;">Originalzitat.</p>
+    </div>
+
+    <p style="font-size:1rem; line-height:1.75; color:#5C4030; margin-bottom:2.5rem;">
+      Das Buch erklärt, was dieser Test nicht kann: wie es sich anfühlt — von innen.
+      Und warum man trotzdem bleibt.
+    </p>
+
+    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+      <a href="index.html#buch"
+        style="border:1px solid #2C1810; color:#2C1810; padding:0.75rem 1.5rem;
+               text-decoration:none; font-size:1rem; display:inline-block;">
+        → Das Buch
+      </a>
+      <a href="kurs.html"
+        style="background:#2C1810; color:#FDF8F0; padding:0.75rem 1.5rem;
+               text-decoration:none; font-size:1rem; display:inline-block;">
+        → 10 Tage bis zur Co-Abhängigkeit
+      </a>
+    </div>
+
+    <p style="font-size:0.82rem; color:#aaa; margin-top:2rem; font-style:italic;">
+      Nochmal von vorne?
+      <a href="selbsttest.html" style="color:#B8964A;">Test wiederholen</a>
+      — führt zum selben Ergebnis.
+    </p>
+
+  </div>
+
+</div>
+
+<script>
+  let current = 1;
+  const total = 10;
+
+  function next(q) {
+    document.getElementById('q' + q).classList.remove('active');
+    const nextQ = q + 1;
+    if (nextQ <= total) {
+      document.getElementById('q' + nextQ).classList.add('active');
+      current = nextQ;
+    }
+    updateProgress();
+  }
+
+  function showResult() {
+    document.getElementById('q10').classList.remove('active');
+    document.getElementById('result').classList.add('active');
+    document.getElementById('progress').style.width = '100%';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function updateProgress() {
+    const pct = ((current - 1) / total) * 100;
+    document.getElementById('progress').style.width = pct + '%';
+  }
+</script>
+
+</body>
+</html>

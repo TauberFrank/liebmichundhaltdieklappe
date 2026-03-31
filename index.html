@@ -62,11 +62,145 @@
       color: #000 !important;
       font-family: Anton, Impact, sans-serif !important;
     }
-    #root.w2 .section-articles { background: #FFE0E0 !important; }
-    #root.w2 .section-legende  { background: #E0FFE0 !important; }
-    #root.w2 .section-seminar1 { background: #000 !important; }
-    #root.w2 .article-card { border-left-color: #CC0000 !important; }
-    #root.w2 .type-card    { background: #FFF0F0 !important; border-color: #CC0000 !important; }
+    /* ── WELT 2: BODY ── */
+    #root.w2 #page-body {
+      background: repeating-linear-gradient(
+        45deg, #FFFDE0 0px, #FFFDE0 20px,
+        #FFE0E0 20px, #FFE0E0 40px
+      ) !important;
+    }
+
+    /* ── WELT 2: NAV ── */
+    #root.w2 #main-nav {
+      background: #FF0000 !important;
+      border-bottom: 6px solid #000 !important;
+      animation: navBlink 2s step-end infinite;
+    }
+    @keyframes navBlink {
+      0%,100%{ background:#FF0000 !important; }
+      50%    { background:#FFD700 !important; }
+    }
+    #root.w2 #main-nav a,
+    #root.w2 #main-nav .nav-title {
+      color: #FFF !important;
+      font-family: Anton, Impact, sans-serif !important;
+      text-shadow: 2px 2px 0 #000;
+    }
+
+    /* ── WELT 2: SECTIONS ── */
+    #root.w2 .section-articles {
+      background: #0000CC !important;
+      color: #FFD700 !important;
+    }
+    #root.w2 .section-articles h2,
+    #root.w2 .section-articles h3,
+    #root.w2 .section-articles p {
+      color: #FFD700 !important;
+    }
+    #root.w2 .section-articles .article-card {
+      border-left: 4px solid #FFD700 !important;
+      background: rgba(0,0,0,0.3) !important;
+      padding: 1rem 1.5rem !important;
+    }
+
+    #root.w2 .section-legende {
+      background: repeating-linear-gradient(
+        -30deg, #FF6600 0, #FF6600 30px,
+        #CC0000 30px, #CC0000 60px
+      ) !important;
+    }
+    #root.w2 .type-card {
+      background: #000 !important;
+      color: #FFD700 !important;
+      border: 3px solid #FFD700 !important;
+      transform: rotate(-0.5deg);
+    }
+    #root.w2 .type-card * { color: #FFD700 !important; }
+    #root.w2 .type-card h3 { color: #FF0000 !important; font-family: Anton, Impact, sans-serif !important; }
+
+    /* ── WELT 2: FLOATING CHAOS ELEMENTS ── */
+    #w2-overlay-chaos {
+      position: fixed; inset: 0; pointer-events: none;
+      z-index: 4000; overflow: hidden;
+    }
+    .chaos-poster {
+      position: absolute; pointer-events: none;
+      font-family: Anton, Impact, sans-serif;
+      font-weight: 900; line-height: 1.1;
+      text-transform: uppercase;
+    }
+    @keyframes chaosFloat {
+      0%,100%{ transform: rotate(-3deg) scale(1); }
+      50%    { transform: rotate(3deg) scale(1.04); }
+    }
+    @keyframes chaosFloat2 {
+      0%,100%{ transform: rotate(5deg); }
+      50%    { transform: rotate(-2deg) scale(1.03); }
+    }
+
+    /* ── WELT 2: SCROLLING SIDE BANNERS ── */
+    .side-banner {
+      position: fixed; top: 50%; z-index: 5000;
+      background: #FF0000; color: #FFF;
+      font-family: Anton, Impact, sans-serif;
+      font-size: 0.75rem; padding: 0.25rem 0.5rem;
+      writing-mode: vertical-rl; text-orientation: mixed;
+      letter-spacing: 0.05em; border: 2px solid #FFD700;
+      display: none;
+    }
+    #root.w2 .side-banner { display: block !important; }
+    #side-left  { left: 0; transform: translateY(-50%); background: #0000CC; animation: chaosFloat 3s ease-in-out infinite; }
+    #side-right { right: 0; transform: translateY(-50%) rotate(180deg); animation: chaosFloat2 2.5s ease-in-out infinite; }
+
+    /* ── WELT 2: TICKER 2 (bottom) ── */
+    #c64-ticker-bottom {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 8500;
+      background: #CC0000; color: #FFD700;
+      font-family: Anton, Impact, monospace;
+      font-size: 1rem; padding: 0.35rem 0;
+      overflow: hidden; white-space: nowrap;
+      border-top: 3px solid #FFD700;
+      display: none;
+    }
+    #root.w2 #c64-ticker-bottom { display: block !important; }
+    #c64-ticker-bottom-inner {
+      display: inline-block;
+      animation: ticker 25s linear infinite;
+      padding-left: 100%;
+    }
+
+    /* ── WELT 2: POPUP ADS ── */
+    .popup-ad {
+      position: fixed; z-index: 8000;
+      background: #FFD700; border: 4px solid #CC0000;
+      padding: 1rem; font-family: Anton, Impact, sans-serif;
+      font-size: 0.9rem; max-width: 220px;
+      box-shadow: 8px 8px 0 #000;
+      animation: chaosFloat 4s ease-in-out infinite;
+      display: none;
+    }
+    #root.w2 .popup-ad { display: block !important; }
+    #popup-ad-1 { bottom: 5rem; right: 0.5rem; transform: rotate(-2deg); }
+    #popup-ad-2 { top: 6rem; left: 0.3rem; transform: rotate(3deg); }
+    #popup-ad-3 { top: 40%; left: 0.2rem; transform: rotate(-4deg); background:#CC0000; color:#FFD700; border-color:#FFD700; }
+
+    /* ── WELT 2: HERO CHAOS ── */
+    #root.w2 #hero-section {
+      background: repeating-conic-gradient(
+        #FF0000 0%, #FF0000 25%,
+        #FFD700 25%, #FFD700 50%
+      ) !important;
+    }
+    #root.w2 .hero-quote-wrap {
+      background: #000 !important;
+      border-left: none !important;
+      border: 4px solid #FFD700 !important;
+      transform: rotate(-1deg);
+    }
+    #root.w2 .hero-quote-text { color: #FFD700 !important; font-family: Anton, Impact, sans-serif !important; font-style: normal !important; }
+    #root.w2 .hero-quote-attr { color: #FF0000 !important; }
+    #root.w2 h1 .title-lieb { color: #FFF !important; }
+    #root.w2 h1 { text-shadow: 4px 4px 0 #000, 8px 8px 0 #CC0000 !important; }
 
     /* =====================================================
        TOGGLE BUTTON
@@ -351,6 +485,84 @@
 </div>
 
 <!-- ============================================================
+     WELT 2: CHAOS OVERLAY (immer im DOM, nur sichtbar in w2)
+============================================================ -->
+<div id="w2-overlay-chaos">
+  <!-- Litfassäule 1 -->
+  <div class="chaos-poster" style="top:18%; right:2px; background:#CC0000; color:#FFF;
+    font-size:clamp(0.7rem,1.5vw,1rem); padding:0.4rem 0.6rem; max-width:90px;
+    text-align:center; border:3px solid #FFD700; animation:chaosFloat 3s ease-in-out infinite;
+    box-shadow:4px 4px 0 #000;">
+    🔥 NUR<br>3<br>PLÄTZE!
+  </div>
+  <!-- Litfassäule 2 -->
+  <div class="chaos-poster" style="top:35%; left:2px; background:#FFD700; color:#000;
+    font-size:clamp(0.65rem,1.2vw,0.85rem); padding:0.4rem 0.6rem; max-width:85px;
+    text-align:center; border:3px solid #CC0000; animation:chaosFloat2 4s ease-in-out infinite;
+    box-shadow:4px 4px 0 #000;">
+    ★ BESTSELLER ★<br>SEIT<br>HEUTE!
+  </div>
+  <!-- Litfassäule 3 -->
+  <div class="chaos-poster" style="top:55%; right:2px; background:#0000CC; color:#FFD700;
+    font-size:clamp(0.65rem,1.2vw,0.85rem); padding:0.4rem 0.6rem; max-width:88px;
+    text-align:center; border:3px solid #FF0; animation:chaosFloat 5s ease-in-out infinite;
+    box-shadow:4px 4px 0 #000;">
+    GRATIS!<br><span style="font-size:0.6em; color:#FF9;">(fast)</span>
+  </div>
+  <!-- Litfassäule 4 -->
+  <div class="chaos-poster" style="top:70%; left:2px; background:#FF8800; color:#000;
+    font-size:clamp(0.65rem,1.2vw,0.85rem); padding:0.4rem 0.5rem; max-width:80px;
+    text-align:center; border:3px solid #CC0000; animation:chaosFloat2 3.5s ease-in-out infinite;
+    box-shadow:4px 4px 0 #000;">
+    💰 REICH<br>WERDEN<br>JETZT!
+  </div>
+</div>
+
+<!-- Side Banners -->
+<div id="side-left"  class="side-banner">★ KAUF MICH ★ KAUF MICH ★ KAUF MICH ★</div>
+<div id="side-right" class="side-banner">JETZT ★ SOFORT ★ 4.999 € ★ LETZTE CHANCE ★</div>
+
+<!-- Floating Popup Ads (Welt 2) -->
+<div class="popup-ad" id="popup-ad-1">
+  <button onclick="this.parentElement.style.display='none'"
+    style="position:absolute;top:2px;right:4px;background:none;border:none;cursor:pointer;font-size:0.7rem;color:#333;">✕</button>
+  <div style="font-size:1.1rem; color:#CC0000;">⚡ JETZT!</div>
+  <div style="font-size:0.8rem; margin-top:0.2rem;">Sie verlieren 4.999 € wenn Sie nicht kaufen.*</div>
+  <div style="font-size:0.55rem; color:#888; margin-top:0.2rem;">*Opportunity Cost. Nicht juristisch bindend.</div>
+</div>
+<div class="popup-ad" id="popup-ad-2">
+  <button onclick="this.parentElement.style.display='none'"
+    style="position:absolute;top:2px;right:4px;background:none;border:none;cursor:pointer;font-size:0.7rem;color:#333;">✕</button>
+  <div style="font-size:0.9rem;">😭 Belinda 1 fragt:<br>"Kaufst du das Seminar?"</div>
+  <div style="font-size:0.75rem; color:#CC0000; font-weight:bold; margin-top:0.3rem;">Belinda 2 antwortet:<br>"Interessiert mich nicht."</div>
+</div>
+<div class="popup-ad" id="popup-ad-3">
+  <button onclick="this.parentElement.style.display='none'"
+    style="position:absolute;top:2px;right:4px;background:none;border:none;cursor:pointer;font-size:0.7rem;color:#FFD700;">✕</button>
+  <div style="font-size:0.85rem; color:#FFD700;">Gurke sagt:<br>"Kauf es nicht.<br>Renn."</div>
+  <div style="font-size:0.65rem; color:#FF8; margin-top:0.3rem;">Dieser Hinweis erscheint nur einmal.</div>
+</div>
+
+<!-- Bottom Ticker (Welt 2) -->
+<div id="c64-ticker-bottom">
+  <div id="c64-ticker-bottom-inner">
+    &nbsp;&nbsp;
+    🔥 KAUF MICH — ODER ICH HASS DICH 🔥
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    ★ NUR NOCH 3 PLÄTZE! ★ FRÜHBUCHER SPAREN 2.000 € ★ ANGEBOT LÄUFT HEUTE AB ★ MORGEN AUCH ★
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    💰 4.999 € — DAS IST EIN SCHNÄPPCHEN — MEIN THERAPEUT KOSTET MEHR ★
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    🔥 KAUF MICH — ODER ICH HASS DICH 🔥
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    ★ „VIELLEICHT HAST DU DAS FALSCHE AN MIR GEGLAUBT" — ORIGINALZITAT ★
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    ⚡ SEMINAR HILFT NICHT ⚡ ABER DANN HABEN SIE ES WENIGSTENS VERSUCHT ⚡
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+</div>
+
+<!-- ============================================================
      WELT TOGGLE
 ============================================================ -->
 <button id="world-toggle" onclick="toggleWelt()">
@@ -416,18 +628,21 @@
 <!-- ============================================================
      NAVIGATION
 ============================================================ -->
-<nav id="main-nav" style="border-bottom:1px solid #D4B896; padding:1rem 2rem;
-  display:flex; align-items:center; justify-content:space-between;
+<nav id="main-nav" style="border-bottom:1px solid #D4B896; padding:0.75rem 2rem;
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;
   background:#FDF8F0; position:sticky; top:0; z-index:1000;">
   <div class="nav-title" style="font-family:'EB Garamond',serif; font-weight:600;
     font-size:1rem; color:#2C1810; letter-spacing:0.01em;">
     Lieb mich — und halt die Klappe!
   </div>
-  <div style="display:flex; gap:2rem; font-size:0.9rem; font-family:'EB Garamond',serif;">
-    <a href="#ratgeber" style="color:#2C1810; text-decoration:none;">Ratgeber</a>
-    <a href="#legende"  style="color:#2C1810; text-decoration:none;">Die Legende</a>
-    <a href="#buch"     style="color:#2C1810; text-decoration:none;">Das Buch</a>
-    <a href="#seminar" style="color:#2C1810; text-decoration:none; position:relative;">
+  <div style="display:flex; gap:1.5rem; font-size:0.88rem; font-family:'EB Garamond',serif; flex-wrap:wrap;">
+    <a href="stories.html" style="color:#2C1810; text-decoration:none;">Stories</a>
+    <a href="#ratgeber"    style="color:#2C1810; text-decoration:none;">Ratgeber</a>
+    <a href="#legende"     style="color:#2C1810; text-decoration:none;">Die Legende</a>
+    <a href="selbsttest.html" style="color:#2C1810; text-decoration:none;">Selbsttest</a>
+    <a href="kurs.html"    style="color:#2C1810; text-decoration:none;">10-Tage-Kurs</a>
+    <a href="#buch"        style="color:#2C1810; text-decoration:none;">Das Buch</a>
+    <a href="#seminar"     style="color:#2C1810; text-decoration:none; position:relative;">
       Das Seminar
       <span class="nav-seminar-badge">AUSGEBUCHT</span>
     </a>
