@@ -233,6 +233,7 @@
         <button onclick="document.getElementById('franklin-input').value=this.textContent;sendToFranklin()" style="text-align:left;background:#1e1a14;border:1px solid #333;color:#888;padding:.3rem .8rem;font-family:'EB Garamond',serif;font-size:.85rem;border-radius:1rem;cursor:pointer;transition:border-color .3s;" onmouseover="this.style.borderColor='#25D366'" onmouseout="this.style.borderColor='#333'">K&ouml;nnen wir &uuml;bers Wetter reden?</button>
         <button onclick="document.getElementById('franklin-input').value=this.textContent;sendToFranklin()" style="text-align:left;background:#1e1a14;border:1px solid #333;color:#888;padding:.3rem .8rem;font-family:'EB Garamond',serif;font-size:.85rem;border-radius:1rem;cursor:pointer;transition:border-color .3s;" onmouseover="this.style.borderColor='#25D366'" onmouseout="this.style.borderColor='#333'">Ich brauche Klarheit!</button>
         <button onclick="document.getElementById('franklin-input').value=this.textContent;sendToFranklin()" style="text-align:left;background:#1e1a14;border:1px solid #333;color:#888;padding:.3rem .8rem;font-family:'EB Garamond',serif;font-size:.85rem;border-radius:1rem;cursor:pointer;transition:border-color .3s;" onmouseover="this.style.borderColor='#25D366'" onmouseout="this.style.borderColor='#333'">1893 hey. Hey?</button>
+        <button onclick="document.getElementById('franklin-input').value=this.textContent;sendToFranklin()" style="text-align:left;background:#1e1a14;border:1px solid #e74c3c;color:#e74c3c;padding:.3rem .8rem;font-family:'EB Garamond',serif;font-size:.85rem;border-radius:1rem;cursor:pointer;transition:border-color .3s;" onmouseover="this.style.borderColor='#c0392b'" onmouseout="this.style.borderColor='#e74c3c'">Du bist doof</button>
       </div>
     </div>
 
@@ -385,12 +386,37 @@ const franklinReplies = [
 ];
 let fmIndex = 0;
 
+let franklinBlocked = false;
+const blockedWords = ['idiot','blöd','dumm','arsch','depp','loser','nix kannst','unfähig','versager','trottel','null','nixkönner','langweilig','peinlich','leer','doof'];
+
 function sendToFranklin() {
   const input = document.getElementById('franklin-input');
   const chat = document.getElementById('franklin-chat');
   const text = input.value.trim();
   if (!text) return;
+
+  // Entsperren mit Zauberwort
+  if (franklinBlocked) {
+    if (text.toLowerCase().includes('ganz doll lieb')) {
+      franklinBlocked = false;
+      input.value = '';
+      input.disabled = false;
+      input.placeholder = 'Nachricht an Franklin...';
+      const sysMsg = document.createElement('div');
+      sysMsg.style.cssText = 'margin:.5rem 0;text-align:center;';
+      sysMsg.innerHTML = '<div style="background:#d4edda;border-radius:8px;padding:.3rem .8rem;display:inline-block;font-size:.75rem;color:#155724;">Franklin hat Sie entsperrt... \u2705...</div>';
+      chat.appendChild(sysMsg);
+      chat.scrollTop = chat.scrollHeight;
+      return;
+    }
+    input.value = '';
+    return;
+  }
+
   input.value = '';
+
+  // Check ob blockiert werden soll
+  const isRude = blockedWords.some(w => text.toLowerCase().includes(w));
 
   // User-Nachricht (rechts, grün)
   const userMsg = document.createElement('div');
@@ -405,6 +431,38 @@ function sendToFranklin() {
   typing.innerHTML = '<div style="background:#fff;border-radius:8px;padding:.3rem .6rem;display:inline-block;font-size:.8rem;color:#999;">tippt...</div>';
   chat.appendChild(typing);
   chat.scrollTop = chat.scrollHeight;
+
+  // Blockieren bei beleidigenden Nachrichten
+  if (isRude) {
+    setTimeout(() => {
+      typing.remove();
+      const blockMsg = document.createElement('div');
+      blockMsg.style.cssText = 'margin:.5rem 0;text-align:center;';
+      blockMsg.innerHTML = '<div style="background:#f8d7da;border-radius:8px;padding:.4rem .8rem;display:inline-block;font-size:.8rem;color:#721c24;">Franklin hat Sie blockiert...</div>';
+      chat.appendChild(blockMsg);
+      chat.scrollTop = chat.scrollHeight;
+      franklinBlocked = true;
+      input.disabled = true;
+      input.placeholder = '';
+      // Entsperr-Hinweis
+      const hint = document.createElement('div');
+      hint.style.cssText = 'margin:.3rem 0;text-align:center;';
+      hint.innerHTML = '<div style="font-size:.7rem;color:#666;">Entsperren nur mit Textvorschlag: \u201eIch hab dich ganz doll lieb\u201c</div>';
+      chat.appendChild(hint);
+      chat.scrollTop = chat.scrollHeight;
+      // Entsperr-Button
+      const unblock = document.createElement('button');
+      unblock.textContent = 'Ich hab dich ganz doll lieb';
+      unblock.style.cssText = 'margin:.5rem auto;display:block;background:#1e1a14;border:1px solid #25D366;color:#25D366;padding:.3rem 1rem;font-family:"EB Garamond",serif;font-size:.85rem;border-radius:1rem;cursor:pointer;';
+      unblock.addEventListener('click', () => {
+        document.getElementById('franklin-input').value = 'Ich hab dich ganz doll lieb';
+        sendToFranklin();
+      });
+      chat.appendChild(unblock);
+      chat.scrollTop = chat.scrollHeight;
+    }, 800);
+    return;
+  }
 
   // Franklin antwortet (egal was du schreibst)
   const delay = 1000 + Math.random() * 2000;
