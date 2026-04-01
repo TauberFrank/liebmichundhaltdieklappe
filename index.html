@@ -374,6 +374,12 @@
   </div>
 </div>
 
+<!-- NAV -->
+<nav style="position:fixed;top:0;left:0;right:0;z-index:70;display:flex;justify-content:center;gap:1.5rem;padding:.4rem;font-family:'Special Elite',monospace;font-size:.7rem;">
+  <span style="color:#B8964A;border-bottom:1px solid #B8964A;padding-bottom:1px;">Kino-Saal</span>
+  <a href="foyer.html" style="color:#555;text-decoration:none;">Foyer</a>
+</nav>
+
 <!-- CURTAINS -->
 <div class="curtain curtain-left"></div>
 <div class="curtain curtain-right"></div>
@@ -573,6 +579,21 @@
       </div>
     </div>
 
+    <!-- CLAUDETTES PRAXIS -->
+    <div style="margin-top:2rem;max-width:550px;width:90%;display:inline-block;">
+      <div style="background:#f8eef8;border:4px solid #993399;border-radius:.3rem;padding:1.5rem;text-align:center;font-family:Georgia,serif;transform:rotate(-0.4deg);box-shadow:3px 3px 0 #993399;">
+        <p style="font-size:.6rem;color:#999;margin-bottom:.5rem;">- Anzeige -</p>
+        <p style="font-size:1.5rem;color:#993399;font-weight:bold;margin-bottom:.2rem;">Claudettes Praxis</p>
+        <p style="font-size:1rem;color:#666;font-style:italic;margin-bottom:.8rem;">Ganzheitliche Therapie mit Handauflegen</p>
+        <div style="background:#993399;color:#fff;padding:.5rem 1.2rem;display:inline-block;transform:rotate(1deg);margin-bottom:.8rem;">
+          <p style="font-size:1.3rem;font-weight:bold;">ab 69 &euro;/Stunde</p>
+        </div>
+        <p style="font-size:.9rem;color:#555;margin-bottom:.3rem;"><strong>Nur M&auml;nner.</strong></p>
+        <p style="font-size:.85rem;color:#888;font-style:italic;">Termine nach Bauchgef&uuml;hl.</p>
+        <p style="font-size:.5rem;color:#bbb;margin-top:1rem;">Claudettes Praxis &bull; Keine Kassenzulassung &bull; Keine Fragen &bull; Rechnungen auf Anfrage (kommen nie)</p>
+      </div>
+    </div>
+
     <!-- JOHANNAS COUNTDOWN -->
     <div style="margin-top:3rem;max-width:550px;width:90%;display:inline-block;">
       <div style="background:#0a0a0a;border:2px solid #0f0;border-radius:.5rem;padding:1.5rem;text-align:center;box-shadow:0 0 20px rgba(0,255,0,.1);">
@@ -625,6 +646,10 @@
         </div>
       </div>
 
+      <a href="foyer.html" style="display:inline-block;margin-top:2rem;padding:.6rem 2rem;background:#B8964A;color:#0a0a0a;font-family:'Special Elite',monospace;font-size:1rem;text-decoration:none;border-radius:.3rem;transition:all .3s;" onmouseover="this.style.background='#e8e0d0'" onmouseout="this.style.background='#B8964A'">
+        Saal verlassen &amp; ab ins Foyer &rarr;
+      </a>
+      <br>
       <button onclick="window.scrollTo(0,0);location.reload()" style="margin-top:2rem;padding:.6rem 2rem;background:transparent;border:1px solid #B8964A;color:#B8964A;font-family:'Special Elite',monospace;font-size:.9rem;cursor:pointer;border-radius:.3rem;transition:all .3s;" onmouseover="this.style.background='#B8964A';this.style.color='#0a0a0a'" onmouseout="this.style.background='transparent';this.style.color='#B8964A'">
         Teaser nochmal ansehen
       </button>
@@ -1131,6 +1156,8 @@ const storyTeasers = [
   { title:"Das Kontrollzentrum", teaser:"20 Kopien im Orbit. Headsets. Krisensitzung. Frank sagt \u201eIch liebe dich\u201c \u2014 Alarmstufe Rot." },
   { title:"\u2705.", teaser:"Franklins Lieblings-Emoji. Johanna hat ein Trauma, wenn sie es sieht. Dazu: \u201e....\u201c als komplette Nachricht." },
   { title:"Eierschalen", teaser:"Eine fremde Frau. Johannas Zimmer. Erste Begegnung. \u201eDeine Mama ist so traurig. Und r\u00e4um die Eierschalen weg.\u201c" },
+  { title:"\u201eIch bin eigentlich ganz einfach.\u201c", teaser:"\u2192 Emotionale Matroschka: au\u00dfen nett, innen Chaos \u2014 und du kriegst nie raus, was wirklich drin ist.\n\n(Mehr davon? Im Film.)" },
+  { title:"\u201eIch bin froh, dass es aus ist.\u201c", teaser:"(Sie hat sich nicht getrennt.)" },
 ];
 
 function showStoryTeasers() {
@@ -1239,6 +1266,18 @@ function closeModal() {
   document.querySelector('.modal-quotes').previousElementSibling.textContent = 'Sagt gern Sachen wie:';
 }
 document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+
+// === TAB-TITEL WECHSEL ===
+let _origTitle = document.title;
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    _origTitle = document.title;
+    document.title = 'Kommst du zur\u00fcck? \ud83e\udd7a';
+  } else {
+    document.title = 'Wusste ich\u2019s doch.';
+    setTimeout(() => { document.title = _origTitle; }, 3000);
+  }
+});
 
 // === JOHANNA COUNTDOWN (31. Juni 2027 — existiert nicht) ===
 function startJohannaCountdown() {

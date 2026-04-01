@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foyer — Lieb mich und halt die Klappe!</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Abril+Fatface&family=Special+Elite&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:#0a0a0a;color:#e8e0d0;font-family:'EB Garamond',Georgia,serif}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+    /* TABS */
+    .tab-bar{display:flex;gap:0;border-bottom:2px solid #333;margin-bottom:2rem;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+    .tab-btn{padding:.6rem 1.2rem;font-family:'Special Elite',monospace;font-size:.85rem;color:#666;
+      background:transparent;border:none;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;
+      transition:all .3s;margin-bottom:-2px;}
+    .tab-btn:hover{color:#B8964A}
+    .tab-btn.active{color:#B8964A;border-bottom-color:#B8964A}
+    .tab-panel{display:none}
+    .tab-panel.active{display:block}
+
+    /* CARDS */
+    .merch-card{background:#1e1a14;border:1px solid #333;border-radius:.5rem;padding:1.5rem;margin-bottom:1.5rem;
+      text-align:left;transition:border-color .3s;cursor:default;}
+    .merch-card:hover{border-color:#B8964A}
+    .merch-card h3{font-family:'Abril Fatface',serif;font-size:1.3rem;color:#B8964A;margin-bottom:.4rem}
+    .merch-card .desc{font-size:1rem;color:#ccc;margin-bottom:.3rem}
+    .merch-card .sub{font-size:.9rem;color:#888;font-style:italic}
+    .merch-card .fine{font-size:.7rem;color:#555;margin-top:.5rem}
+
+    /* GADGET */
+    .gadget{background:#0d1117;border:1px solid #30363d;border-radius:.5rem;padding:1.5rem;margin-bottom:1.5rem;
+      font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#c9d1d9;}
+    .gadget h3{font-family:'Special Elite',monospace;font-size:1.1rem;color:#B8964A;margin-bottom:.8rem}
+
+    /* WERBEPARTNER */
+    .ad-poster{margin-bottom:1.5rem}
+
+    @media(max-width:640px){
+      .tab-btn{padding:.5rem .8rem;font-size:.75rem}
+      .merch-card{padding:1rem}
+      .merch-card h3{font-size:1.1rem}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav style="display:flex;justify-content:center;gap:1.5rem;padding:.6rem;font-family:'Special Elite',monospace;font-size:.75rem;border-bottom:1px solid #222;">
+  <a href="index.html" style="color:#555;text-decoration:none;">Kino-Saal</a>
+  <span style="color:#B8964A;border-bottom:1px solid #B8964A;padding-bottom:1px;">Foyer</span>
+</nav>
+
+<div style="max-width:800px;margin:0 auto;padding:2rem 1.5rem;">
+
+  <!-- HEADER -->
+  <header style="text-align:center;margin-bottom:2rem;">
+    <a href="index.html" style="font-size:.8rem;color:#666;text-decoration:none;font-family:'Special Elite',monospace;">&larr; Zur&uuml;ck zum Kino</a>
+    <h1 style="font-family:'Abril Fatface',serif;font-size:clamp(1.5rem,5vw,2.5rem);color:#722F37;margin-top:1rem;">
+      Kauf mich &mdash; und halt die Klappe.
+    </h1>
+    <p style="font-family:'Special Elite',monospace;font-size:.8rem;color:#555;letter-spacing:.2em;text-transform:uppercase;margin-top:.3rem;">Das Foyer</p>
+    <p style="font-size:.95rem;color:#888;font-style:italic;margin-top:.8rem;">
+      Sie haben den Film &uuml;berlebt? Herzlichen Gl&uuml;ckwunsch.<br>
+      Jetzt ziehen wir Ihnen damit noch das Geld aus der Tasche.
+    </p>
+  </header>
+
+  <!-- TAB BAR -->
+  <nav class="tab-bar">
+    <button class="tab-btn active" onclick="showTab('merchandise')">Merchandise</button>
+    <button class="tab-btn" onclick="showTab('werbepartner')">Werbepartner</button>
+    <button class="tab-btn" onclick="showTab('gadgets')">Spielecke</button>
+    <button class="tab-btn" onclick="showTab('countdown')">Countdowns</button>
+    <button class="tab-btn" onclick="showTab('coming-soon')">Coming Soon</button>
+  </nav>
+
+  <!-- ============================================================
+       TAB: MERCHANDISE
+  ============================================================= -->
+  <div id="tab-merchandise" class="tab-panel active">
+
+    <div class="merch-card">
+      <h3>Das Buch</h3>
+      <p class="desc">&bdquo;Lieb mich &mdash; und halt die Klappe.&ldquo;</p>
+      <p class="sub">Das ehrlichste Buch &uuml;ber Beziehungen, das nie ein Ratgeber sein wollte.</p>
+      <p class="fine">Hilft nicht. Aber Sie f&uuml;hlen sich danach besser informiert &uuml;ber Ihren Wahnsinn.</p>
+    </div>
+
+    <div class="merch-card">
+      <h3>Das Seminar <span style="font-size:.6rem;color:#e74c3c;font-family:'Special Elite',monospace;vertical-align:super;">AUSGEBUCHT</span></h3>
+      <p class="desc">3 Tage. 1 Entscheidung. 4.999 &euro;. Nur noch 3 Pl&auml;tze.</p>
+      <p class="sub">Hilft auch nicht. Aber es ist teurer, also muss es besser sein.</p>
+      <p class="fine">Das Buch hilft nicht. Dann m&uuml;ssen die Leser das Seminar kaufen. Das auch nicht hilft. Hauptsache wir werden reich.</p>
+    </div>
+
+    <div class="merch-card">
+      <h3>Das T-Shirt</h3>
+      <p class="desc">Vorne: &bdquo;Lieb mich &mdash; und halt die Klappe.&ldquo;<br>Hinten: &bdquo;Ich hatte ein geregeltes Leben.&ldquo;</p>
+      <p class="sub">Tragbar bei Familienfeiern, Paartherapie und Gerichtsterminen.</p>
+      <p class="fine">Gr&ouml;&szlig;en: S bis XXXL. Farbe: Schwarz. Wie die Aussichten.</p>
+    </div>
+
+    <div class="merch-card">
+      <h3>Gurkes Rotwein</h3>
+      <p class="desc">Jahrgang: Klarblick. Herkunft: garantiert kein Vielleichta.</p>
+      <p class="sub">Passt zu allem. Hilft bei nichts. Aber danach ist es Ihnen egal.</p>
+      <p class="fine">Servierempfehlung: Auf einer Kommode sitzend, &uuml;ber den Brillenrand schauend.<br>&bdquo;Alkohol ist eine L&ouml;sung!&ldquo;</p>
+    </div>
+
+    <div class="merch-card">
+      <h3>Der Original-Waschlappen <span style="font-size:.6rem;color:#2ecc71;font-family:'Special Elite',monospace;vertical-align:super;">NEU</span></h3>
+      <p class="desc">Mit Franklins Unterschrift: <strong style="color:#888;">....</strong></p>
+      <p class="sub">Limitierte Auflage. Jeder Lappen ein Unikat. Wie Franklin selbst.</p>
+      <p class="fine">Inklusive Echtheitszertifikat: &bdquo;Dieser Waschlappen wurde nie geteilt.&ldquo;</p>
+    </div>
+
+    <p style="font-size:.8rem;color:#555;font-style:italic;margin-top:1.5rem;text-align:center;">
+      Wir empfehlen alles. Nicht weil es hilft &mdash; sondern weil wir Ihre Verzweiflung zu sch&auml;tzen wissen.
+    </p>
+  </div>
+
+  <!-- ============================================================
+       TAB: WERBEPARTNER
+  ============================================================= -->
+  <div id="tab-werbepartner" class="tab-panel">
+
+    <div class="ad-poster">
+      <div style="background:#002060;border:6px solid #ffcc00;border-radius:.3rem;padding:1.5rem;text-align:center;font-family:Arial,sans-serif;transform:rotate(-0.5deg);box-shadow:0 0 0 3px #002060,0 0 0 6px #ffcc00;">
+        <p style="font-size:1.5rem;font-weight:900;color:#c00;font-family:Impact,sans-serif;">KFZ-WATZLAVSKI</p>
+        <p style="font-size:2rem;font-weight:900;color:#fff;font-family:Impact,sans-serif;margin:.3rem 0;">WRRROMMM</p>
+        <p style="font-size:.9rem;color:#ccc;">Der Soundverst&auml;rker f&uuml;r Ihr Gasfahrzeug. <strong style="color:#ffcc00;">Nie mehr Understatement.</strong></p>
+        <div style="background:#ffcc00;padding:.3rem .8rem;display:inline-block;transform:rotate(1deg);margin:.5rem 0;"><p style="font-size:.8rem;color:#000;font-weight:bold;">GRATIS: Fuchsschwanz f&uuml;r die Werkstatt!</p></div>
+        <p style="font-size:.65rem;color:#668;font-style:italic;">&bdquo;Die young as late as possible.&ldquo;</p>
+        <p style="font-size:.5rem;color:#446;margin-top:.5rem;">Gewerbegebiet Vielleichta-S&uuml;d &bull; Gef&uuml;hlte PS seit 1987</p>
+      </div>
+    </div>
+
+    <div class="ad-poster">
+      <div style="background:#fff9ee;border:5px double #8B4513;border-radius:.3rem;padding:1.5rem;text-align:center;font-family:'Times New Roman',serif;transform:rotate(0.5deg);box-shadow:3px 3px 0 #8B4513;">
+        <p style="font-size:.8rem;color:#8B4513;">Sonderangebot!</p>
+        <p style="font-size:1.8rem;font-weight:900;color:#333;font-family:Georgia,serif;">Satzzeichen</p>
+        <p style="font-size:1rem;color:#8B4513;">bei <strong>Interpunktions-Eisele</strong> &bull; Dorfstr. 17b</p>
+        <div style="background:#8B4513;color:#fff;padding:.4rem 1rem;display:inline-block;transform:rotate(-1deg);margin:.5rem 0;"><p style="font-size:1.3rem;font-weight:900;font-family:Impact,sans-serif;">41 Punkte zum Preis von einem!</p></div>
+        <p style="font-size:.85rem;color:#555;">Solange Vorrat reicht <span style="font-size:.5rem;color:#bbb;">(endlos)</span></p>
+        <div style="background:#c00;color:#fff;padding:.3rem .6rem;margin-top:.5rem;transform:rotate(-1.5deg);display:inline-block;font-family:Comic Sans MS,cursive;font-size:.8rem;border:2px solid #ff0;animation:blink 1s step-end infinite;">Kreifen Sie zuh!</div>
+        <div style="background:#0a0;color:#fff;padding:.2rem .5rem;margin-top:.4rem;transform:rotate(1deg);display:inline-block;font-family:Comic Sans MS,cursive;font-size:.7rem;border:2px dotted #ff0;">Gratis f&uuml;rs Bobby-Car: &bdquo;Eure kleinen Auto`s sind doof&ldquo;</div>
+        <p style="font-size:.45rem;color:#ccc;margin-top:.8rem;">Ihr Fachh&auml;ndler f&uuml;r . , ; : ! ? seit 1953</p>
+      </div>
+    </div>
+
+    <div class="ad-poster">
+      <div style="background:#f8eef8;border:4px solid #993399;border-radius:.3rem;padding:1.5rem;text-align:center;font-family:Georgia,serif;transform:rotate(-0.4deg);box-shadow:3px 3px 0 #993399;">
+        <p style="font-size:1.5rem;color:#993399;font-weight:bold;">Claudettes Praxis</p>
+        <p style="font-size:1rem;color:#666;font-style:italic;margin-bottom:.8rem;">Ganzheitliche Therapie mit Handauflegen</p>
+        <div style="background:#993399;color:#fff;padding:.5rem 1.2rem;display:inline-block;transform:rotate(1deg);margin-bottom:.5rem;"><p style="font-size:1.3rem;font-weight:bold;">ab 69 &euro;/Stunde</p></div>
+        <p style="font-size:.9rem;color:#555;"><strong>Nur M&auml;nner.</strong></p>
+        <p style="font-size:.85rem;color:#888;font-style:italic;">Termine nach Bauchgef&uuml;hl.</p>
+        <p style="font-size:.5rem;color:#bbb;margin-top:1rem;">Keine Kassenzulassung &bull; Keine Fragen &bull; Rechnungen auf Anfrage (kommen nie)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       TAB: SPIELECKE (Gadgets)
+  ============================================================= -->
+  <div id="tab-gadgets" class="tab-panel">
+
+    <!-- KONTROLLZENTRUM LIVE-CHAT -->
+    <div class="gadget">
+      <h3>Kontrollzentrum &mdash; Live-Feed</h3>
+      <div id="kz-chat" style="max-height:300px;overflow-y:auto;padding:.5rem;background:#000;border:1px solid #0f0;border-radius:.3rem;font-size:.8rem;color:#0f0;">
+        <p style="color:#0a0;">root@vielleichta-orbit:~$ Verbindung hergestellt...</p>
+      </div>
+      <button onclick="kzMessage()" style="margin-top:.8rem;padding:.4rem 1rem;background:#0f0;color:#000;border:none;font-family:'JetBrains Mono',monospace;font-size:.8rem;cursor:pointer;border-radius:.2rem;">N&auml;chste Krisensitzung</button>
+    </div>
+
+    <!-- FRANKLINS WHATSAPP -->
+    <div class="gadget">
+      <h3>Franklins WhatsApp &mdash; Simulation</h3>
+      <div id="franklin-chat" style="background:#e5ddd5;border-radius:.5rem;padding:1rem;max-width:350px;">
+        <p style="font-size:.7rem;color:#999;text-align:center;margin-bottom:.5rem;">Heute</p>
+      </div>
+      <button onclick="franklinMessage()" style="margin-top:.8rem;padding:.4rem 1rem;background:#25D366;color:#fff;border:none;font-family:'JetBrains Mono',monospace;font-size:.8rem;cursor:pointer;border-radius:.2rem;">Franklin antwortet</button>
+    </div>
+
+    <!-- BELINDA ZITAT-ROULETTE -->
+    <div class="gadget" style="text-align:center;">
+      <h3>Belinda-Zitat-Roulette</h3>
+      <div id="roulette-display" style="font-family:'EB Garamond',serif;font-size:1.4rem;font-style:italic;color:#B8964A;min-height:80px;display:flex;align-items:center;justify-content:center;padding:1rem;">
+        Dr&uuml;cken Sie den Knopf. Auf eigene Gefahr.
+      </div>
+      <button onclick="spinRoulette()" style="padding:.6rem 2rem;background:#B8964A;color:#0a0a0a;border:none;font-family:'Abril Fatface',serif;font-size:1rem;cursor:pointer;border-radius:.3rem;">Drehen</button>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       TAB: COUNTDOWNS
+  ============================================================= -->
+  <div id="tab-countdown" class="tab-panel">
+
+    <!-- JOHANNA -->
+    <div style="background:#0a0a0a;border:2px solid #0f0;border-radius:.5rem;padding:1.5rem;text-align:center;margin-bottom:1.5rem;">
+      <p style="font-family:'Special Elite',monospace;font-size:.7rem;color:#0a0;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.3rem;">JOHANNA &bull; COUNTDOWN TO FREEDOM</p>
+      <p id="foyer2-johanna" style="font-family:'JetBrains Mono',monospace;font-size:clamp(1.5rem,5vw,2.5rem);color:#0f0;font-weight:bold;"></p>
+      <p style="font-size:.6rem;color:#0a0;margin-top:.4rem;">Zieldatum: 31. Juni 2027</p>
+    </div>
+
+    <!-- SEMINAR COUNTDOWN -->
+    <div style="background:#2a0a0a;border:2px solid #e74c3c;border-radius:.5rem;padding:1.5rem;text-align:center;margin-bottom:1.5rem;">
+      <p style="font-family:'Special Elite',monospace;font-size:.7rem;color:#e74c3c;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.3rem;">SEMINAR-BUCHUNG VERF&Auml;LLT IN</p>
+      <p id="foyer2-seminar" style="font-family:'Abril Fatface',serif;font-size:2rem;color:#e74c3c;"></p>
+      <p style="font-size:.6rem;color:#666;margin-top:.4rem;">Danach wird Ihr Verstand zum Vollpreis abgebucht.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       TAB: COMING SOON
+  ============================================================= -->
+  <div id="tab-coming-soon" class="tab-panel">
+
+    <div class="merch-card">
+      <h3>Lieb mich 2 &mdash; Diesmal mit Therapeut</h3>
+      <p class="sub">Franklin entdeckt Gef&uuml;hle. Belinda entdeckt Franklin. Gurke entdeckt Rotwein. (Letzteres ist nicht neu.)</p>
+    </div>
+
+    <div class="merch-card">
+      <h3>Lieb mich 3 &mdash; Franklin spricht (Director&rsquo;s Cut)</h3>
+      <p class="sub">23 Sekunden Bonusmaterial. Er sagt &bdquo;Das bringt doch nix&ldquo; in 4K.</p>
+    </div>
+
+    <div class="merch-card">
+      <h3>Lieb mich: Origins &mdash; Planet Vielleichta</h3>
+      <p class="sub">Die Gr&uuml;ndung. Das Kontrollzentrum. 20 Kopien. 0 Entscheidungen. Ein Prequel.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer style="text-align:center;margin-top:3rem;padding-top:2rem;border-top:1px solid #222;">
+    <p style="font-size:.75rem;color:#444;line-height:1.8;">
+      Ein Buch. Eine Website. Ein Seminar, das Sie wahrscheinlich nicht brauchen.<br>
+      &copy; Frank &bull; Planet Klaron &bull; Alle Rechte vorbehalten.<br>
+      Alle Personen wurden umbenannt. Au&szlig;er Frank. Der hei&szlig;t wirklich so.
+    </p>
+    <a href="index.html" style="display:inline-block;margin-top:1rem;padding:.5rem 1.5rem;border:1px solid #B8964A;color:#B8964A;font-family:'Special Elite',monospace;font-size:.85rem;text-decoration:none;border-radius:.3rem;">Teaser nochmal ansehen</a>
+  </footer>
+
+</div>
+
+<script>
+// === TABS ===
+function showTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// === KONTROLLZENTRUM CHAT ===
+const kzMessages = [
+  {who:"Belinda 3", msg:"Er hat \u201eIch liebe dich\u201c gesagt. ALARMSTUFE ROT!"},
+  {who:"Belinda 8", msg:"N\u00e4he-Simulation aktivieren? Oder Pudding?"},
+  {who:"Belinda 14", msg:"Kuscheltaktik vorschlagen!"},
+  {who:"Belinda 3", msg:"NEIN! Reboot! REBOOT!"},
+  {who:"Belinda 1", msg:"Sorry, war beim Yoga gegen Realit\u00e4t."},
+  {who:"Chef-Belinda", msg:"Schuldumkehr in 3... 2... 1..."},
+  {who:"Belinda 11", msg:"Er denkt schon wieder nach. GEFAHR!"},
+  {who:"Belinda 9", msg:"Pudding-Dauerschleife eingespielt. Vanille."},
+  {who:"Belinda 20", msg:"Sanft hauchen: \u201eIch f\u00fchl da grad was anderes.\u201c"},
+  {who:"SYSTEM", msg:"Orbit stabilisiert. Wahrheit neutralisiert."},
+];
+let kzIndex = 0;
+function kzMessage() {
+  const chat = document.getElementById('kz-chat');
+  const m = kzMessages[kzIndex % kzMessages.length];
+  const line = document.createElement('p');
+  line.style.cssText = 'margin-top:.3rem;';
+  line.innerHTML = `<span style="color:#0a0;">[${m.who}]</span> ${m.msg}`;
+  chat.appendChild(line);
+  chat.scrollTop = chat.scrollHeight;
+  kzIndex++;
+}
+
+// === FRANKLINS WHATSAPP ===
+const franklinMsgs = ["\u2705.","...."," \u2705.","Das bringt doch nix.","....","Ich misch mich da nicht ein. \u2705.","....",".....","\u2705. \u2705.","Also..."];
+let fmIndex = 0;
+function franklinMessage() {
+  const chat = document.getElementById('franklin-chat');
+  // Typing indicator
+  const typing = document.createElement('div');
+  typing.style.cssText = 'background:#fff;border-radius:8px;padding:.3rem .6rem;display:inline-block;margin:.3rem 0;font-size:.8rem;color:#999;';
+  typing.textContent = 'tippt...';
+  chat.appendChild(typing);
+  chat.scrollTop = chat.scrollHeight;
+
+  setTimeout(() => {
+    typing.remove();
+    const msg = document.createElement('div');
+    msg.style.cssText = 'background:#fff;border-radius:8px;padding:.4rem .8rem;display:inline-block;margin:.2rem 0;font-size:.9rem;color:#333;max-width:80%;';
+    msg.textContent = franklinMsgs[fmIndex % franklinMsgs.length];
+    chat.appendChild(msg);
+    chat.appendChild(document.createElement('br'));
+    chat.scrollTop = chat.scrollHeight;
+    fmIndex++;
+  }, 1500);
+}
+
+// === BELINDA ROULETTE ===
+const belindaQuotes = [
+  "\u201eIch bin eigentlich ganz einfach.\u201c",
+  "\u201eVielleicht hast du das Falsche an mir geglaubt.\u201c",
+  "\u201eIch f\u00fchle mich wie eine Schauspielerin.\u201c",
+  "\u201eIch kann das nicht. Ich brauche Pause.\u201c",
+  "\u201eDu redest zu viel.\u201c",
+  "\u201eIch bin froh, dass es aus ist.\u201c",
+  "\u201eIch tue doch nichts.\u201c",
+  "\u201eLieb mich. Dann lieb ich dich.\u201c",
+  "\u201eIch hab mich vier Jahre nur mit dir besch\u00e4ftigt.\u201c",
+  "\u201eWie sollen wir denn das mit Worten kl\u00e4ren?\u201c",
+  "\u201eDas wird mir jetzt zu viel gerade.\u201c",
+  "\u201eIch hatte selbst 2 mal Schluss gemacht!\u201c",
+  "\u201eIch brauch jemanden Normales.\u201c",
+];
+function spinRoulette() {
+  const display = document.getElementById('roulette-display');
+  let spins = 0;
+  const interval = setInterval(() => {
+    display.textContent = belindaQuotes[Math.floor(Math.random() * belindaQuotes.length)];
+    display.style.color = '#666';
+    spins++;
+    if (spins > 15) {
+      clearInterval(interval);
+      display.textContent = belindaQuotes[Math.floor(Math.random() * belindaQuotes.length)];
+      display.style.color = '#B8964A';
+    }
+  }, 100);
+}
+
+// === COUNTDOWNS ===
+function startFoyerCountdowns() {
+  // Johanna
+  setInterval(() => {
+    const el = document.getElementById('foyer2-johanna');
+    if (!el) return;
+    const diff = new Date('2027-07-01T00:00:00') - new Date();
+    const d=Math.floor(diff/864e5),h=Math.floor(diff%864e5/36e5),m=Math.floor(diff%36e5/6e4),s=Math.floor(diff%6e4/1e3);
+    el.textContent = d+'d '+h+'h '+m+'m '+s+'s';
+  }, 1000);
+
+  // Seminar
+  let sec = 10;
+  setInterval(() => {
+    const el = document.getElementById('foyer2-seminar');
+    if (!el) return;
+    sec--;
+    if (sec < 0) {
+      el.textContent = 'ZU SP\u00c4T!';
+      el.style.fontSize = '1.5rem';
+      setTimeout(() => { el.style.fontSize='2rem'; el.textContent='Nein Spa\u00df. Noch eine Chance.'; setTimeout(()=>{sec=10;},2000); }, 1500);
+      return;
+    }
+    el.textContent = '00:' + String(sec).padStart(2,'0');
+  }, 1000);
+}
+
+startFoyerCountdowns();
+
+// Tab-Titel Wechsel
+let _origTitle = document.title;
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) { _origTitle=document.title; document.title='Kommst du zur\u00fcck? \ud83e\udd7a'; }
+  else { document.title='Wusste ich\u2019s doch.'; setTimeout(()=>{document.title=_origTitle;},3000); }
+});
+</script>
+
+</body>
+</html>
