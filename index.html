@@ -40,6 +40,11 @@
       15%  { transform:translateX(0) translateY(-40px); }
       100% { transform:translateX(110vw) translateY(-40px); }
     }
+    @keyframes walkIn {
+      0%   { transform:translateX(110vw) translateY(-30px); }
+      80%  { transform:translateX(0) translateY(-30px); }
+      100% { transform:translateX(0) translateY(0); }
+    }
     .audience-walker{
       position:fixed;bottom:85px;z-index:61;pointer-events:none;
       opacity:0;
@@ -578,6 +583,18 @@
       </p>
     </div>
 
+    <!-- JOHANNAS COUNTDOWN -->
+    <div style="margin-top:3rem;max-width:550px;width:90%;display:inline-block;">
+      <div style="background:#0a0a0a;border:2px solid #0f0;border-radius:.5rem;padding:1.5rem;text-align:center;box-shadow:0 0 20px rgba(0,255,0,.1);">
+        <div style="position:relative;overflow:hidden;border-radius:.3rem;padding:.3rem 0;">
+          <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,0,.03) 2px,rgba(0,255,0,.03) 4px);pointer-events:none;"></div>
+          <p style="font-family:'Special Elite',monospace;font-size:.65rem;color:#0a0;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.3rem;">JOHANNA &bull; COUNTDOWN TO FREEDOM</p>
+          <p id="foyer-johanna-countdown" style="font-family:'JetBrains Mono',Consolas,monospace;font-size:clamp(1.5rem,5vw,2.2rem);color:#0f0;font-weight:bold;letter-spacing:.1em;"></p>
+          <p style="font-size:.6rem;color:#0a0;margin-top:.4rem;font-family:'Special Elite',monospace;">Zieldatum: 31. Juni 2027</p>
+        </div>
+      </div>
+    </div>
+
     <!-- COMING SOON -->
     <div style="margin-top:3rem;max-width:550px;width:90%;display:inline-block;">
       <p style="font-family:'Special Elite',monospace;font-size:.75rem;color:#555;letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem;">Coming Soon</p>
@@ -605,6 +622,19 @@
         &copy; Frank &bull; Planet Klaron &bull; Alle Rechte vorbehalten.<br>
         Alle Personen wurden umbenannt. Au&szlig;er Frank. Der hei&szlig;t wirklich so.
       </p>
+      <!-- BELINDA KOMMT ZURÜCK -->
+      <div id="belinda-return" style="position:relative;height:80px;margin-top:2rem;overflow:visible;">
+        <div style="position:absolute;bottom:0;right:10%;opacity:0;animation:walkIn 4s ease-out 2s forwards;animation-fill-mode:forwards;">
+          <div style="position:relative;">
+            <div style="position:absolute;top:-40px;right:50px;white-space:nowrap;font-family:'Special Elite',monospace;font-size:clamp(.9rem,3vw,1.1rem);color:#888;background:#1a1a1a;border:1px solid #444;border-radius:.4rem;padding:.4rem 1rem;">
+              War was? <span style="color:#555;">(Belinda. Kommt zur&uuml;ck.)</span>
+            </div>
+            <div style="width:32px;height:36px;background:#151515;border-radius:50%;margin:0 auto;"></div>
+            <div style="width:40px;height:44px;background:#111;border-radius:4px 4px 0 0;margin-top:-2px;"></div>
+          </div>
+        </div>
+      </div>
+
       <button onclick="location.reload()" style="margin-top:2rem;padding:.6rem 2rem;background:transparent;border:1px solid #B8964A;color:#B8964A;font-family:'Special Elite',monospace;font-size:.9rem;cursor:pointer;border-radius:.3rem;transition:all .3s;" onmouseover="this.style.background='#B8964A';this.style.color='#0a0a0a'" onmouseout="this.style.background='transparent';this.style.color='#B8964A'">
         Teaser nochmal ansehen
       </button>
@@ -1191,6 +1221,7 @@ function showFinale() {
       ticket.style.opacity = '1';
       ticket.scrollIntoView({ behavior:'smooth', block:'center' });
       startTicketCountdown();
+      startFoyerJohannaCountdown();
       document.title = '\u2705.';
     }, 1500);
   }, 5000);
@@ -1213,6 +1244,24 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); }
 // === JOHANNA COUNTDOWN (31. Juni 2027 — existiert nicht) ===
 function startJohannaCountdown() {
   const el = document.getElementById('johanna-countdown');
+  if (!el) return;
+  function update() {
+    const now = new Date();
+    const target = new Date('2027-07-01T00:00:00');
+    const diff = target - now;
+    const days = Math.floor(diff / 86400000);
+    const hrs = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+    el.textContent = days + 'd ' + hrs + 'h ' + mins + 'm ' + secs + 's';
+  }
+  update();
+  setInterval(update, 1000);
+}
+
+// === FOYER JOHANNA COUNTDOWN ===
+function startFoyerJohannaCountdown() {
+  const el = document.getElementById('foyer-johanna-countdown');
   if (!el) return;
   function update() {
     const now = new Date();
