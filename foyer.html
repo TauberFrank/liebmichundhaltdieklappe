@@ -344,6 +344,32 @@
       </div>
       <button onclick="spinRoulette()" style="padding:.6rem 2rem;background:#B8964A;color:#0a0a0a;border:none;font-family:'Abril Fatface',serif;font-size:1rem;cursor:pointer;border-radius:.3rem;">Drehen</button>
     </div>
+
+    <!-- HORSTS VORGARTEN-SIMULATOR -->
+    <div class="gadget" style="text-align:center;">
+      <h3>Horsts Vorgarten-Simulator</h3>
+      <p style="font-size:.8rem;color:#888;margin-bottom:1rem;">Klicken Sie auf die Elemente. Viel Spa&szlig;. (Horst hat auch keinen.)</p>
+      <div id="vorgarten" style="background:linear-gradient(to bottom,#b8d4a8 0%,#8cb878 100%);border-radius:.5rem;padding:2rem;position:relative;min-height:200px;display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap;">
+        <!-- Hecke -->
+        <div onclick="this.style.borderRadius='2px';this.querySelector('span').textContent='Perfekt.';this.style.background='#2d5a1e'" style="background:#3a7a28;width:120px;height:80px;border-radius:20px 20px 5px 5px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .5s;border:2px solid #2d5a1e;">
+          <span style="font-size:.7rem;color:#fff;font-family:'Special Elite',monospace;">Hecke schneiden</span>
+        </div>
+        <!-- Hemd -->
+        <div id="horst-hemd" onclick="document.getElementById('lipfleck').style.opacity='1';this.querySelector('.hemd-text').textContent='Oh.'" style="background:#fff;width:80px;height:100px;border-radius:5px;display:flex;align-items:flex-start;justify-content:center;padding-top:10px;cursor:pointer;position:relative;border:1px solid #ccc;">
+          <span class="hemd-text" style="font-size:.65rem;color:#333;font-family:'Special Elite',monospace;">Hemd pr&uuml;fen</span>
+          <div id="lipfleck" style="position:absolute;top:15px;right:8px;width:18px;height:10px;background:#c0392b;border-radius:50%;opacity:0;transition:opacity .5s;transform:rotate(-15deg);"></div>
+        </div>
+        <!-- Rasen -->
+        <div onclick="this.style.background='#1a4a0a';this.querySelector('span').textContent='3mm. Exakt.'" style="background:#4a8a3a;width:100px;height:30px;border-radius:3px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .5s;">
+          <span style="font-size:.6rem;color:#fff;font-family:'Special Elite',monospace;">Rasen m&auml;hen</span>
+        </div>
+        <!-- Vanessa ruft -->
+        <div onclick="this.innerHTML='<span style=font-size:1.5rem>&#128054;</span><br><span style=font-size:.6rem;color:#333;font-family:Special+Elite,monospace>Wuff. Ja.</span>'" style="background:#d4c9a8;width:70px;height:70px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;flex-direction:column;border:2px solid #8B7355;">
+          <span style="font-size:.6rem;color:#555;font-family:'Special Elite',monospace;text-align:center;">Vanessa<br>anrufen</span>
+        </div>
+      </div>
+      <p style="font-size:.65rem;color:#555;margin-top:.5rem;font-style:italic;">Hinweis: Horst bemerkt den Lippenstift-Fleck nie.</p>
+    </div>
   </div>
 
   <!-- ============================================================
@@ -385,6 +411,12 @@
       <h3>Lieb mich: Origins &mdash; Planet Vielleichta</h3>
       <p class="sub">Die Gr&uuml;ndung. Das Kontrollzentrum. 20 Kopien. 0 Entscheidungen. Ein Prequel.</p>
     </div>
+
+    <div class="merch-card">
+      <h3>Lieb mich: Das Musical</h3>
+      <p class="sub">Mit Songs wie &bdquo;Vielleicht (Der Walzer)&ldquo;, &bdquo;20 Kopien (Chor)&ldquo;, und &bdquo;Waschlappen-Blues (Franklin Solo, 4 Sekunden)&ldquo;.</p>
+      <p class="fine">Choreografie: Belinda 1 tanzt Tango, Belinda 2 steht am Rand und urteilt.</p>
+    </div>
   </div>
 
   <!-- FOOTER -->
@@ -394,7 +426,7 @@
       &copy; Frank &bull; Planet Klaron &bull; Alle Rechte vorbehalten.<br>
       Alle Personen wurden umbenannt. Au&szlig;er Frank. Der hei&szlig;t wirklich so.
     </p>
-    <a href="index.html" style="display:inline-block;margin-top:1rem;padding:.5rem 1.5rem;border:1px solid #B8964A;color:#B8964A;font-family:'Special Elite',monospace;font-size:.85rem;text-decoration:none;border-radius:.3rem;">Teaser nochmal ansehen</a>
+    <a href="index.html" style="display:inline-block;margin-top:1rem;padding:.5rem 1.5rem;border:1px solid #444;color:#666;font-family:'Special Elite',monospace;font-size:.85rem;text-decoration:none;border-radius:.3rem;transition:all .3s;" onmouseover="this.style.borderColor='#B8964A';this.style.color='#B8964A'" onmouseout="this.style.borderColor='#444';this.style.color='#666'">Zur&uuml;ck in den Kino-Saal (sind Sie irre?)</a>
   </footer>
 
 </div>
