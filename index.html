@@ -754,22 +754,23 @@ function showNextPersona() {
     requestAnimationFrame(() => { el.classList.add('active'); });
   });
 
-  // Reveal quotes one by one
-  p.quotes.forEach((q, i) => {
+  // Reveal quotes one by one: groß, 3s, dann weg
+  let qi = 0;
+  function showNextQuote() {
+    if (qi >= p.quotes.length) return;
+    quotesBox.innerHTML = `<div style="opacity:0;transition:opacity .5s;font-size:1.4rem;font-style:italic;color:#ccc;">${p.quotes[qi]}</div>`;
+    const qEl = quotesBox.firstElementChild;
+    requestAnimationFrame(() => { requestAnimationFrame(() => { qEl.style.opacity='1'; }); });
     setTimeout(() => {
-      const qEl = document.createElement('div');
-      qEl.style.cssText = 'opacity:0;transform:translateY(10px);transition:opacity .6s,transform .6s;font-size:1.25rem;font-style:italic;color:#ccc;margin-bottom:.7rem;';
-      qEl.textContent = q;
-      quotesBox.appendChild(qEl);
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => { qEl.style.opacity='1'; qEl.style.transform='translateY(0)'; });
-      });
-    }, 1200 + i * 3000);
-  });
+      qEl.style.opacity = '0';
+      setTimeout(() => { qi++; showNextQuote(); }, 500);
+    }, 3000);
+  }
+  setTimeout(showNextQuote, 1200);
 
-  // Total: 1.2s wait + quotes x 3s + 2s reading last
+  // Total: 1.2s wait + quotes x 3.5s (3s show + 0.5s fade) + 1s buffer
   const numQuotes = (p.quotes && p.quotes.length) || 0;
-  const totalTime = 1200 + numQuotes * 3000 + 2000;
+  const totalTime = 1200 + numQuotes * 3500 + 1000;
   setTimeout(() => {
     el.classList.remove('active');
     el.classList.add('exit');
