@@ -230,11 +230,13 @@
 
     <!-- FRANKLINS WHATSAPP -->
     <div class="gadget">
-      <h3>Franklins WhatsApp &mdash; Simulation</h3>
-      <div id="franklin-chat" style="background:#e5ddd5;border-radius:.5rem;padding:1rem;max-width:350px;">
+      <h3>Franklins WhatsApp &mdash; Schreib ihm!</h3>
+      <div id="franklin-chat" style="background:#e5ddd5;border-radius:.5rem;padding:1rem;max-width:400px;max-height:350px;overflow-y:auto;">
         <p style="font-size:.7rem;color:#999;text-align:center;margin-bottom:.5rem;">Heute</p>
       </div>
-      <button onclick="franklinMessage()" style="margin-top:.8rem;padding:.4rem 1rem;background:#25D366;color:#fff;border:none;font-family:'JetBrains Mono',monospace;font-size:.8rem;cursor:pointer;border-radius:.2rem;">Franklin antwortet</button>
+      <div style="margin-top:.5rem;max-width:400px;background:#f0f0f0;border-radius:1.5rem;padding:.3rem .8rem;display:flex;align-items:center;">
+        <input id="franklin-input" type="text" placeholder="Nachricht an Franklin..." onkeydown="if(event.key==='Enter')sendToFranklin()" style="flex:1;padding:.4rem 0;border:none;background:transparent;font-family:'EB Garamond',serif;font-size:.9rem;color:#333;outline:none;">
+      </div>
     </div>
 
     <!-- BELINDA ZITAT-ROULETTE -->
@@ -335,27 +337,58 @@ function kzMessage() {
 }
 
 // === FRANKLINS WHATSAPP ===
-const franklinMsgs = ["\u2705.","...."," \u2705.","Das bringt doch nix.","....","Ich misch mich da nicht ein. \u2705.","....",".....","\u2705. \u2705.","Also..."];
+const franklinReplies = [
+  "\u2705.",
+  "....",
+  "Das bringt doch nix.",
+  "\u2705. \u2705.",
+  "Ich misch mich da nicht ein.",
+  "....",
+  "Du, versteh ich.",
+  "\u2705.",
+  "Also...",
+  "....",
+  ".....",
+  "Ich bin immer f\u00fcr dich da. \u2705.",
+  "....",
+  "Das bringt doch nix. \u2705.",
+  "Du, versteh ich. \u2705.",
+  "....",
+];
 let fmIndex = 0;
-function franklinMessage() {
+
+function sendToFranklin() {
+  const input = document.getElementById('franklin-input');
   const chat = document.getElementById('franklin-chat');
-  // Typing indicator
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+
+  // User-Nachricht (rechts, grün)
+  const userMsg = document.createElement('div');
+  userMsg.style.cssText = 'text-align:right;margin:.3rem 0;';
+  userMsg.innerHTML = '<div style="background:#dcf8c6;border-radius:8px;padding:.4rem .8rem;display:inline-block;font-size:.9rem;color:#333;max-width:80%;text-align:left;">' + text.replace(/</g,'&lt;') + '</div>';
+  chat.appendChild(userMsg);
+  chat.scrollTop = chat.scrollHeight;
+
+  // Franklin tippt...
   const typing = document.createElement('div');
-  typing.style.cssText = 'background:#fff;border-radius:8px;padding:.3rem .6rem;display:inline-block;margin:.3rem 0;font-size:.8rem;color:#999;';
-  typing.textContent = 'tippt...';
+  typing.style.cssText = 'margin:.3rem 0;';
+  typing.innerHTML = '<div style="background:#fff;border-radius:8px;padding:.3rem .6rem;display:inline-block;font-size:.8rem;color:#999;">tippt...</div>';
   chat.appendChild(typing);
   chat.scrollTop = chat.scrollHeight;
 
+  // Franklin antwortet (egal was du schreibst)
+  const delay = 1000 + Math.random() * 2000;
   setTimeout(() => {
     typing.remove();
-    const msg = document.createElement('div');
-    msg.style.cssText = 'background:#fff;border-radius:8px;padding:.4rem .8rem;display:inline-block;margin:.2rem 0;font-size:.9rem;color:#333;max-width:80%;';
-    msg.textContent = franklinMsgs[fmIndex % franklinMsgs.length];
-    chat.appendChild(msg);
-    chat.appendChild(document.createElement('br'));
+    const reply = document.createElement('div');
+    reply.style.cssText = 'margin:.3rem 0;';
+    reply.innerHTML = '<div style="background:#fff;border-radius:8px;padding:.4rem .8rem;display:inline-block;font-size:.9rem;color:#333;max-width:80%;">' + franklinReplies[fmIndex % franklinReplies.length] + '</div>';
+    chat.appendChild(reply);
     chat.scrollTop = chat.scrollHeight;
     fmIndex++;
-  }, 1500);
+  }, delay);
 }
 
 // === BELINDA ROULETTE ===
