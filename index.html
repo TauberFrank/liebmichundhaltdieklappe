@@ -870,7 +870,22 @@ function startSpoilers() {
   btn.style.opacity = '0';
   setTimeout(() => {
     btn.style.display = 'none';
-    showEpilog();
+    // "Sie haben es so gewollt."
+    const stage = document.getElementById('main-stage');
+    stage.style.minHeight = '200px';
+    stage.style.display = 'flex';
+    stage.style.alignItems = 'center';
+    stage.style.justifyContent = 'center';
+    stage.innerHTML = `<div style="opacity:0;transition:opacity 1.2s ease;text-align:center;">
+      <p style="font-family:'Abril Fatface',serif;font-size:clamp(1.5rem,5vw,2.5rem);color:#e8e0d0;">Sie haben es so gewollt.</p>
+      <p style="font-size:1.2rem;color:#B8964A;font-style:italic;margin-top:.5rem;">Vielleicht...</p>
+    </div>`;
+    const el = stage.firstElementChild;
+    requestAnimationFrame(() => { requestAnimationFrame(() => { el.style.opacity='1'; }); });
+    setTimeout(() => {
+      el.style.opacity = '0';
+      setTimeout(showEpilog, 1200);
+    }, 4000);
   }, 800);
 }
 
