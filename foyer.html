@@ -39,6 +39,9 @@
     /* WERBEPARTNER */
     .ad-poster{margin-bottom:1.5rem}
 
+    /* Mobile Sticky Footer Nav */
+    .mobile-nav{display:none}
+
     @media(max-width:768px){
       .tab-bar{gap:0;padding:0 .5rem}
       .tab-btn{padding:.5rem .8rem;font-size:.75rem}
@@ -46,22 +49,33 @@
       .ad-poster>div>div{transform:none!important}
     }
     @media(max-width:640px){
-      .tab-btn{padding:.4rem .6rem;font-size:.65rem}
-      .merch-card{padding:.8rem}
-      .merch-card h3{font-size:1rem}
-      .merch-card .desc{font-size:.9rem}
-      .merch-card .sub{font-size:.8rem}
-      .merch-card .fine{font-size:.65rem}
+      /* Tab-Bar oben ausblenden, Sticky Footer stattdessen */
+      .tab-bar{display:none}
+      .mobile-nav{
+        display:flex;position:fixed;bottom:0;left:0;right:0;z-index:80;
+        background:#0a0a0a;border-top:1px solid #333;
+        justify-content:space-around;padding:.4rem 0;
+      }
+      .mobile-nav button{
+        background:none;border:none;color:#555;font-size:1.2rem;
+        cursor:pointer;display:flex;flex-direction:column;align-items:center;
+        gap:.15rem;padding:.2rem .4rem;transition:color .3s;
+      }
+      .mobile-nav button span{font-size:.5rem;font-family:'Special Elite',monospace;}
+      .mobile-nav button.active{color:#B8964A}
+      body{padding-bottom:60px}
+
       .gadget{padding:1rem;font-size:.8rem}
       .gadget h3{font-size:.95rem}
       #franklin-chat{max-width:100%!important}
       #roulette-display{font-size:1.1rem!important;min-height:60px!important}
       .ad-poster>div{padding:1rem!important}
+      #vorgarten{gap:1rem!important;padding:1rem!important}
+      #vorgarten>div{transform:scale(.85)}
     }
     @media(max-width:380px){
-      .tab-btn{padding:.3rem .5rem;font-size:.6rem}
-      .merch-card{padding:.6rem}
-      .merch-card h3{font-size:.9rem}
+      .mobile-nav button{font-size:1rem}
+      .mobile-nav button span{font-size:.45rem}
     }
   </style>
 </head>
@@ -431,13 +445,33 @@
 
 </div>
 
+<!-- MOBILE STICKY FOOTER NAV -->
+<nav class="mobile-nav" id="mobile-nav">
+  <button class="active" onclick="mobileTab('merchandise',this)">&#128214;<span>Shop</span></button>
+  <button onclick="mobileTab('werbepartner',this)">&#128240;<span>Werbung</span></button>
+  <button onclick="mobileTab('chat',this)">&#128172;<span>Chat</span></button>
+  <button onclick="mobileTab('gadgets',this)">&#127918;<span>Spiele</span></button>
+  <button onclick="mobileTab('countdown',this)">&#9200;<span>Timer</span></button>
+  <button onclick="mobileTab('coming-soon',this)">&#127902;<span>Soon</span></button>
+</nav>
+
 <script>
+// Mobile Tab Switcher
+function mobileTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.mobile-nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo(0, 0);
+}
 // === TABS ===
 function showTab(name) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.mobile-nav button').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
-  event.target.classList.add('active');
+  if (event && event.target) event.target.classList.add('active');
 }
 
 // === KONTROLLZENTRUM CHAT ===
