@@ -4,6 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lieb mich &mdash; und halt die Klappe!</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Social Media / Open Graph -->
+  <meta property="og:title" content="Lieb mich &mdash; und halt die Klappe!">
+  <meta property="og:description" content="Eine Dokumentation. &Uuml;ber Klaron, Hunde und Checklisten. Demn&auml;chst im Kino Ihres Vertrauens.">
+  <meta property="og:image" content="img/personas/Frank.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lieb mich &mdash; und halt die Klappe!">
+  <meta name="twitter:description" content="Sie werden nicht glauben, dass das auf wahren Gegebenheiten beruht. Deshalb behaupten wir es gar nicht. (Stimmt halt trotzdem.)">
+  <meta name="twitter:image" content="img/personas/Frank.jpg">
+  <meta name="description" content="Eine Dokumentation. &Uuml;ber Klaron, Hunde und Checklisten. Demn&auml;chst im Kino Ihres Vertrauens. Basiert auf wahren Gegebenheiten. Behaupten wir aber nicht.">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Abril+Fatface&family=Special+Elite&display=swap" rel="stylesheet">
   <style>
@@ -321,6 +336,14 @@
 </head>
 <body>
 
+<!-- LADESCREEN -->
+<div id="loadscreen" style="position:fixed;inset:0;z-index:1200;background:#0a0a0a;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;">
+  <p style="font-family:'EB Garamond',Georgia,serif;font-size:clamp(1.2rem,4vw,1.8rem);font-style:italic;color:#666;">
+    &bdquo;Ich brauch mal kurz Gespr&auml;chspause.&ldquo;<br>
+    <span style="font-size:.8rem;color:#444;margin-top:.5rem;display:inline-block;">&mdash; Belinda</span>
+  </p>
+</div>
+
 <!-- CURTAINS -->
 <div class="curtain curtain-left"></div>
 <div class="curtain curtain-right"></div>
@@ -489,6 +512,22 @@
         </p>
         <p style="font-size:.7rem;color:#555;">
           Das Buch hilft nicht. Dann m&uuml;ssen die Leser das Seminar kaufen. Das auch nicht hilft. Hauptsache wir werden reich.
+        </p>
+      </div>
+
+      <!-- GURKES ROTWEIN -->
+      <div style="background:#1e1a14;border:1px solid #333;border-radius:.5rem;padding:1.5rem;margin-bottom:1.5rem;text-align:left;">
+        <p style="font-family:'Abril Fatface',serif;font-size:1.3rem;color:#B8964A;margin-bottom:.4rem;">
+          Gurkes Rotwein
+        </p>
+        <p style="font-size:1rem;color:#ccc;margin-bottom:.3rem;">
+          Jahrgang: Klarblick. Herkunft: garantiert kein Vielleichta.
+        </p>
+        <p style="font-size:.9rem;color:#888;font-style:italic;margin-bottom:.5rem;">
+          Passt zu allem. Hilft bei nichts. Aber danach ist es Ihnen egal.
+        </p>
+        <p style="font-size:.7rem;color:#555;">
+          Servierempfehlung: Auf einer Kommode sitzend, &uuml;ber den Brillenrand schauend.
         </p>
       </div>
 
@@ -1125,6 +1164,7 @@ function showFinale() {
       ticket.style.opacity = '1';
       ticket.scrollIntoView({ behavior:'smooth', block:'center' });
       startTicketCountdown();
+      document.title = '\u2705.';
     }, 1500);
   }, 5000);
 }
@@ -1211,8 +1251,17 @@ function startFilmLeader() {
   setTimeout(tick, 400);
 }
 
-// Vorhang öffnet bei 1s, ist bei ~3.5s offen → Leader starten
-setTimeout(startFilmLeader, 3800);
+// Loadscreen ausblenden, dann Leader starten
+window.addEventListener('load', () => {
+  const ls = document.getElementById('loadscreen');
+  setTimeout(() => {
+    ls.style.transition = 'opacity 1s ease';
+    ls.style.opacity = '0';
+    setTimeout(() => { ls.style.display = 'none'; }, 1000);
+    // Vorhang öffnet bei 1s, Leader nach Vorhang
+    setTimeout(startFilmLeader, 3800);
+  }, 2500); // Belinda-Zitat 2.5s stehen lassen
+});
 </script>
 
 </body>
