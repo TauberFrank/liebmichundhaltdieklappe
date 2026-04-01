@@ -456,7 +456,7 @@
 
   <!-- SKIP TO FOYER (erscheint nach 2 Personas) -->
   <div id="skip-to-foyer" style="text-align:center;margin:1rem 0;opacity:0;transition:opacity 1s ease;">
-    <button onclick="document.getElementById('ticket').scrollIntoView({behavior:'smooth'});document.getElementById('ticket').style.opacity='1';startTicketCountdown();setTimeout(startMerchLaufband,2000);startFoyerJohannaCountdown();document.title='\u2705.';" style="background:transparent;border:1px solid #444;color:#666;font-family:'Special Elite',monospace;font-size:.75rem;padding:.4rem 1.2rem;cursor:pointer;border-radius:.2rem;transition:all .3s;" onmouseover="this.style.borderColor='#B8964A';this.style.color='#B8964A'" onmouseout="this.style.borderColor='#444';this.style.color='#666'">
+    <button onclick="this.innerHTML='Diese Funktion ist gerade in der Werkstatt.<br>Setzen Sie sich wieder.';this.style.borderColor='#e74c3c';this.style.color='#e74c3c';this.style.cursor='default'" style="background:transparent;border:1px solid #444;color:#666;font-family:'Special Elite',monospace;font-size:.75rem;padding:.4rem 1.2rem;cursor:pointer;border-radius:.2rem;transition:all .3s;" onmouseover="this.style.borderColor='#B8964A';this.style.color='#B8964A'" onmouseout="this.style.borderColor='#444';this.style.color='#666'">
       Ich habe genug von dem Theater hier &mdash; ich will direkt kaufen!
     </button>
   </div>
