@@ -719,7 +719,11 @@ const ads = [
             RENNT!
           </p>
         </div>
-        <p style="color:#0f0;font-size:.6rem;margin-top:1rem;">>>> connection terminated by JOHANNA</p>
+        <div style="margin-top:1rem;background:#0a0a0a;border:1px solid #0f0;border-radius:.3rem;padding:.4rem .8rem;display:inline-block;">
+          <p style="color:#0f0;font-size:.6rem;margin-bottom:.2rem;">COUNTDOWN TO FREEDOM:</p>
+          <p id="johanna-countdown" style="color:#0f0;font-size:1.2rem;font-weight:bold;letter-spacing:.1em;"></p>
+        </div>
+        <p style="color:#0f0;font-size:.6rem;margin-top:.8rem;">>>> connection terminated by JOHANNA</p>
         <p style="color:#0a0;font-size:.6rem;">>>> VfB &gt; alles. Hauptsache 1893.</p>
       </div>
     </div>`},
@@ -746,9 +750,9 @@ function showAdBreak(adIndex, callback) {
       ad.innerHTML = adData.html;
       // Kein Skip bei Johanna-Hack
       if (adData.hack) {
-        // Bildschirm flackert grün statt normal
         ad.style.animation = 'none';
         ad.style.boxShadow = 'inset 0 0 100px rgba(0,255,0,.1)';
+        setTimeout(startJohannaCountdown, 500);
       }
       // Skip Ad Button (funktioniert nicht) — nicht bei Hacks
       if (!adData.hack) {
@@ -1122,6 +1126,24 @@ function closeModal() {
   document.getElementById('persona-modal').classList.remove('open');
 }
 document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+
+// === JOHANNA COUNTDOWN (31. Juni 2027 — existiert nicht, passt zu Vielleichta) ===
+function startJohannaCountdown() {
+  const el = document.getElementById('johanna-countdown');
+  if (!el) return;
+  function update() {
+    const now = new Date();
+    const target = new Date('2027-07-01T00:00:00'); // "31. Juni" = 1. Juli
+    const diff = target - now;
+    const days = Math.floor(diff / 86400000);
+    const hrs = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+    el.textContent = days + 'd ' + hrs + 'h ' + mins + 'm ' + secs + 's';
+  }
+  update();
+  setInterval(update, 1000);
+}
 
 // === TICKET COUNTDOWN mit ZU SPÄT! ===
 function startTicketCountdown() {
