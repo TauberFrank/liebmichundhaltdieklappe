@@ -355,24 +355,24 @@ function kzMessage() {
 
 // === FRANKLINS WHATSAPP ===
 const franklinReplies = [
-  "\u2705.",
+  "\u2705...",
   "....",
-  "Das bringt doch nix.",
-  "\u2705. \u2705.",
-  "Ich misch mich da nicht ein.",
+  "Das bringt doch nix...",
+  "\u2705... \u2705...",
+  "Ich misch mich da nicht ein...",
   "....",
-  "Du, versteh ich.",
-  "\u2705.",
+  "Du, versteh ich...",
+  "\u2705...",
   "Also...",
   "....",
   ".....",
-  "Ich bin immer f\u00fcr dich da. \u2705.",
+  "Ich bin immer f\u00fcr dich da... \u2705...",
   "....",
-  "Das bringt doch nix. \u2705.",
-  "Du, versteh ich. \u2705.",
+  "Das bringt doch nix... \u2705...",
+  "Du, versteh ich... \u2705...",
   "....",
   "Komm doch mit nach Unterbacken...",
-  "\u2705.",
+  "\u2705...",
   "Schnuggibutz...",
   "....",
 ];
@@ -403,6 +403,15 @@ function sendToFranklin() {
   const delay = 1000 + Math.random() * 2000;
   setTimeout(() => {
     typing.remove();
+    // Manchmal IST das Tippen die Antwort
+    if (Math.random() < 0.2) {
+      const sysMsg = document.createElement('div');
+      sysMsg.style.cssText = 'margin:.3rem 0;text-align:center;';
+      sysMsg.innerHTML = '<div style="background:#ffeaa7;border-radius:8px;padding:.2rem .6rem;display:inline-block;font-size:.7rem;color:#666;">Sieht aus als ob er tippt, hat er aber schon...</div>';
+      chat.appendChild(sysMsg);
+      chat.scrollTop = chat.scrollHeight;
+      return;
+    }
     const reply = document.createElement('div');
     reply.style.cssText = 'margin:.3rem 0;';
     reply.innerHTML = '<div style="background:#fff;border-radius:8px;padding:.4rem .8rem;display:inline-block;font-size:.9rem;color:#333;max-width:80%;">' + franklinReplies[fmIndex % franklinReplies.length] + '</div>';
