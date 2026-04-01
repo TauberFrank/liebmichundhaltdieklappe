@@ -78,8 +78,8 @@
 
     .curtain{position:fixed;top:0;height:100vh;width:50vw;z-index:1000;
       background:linear-gradient(90deg,#2a0a0a,#4a1515,#2a0a0a)}
-    .curtain-left{left:0;animation:curtainLeft 2.5s ease-in-out 1s forwards}
-    .curtain-right{right:0;animation:curtainRight 2.5s ease-in-out 1s forwards}
+    .curtain-left{left:0;animation:curtainLeft 2.5s ease-in-out 4.5s forwards}
+    .curtain-right{right:0;animation:curtainRight 2.5s ease-in-out 4.5s forwards}
     .curtain::before{content:'';position:absolute;inset:0;
       background:repeating-linear-gradient(90deg,transparent,transparent 30px,rgba(0,0,0,.15) 30px,rgba(0,0,0,.15) 32px)}
 
@@ -356,16 +356,6 @@
 <div id="loadscreen" style="position:fixed;inset:0;z-index:1200;background:#0a0a0a;">
   <!-- Kino-Saal Atmosphäre -->
   <div style="position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,#070707 0%,#070707 50%,transparent 100%);"></div>
-  <!-- Belindas Silhouette -->
-  <div id="belinda-walker" style="position:absolute;bottom:60px;left:15%;transition:transform 1.5s ease;">
-    <div style="position:relative;">
-      <div id="belinda-speech" style="position:absolute;top:-50px;left:50px;white-space:nowrap;font-family:'Special Elite',monospace;font-size:clamp(.85rem,3vw,1.1rem);color:#888;background:#1a1a1a;border:1px solid #444;border-radius:.4rem;padding:.4rem 1rem;opacity:0;transition:opacity .8s ease;">
-        Das wird mir jetzt zu viel gerade. <span style="color:#555;">(Belinda. Geht.)</span>
-      </div>
-      <div style="width:32px;height:36px;background:#151515;border-radius:50%;margin:0 auto;"></div>
-      <div style="width:40px;height:44px;background:#111;border-radius:4px 4px 0 0;margin-top:-2px;"></div>
-    </div>
-  </div>
   <!-- Leinwand-Text -->
   <div style="display:flex;align-items:center;justify-content:center;height:60%;text-align:center;padding:2rem;">
     <p id="loadscreen-text" style="font-family:'Special Elite',monospace;font-size:clamp(.8rem,2.5vw,1rem);color:#333;letter-spacing:.2em;opacity:0;transition:opacity 1.5s ease;">
@@ -388,6 +378,17 @@
 <div class="filmstrip filmstrip-l"></div>
 <div class="filmstrip filmstrip-r"></div>
 <div class="audience"></div>
+
+<!-- BELINDA SILHOUETTE (sitzt im Publikum, geht nach 3-2-1) -->
+<div id="belinda-walker" style="position:fixed;bottom:85px;left:15%;z-index:61;opacity:0;transition:transform 1.5s ease;pointer-events:none;">
+  <div style="position:relative;">
+    <div id="belinda-speech" style="position:absolute;top:-50px;left:50px;white-space:nowrap;font-family:'Special Elite',monospace;font-size:clamp(.85rem,3vw,1.1rem);color:#888;background:#1a1a1a;border:1px solid #444;border-radius:.4rem;padding:.4rem 1rem;opacity:0;transition:opacity .8s ease;">
+      Das wird mir jetzt zu viel gerade. <span style="color:#555;">(Belinda. Geht.)</span>
+    </div>
+    <div style="width:32px;height:36px;background:#151515;border-radius:50%;margin:0 auto;"></div>
+    <div style="width:40px;height:44px;background:#111;border-radius:4px 4px 0 0;margin-top:-2px;"></div>
+  </div>
+</div>
 <div class="audience-walker" id="walker" style="left:38%;">
   <div class="walker-body">
     <div class="walker-speech">Das ist mir zu anstrengend. <span style="color:#555;">(Franklin, legt sich ins Solarium)</span></div>
@@ -1420,7 +1421,7 @@ function startTicketCountdown() {
   }, 1000);
 }
 
-// === FILM LEADER COUNTDOWN (auf Leinwand nach Vorhang) ===
+// === FILM LEADER: 3-2-1, Belinda geht, dann Titel ===
 function startFilmLeader() {
   const leader = document.getElementById('film-leader');
   const num = document.getElementById('leader-num');
@@ -1435,7 +1436,8 @@ function startFilmLeader() {
       setTimeout(() => {
         leader.style.display = 'none';
         leader.style.minHeight = '0';
-        showIntro();
+        // Belinda steht auf und geht
+        showBelindaExit();
       }, 600);
       return;
     }
@@ -1448,50 +1450,53 @@ function startFilmLeader() {
   setTimeout(tick, 400);
 }
 
-// Loadscreen: Countdown 3-2-1, dann Belinda steht auf und geht
+function showBelindaExit() {
+  const bw = document.getElementById('belinda-walker');
+  const bs = document.getElementById('belinda-speech');
+  if (!bw) { showIntro(); return; }
+
+  // Belinda sichtbar machen (sie sitzt im Publikum)
+  bw.style.opacity = '1';
+
+  // Steht auf
+  setTimeout(() => {
+    bw.style.transform = 'translateY(-30px)';
+  }, 500);
+
+  // Sprechblase
+  setTimeout(() => { bs.style.opacity = '1'; }, 1200);
+
+  // Läuft raus
+  setTimeout(() => {
+    bw.style.transition = 'transform 3s ease-in';
+    bw.style.transform = 'translateY(-30px) translateX(120vw)';
+  }, 4000);
+
+  // Titel starten
+  setTimeout(showIntro, 7000);
+}
+
+// Loadscreen: "Plätze ein", Vorhang öffnet, 3-2-1 auf Leinwand, Belinda geht, Leader
 window.addEventListener('load', () => {
   const ls = document.getElementById('loadscreen');
   const txt = document.getElementById('loadscreen-text');
   const bw = document.getElementById('belinda-walker');
   const bs = document.getElementById('belinda-speech');
 
-  // 1. "Bitte nehmen Sie Ihre Plätze ein"
+  // 1. "Bitte nehmen Sie Ihre Plätze ein" (Loadscreen, vor dem Vorhang)
   setTimeout(() => { txt.style.opacity = '1'; }, 500);
   setTimeout(() => { txt.style.opacity = '0'; }, 3000);
 
-  // 2. Countdown 3...2...1 auf der Leinwand
+  // 2. Loadscreen weg → Vorhang sichtbar (öffnet per CSS-Animation)
   setTimeout(() => {
-    txt.style.fontSize = 'clamp(4rem,15vw,8rem)';
-    txt.style.fontFamily = "'Abril Fatface',serif";
-    txt.style.color = '#B8964A';
-    txt.textContent = '3';
-    txt.style.opacity = '1';
-  }, 4000);
-  setTimeout(() => { txt.textContent = '2'; }, 5000);
-  setTimeout(() => { txt.textContent = '1'; }, 6000);
-  setTimeout(() => { txt.style.opacity = '0'; }, 7000);
-
-  // 3. Belinda steht auf
-  setTimeout(() => {
-    bw.style.transform = 'translateY(-30px)';
-  }, 7500);
-
-  // 4. Sprechblase
-  setTimeout(() => { bs.style.opacity = '1'; }, 8200);
-
-  // 5. Belinda läuft raus
-  setTimeout(() => {
-    bw.style.transition = 'transform 3s ease-in';
-    bw.style.transform = 'translateY(-30px) translateX(120vw)';
-  }, 11000);
-
-  // 6. Loadscreen weg, Vorhang + Leader
-  setTimeout(() => {
-    ls.style.transition = 'opacity 1s ease';
+    ls.style.transition = 'opacity .8s ease';
     ls.style.opacity = '0';
-    setTimeout(() => { ls.style.display = 'none'; }, 1000);
-    setTimeout(startFilmLeader, 3800);
-  }, 14000);
+    setTimeout(() => { ls.style.display = 'none'; }, 800);
+  }, 4000);
+
+  // 3. Vorhang ist bei ~7s offen. Auf der Leinwand: 3...2...1
+  //    Film-Leader zeigt den Countdown
+  setTimeout(startFilmLeader, 7500);
 });
 </script>
 
