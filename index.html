@@ -336,12 +336,26 @@
 </head>
 <body>
 
-<!-- LADESCREEN -->
-<div id="loadscreen" style="position:fixed;inset:0;z-index:1200;background:#0a0a0a;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;">
-  <p style="font-family:'EB Garamond',Georgia,serif;font-size:clamp(1.2rem,4vw,1.8rem);font-style:italic;color:#666;">
-    &bdquo;Das wird mir jetzt zu viel gerade.&ldquo;<br>
-    <span style="font-size:.8rem;color:#444;margin-top:.5rem;display:inline-block;">&mdash; Belinda</span>
-  </p>
+<!-- LADESCREEN: Belinda steht auf und geht -->
+<div id="loadscreen" style="position:fixed;inset:0;z-index:1200;background:#0a0a0a;">
+  <!-- Kino-Saal Atmosphäre -->
+  <div style="position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,#070707 0%,#070707 50%,transparent 100%);"></div>
+  <!-- Belindas Silhouette -->
+  <div id="belinda-walker" style="position:absolute;bottom:60px;left:45%;transition:transform 1.5s ease;">
+    <div style="position:relative;">
+      <div id="belinda-speech" style="position:absolute;top:-50px;left:50px;white-space:nowrap;font-family:'Special Elite',monospace;font-size:clamp(.85rem,3vw,1.1rem);color:#888;background:#1a1a1a;border:1px solid #444;border-radius:.4rem;padding:.4rem 1rem;opacity:0;transition:opacity .8s ease;">
+        Das wird mir jetzt zu viel gerade.
+      </div>
+      <div style="width:32px;height:36px;background:#151515;border-radius:50%;margin:0 auto;"></div>
+      <div style="width:40px;height:44px;background:#111;border-radius:4px 4px 0 0;margin-top:-2px;"></div>
+    </div>
+  </div>
+  <!-- Leinwand-Text -->
+  <div style="display:flex;align-items:center;justify-content:center;height:60%;text-align:center;padding:2rem;">
+    <p id="loadscreen-text" style="font-family:'Special Elite',monospace;font-size:clamp(.8rem,2.5vw,1rem);color:#333;letter-spacing:.2em;opacity:0;transition:opacity 1.5s ease;">
+      Bitte nehmen Sie Ihre Pl&auml;tze ein.
+    </p>
+  </div>
 </div>
 
 <!-- CURTAINS -->
@@ -1252,16 +1266,40 @@ function startFilmLeader() {
   setTimeout(tick, 400);
 }
 
-// Loadscreen ausblenden, dann Leader starten
+// Loadscreen: Belinda steht auf und geht
 window.addEventListener('load', () => {
   const ls = document.getElementById('loadscreen');
+  const txt = document.getElementById('loadscreen-text');
+  const bw = document.getElementById('belinda-walker');
+  const bs = document.getElementById('belinda-speech');
+
+  // 1. "Bitte nehmen Sie Ihre Plätze ein" einblenden
+  setTimeout(() => { txt.style.opacity = '1'; }, 500);
+
+  // 2. Nach 3s: Text weg
+  setTimeout(() => { txt.style.opacity = '0'; }, 3500);
+
+  // 3. Nach 5s: Belinda steht auf (nach oben bewegen)
+  setTimeout(() => {
+    bw.style.transform = 'translateY(-30px)';
+  }, 5000);
+
+  // 4. Sprechblase erscheint
+  setTimeout(() => { bs.style.opacity = '1'; }, 5800);
+
+  // 5. Nach 8s: Belinda läuft raus
+  setTimeout(() => {
+    bw.style.transition = 'transform 3s ease-in';
+    bw.style.transform = 'translateY(-30px) translateX(120vw)';
+  }, 8500);
+
+  // 6. Nach 11s: Loadscreen weg, Film startet
   setTimeout(() => {
     ls.style.transition = 'opacity 1s ease';
     ls.style.opacity = '0';
     setTimeout(() => { ls.style.display = 'none'; }, 1000);
-    // Vorhang öffnet bei 1s, Leader nach Vorhang
     setTimeout(startFilmLeader, 3800);
-  }, 2500); // Belinda-Zitat 2.5s stehen lassen
+  }, 11500);
 });
 </script>
 
