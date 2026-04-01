@@ -754,23 +754,38 @@ function showNextPersona() {
     requestAnimationFrame(() => { el.classList.add('active'); });
   });
 
-  // Reveal quotes one by one: groß, 3s, dann weg
+  // Reveal quotes: erst groß allein, dann schrumpfen + einreihen in Stapel
+  const collectedQuotes = document.createElement('div');
+  collectedQuotes.style.cssText = 'margin-top:.8rem;border-top:1px solid #333;padding-top:.5rem;';
   let qi = 0;
+
   function showNextQuote() {
     if (qi >= p.quotes.length) return;
-    quotesBox.innerHTML = `<div style="opacity:0;transition:opacity .5s;font-size:1.4rem;font-style:italic;color:#ccc;">${p.quotes[qi]}</div>`;
+    // Groß anzeigen
+    quotesBox.innerHTML = `<div style="opacity:0;transition:opacity .5s;font-size:1.4rem;font-style:italic;color:#ccc;padding:.5rem 0;">${p.quotes[qi]}</div>`;
     const qEl = quotesBox.firstElementChild;
     requestAnimationFrame(() => { requestAnimationFrame(() => { qEl.style.opacity='1'; }); });
+
+    // Nach 3s: schrumpfen + in Stapel einreihen
     setTimeout(() => {
       qEl.style.opacity = '0';
-      setTimeout(() => { qi++; showNextQuote(); }, 500);
+      setTimeout(() => {
+        const small = document.createElement('div');
+        small.style.cssText = 'opacity:0;transition:opacity .4s;font-size:.85rem;font-style:italic;color:#666;margin-bottom:.2rem;';
+        small.textContent = p.quotes[qi];
+        collectedQuotes.appendChild(small);
+        if (!collectedQuotes.parentNode) quotesBox.parentNode.appendChild(collectedQuotes);
+        requestAnimationFrame(() => { requestAnimationFrame(() => { small.style.opacity='1'; }); });
+        qi++;
+        showNextQuote();
+      }, 400);
     }, 3000);
   }
   setTimeout(showNextQuote, 1200);
 
-  // Total: 1.2s wait + quotes x 3.5s (3s show + 0.5s fade) + 1s buffer
+  // Total: 1.2s + quotes x 3.4s + 1s
   const numQuotes = (p.quotes && p.quotes.length) || 0;
-  const totalTime = 1200 + numQuotes * 3500 + 1000;
+  const totalTime = 1200 + numQuotes * 3400 + 1000;
   setTimeout(() => {
     el.classList.remove('active');
     el.classList.add('exit');
