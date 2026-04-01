@@ -458,9 +458,15 @@
   <div id="spoiler-btn">
     <div class="clap-btn" style="cursor:default;">
       SPOILER ANZEIGEN
-      <div style="margin-top:1rem;">
+      <div style="margin-top:1rem;display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;">
+        <button onclick="this.textContent='Zutritt verweigert.';this.style.background='#333';this.style.color='#666';this.style.cursor='default'" style="background:#555;color:#ccc;border:none;padding:.5rem 1.5rem;font-family:'Special Elite',monospace;font-size:.95rem;cursor:pointer;border-radius:.2rem;transition:all .3s;">
+          Ja
+        </button>
         <button onclick="startSpoilers()" style="background:#B8964A;color:#0a0a0a;border:none;padding:.5rem 2rem;font-family:'Abril Fatface',serif;font-size:1.1rem;cursor:pointer;border-radius:.2rem;transition:all .3s;" onmouseover="this.style.background='#e8e0d0'" onmouseout="this.style.background='#B8964A'">
           Vielleicht
+        </button>
+        <button onclick="this.textContent='Zutritt verweigert.';this.style.background='#333';this.style.color='#666';this.style.cursor='default'" style="background:#555;color:#ccc;border:none;padding:.5rem 1.5rem;font-family:'Special Elite',monospace;font-size:.95rem;cursor:pointer;border-radius:.2rem;transition:all .3s;">
+          Nein
         </button>
       </div>
     </div>
