@@ -719,7 +719,7 @@ function showDokuIntro() {
         stage.firstElementChild.style.transition = 'opacity 1s ease';
         stage.firstElementChild.style.opacity = '0';
         setTimeout(() => {
-          stage.innerHTML = `<div class="clapboard" style="opacity:0;transition:opacity 1s ease;"><span style="font-size:.8rem;">DIE BESETZUNG</span></div>`;
+          stage.innerHTML = `<div class="clapboard" style="opacity:0;transition:opacity 1s ease;padding:.8rem 2.5rem;"><span style="font-size:1.6rem;">DIE BESETZUNG</span></div>`;
           const cl = stage.firstElementChild;
           requestAnimationFrame(() => { requestAnimationFrame(() => { cl.style.opacity='1'; }); });
           setTimeout(() => {
@@ -1222,6 +1222,8 @@ function openModal(index) {
 }
 function closeModal() {
   document.getElementById('persona-modal').classList.remove('open');
+  document.getElementById('modal-img').style.display = '';
+  document.querySelector('.modal-quotes').previousElementSibling.textContent = 'Sagt gern Sachen wie:';
 }
 document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
 
@@ -1245,11 +1247,16 @@ function startJohannaCountdown() {
 
 // === MERCHANDISE LAUFBAND ===
 const merchItems = [
-  { title:"Das Buch", text:"\u201eLieb mich \u2014 und halt die Klappe.\u201c", sub:"Hilft nicht. Aber Sie f\u00fchlen sich danach besser informiert.", badge:"" },
-  { title:"Das Seminar", text:"3 Tage. 1 Entscheidung. 4.999 \u20ac. Nur noch 3 Pl\u00e4tze.", sub:"Hilft auch nicht. Aber es ist teurer, also muss es besser sein.", badge:"AUSGEBUCHT" },
-  { title:"Das T-Shirt", text:"Vorne: \u201eLieb mich.\u201c Hinten: \u201eIch hatte ein geregeltes Leben.\u201c", sub:"Tragbar bei Paartherapie und Gerichtsterminen.", badge:"" },
-  { title:"Gurkes Rotwein", text:"Jahrgang: Klarblick. Garantiert kein Vielleichta.", sub:"Passt zu allem. Hilft bei nichts. \u201eAlkohol ist eine L\u00f6sung!\u201c", badge:"" },
-  { title:"Der Original-Waschlappen", text:"Mit Franklins Unterschrift: ....", sub:"Limitierte Auflage. Jeder Lappen ein Unikat. Wie Franklin.", badge:"NEU" },
+  { title:"Das Buch", text:"\u201eLieb mich \u2014 und halt die Klappe.\u201c", sub:"Hilft nicht. Aber Sie f\u00fchlen sich danach besser informiert.", badge:"",
+    detail:"Das ehrlichste Buch \u00fcber Beziehungen, das nie ein Ratgeber sein wollte.\n\nHilft nicht. Aber Sie f\u00fchlen sich danach besser informiert \u00fcber Ihren Wahnsinn." },
+  { title:"Das Seminar", text:"3 Tage. 1 Entscheidung. 4.999 \u20ac. Nur noch 3 Pl\u00e4tze.", sub:"Hilft auch nicht. Aber es ist teurer, also muss es besser sein.", badge:"AUSGEBUCHT",
+    detail:"3 Tage Intensiv-Training. 4.999 \u20ac. Nur noch 3 Pl\u00e4tze (immer).\nZertifikat: \u201eIch habe versucht, an meiner Beziehung zu arbeiten.\u201c\n\nDas Buch hilft nicht. Dann m\u00fcssen die Leser das Seminar kaufen. Das auch nicht hilft. Hauptsache wir werden reich." },
+  { title:"Das T-Shirt", text:"Vorne: \u201eLieb mich.\u201c Hinten: \u201eIch hatte ein geregeltes Leben.\u201c", sub:"Tragbar bei Paartherapie und Gerichtsterminen.", badge:"",
+    detail:"Vorne: \u201eLieb mich \u2014 und halt die Klappe.\u201c\nHinten: \u201eIch hatte ein geregeltes Leben.\u201c\n\nTragbar bei Familienfeiern, Paartherapie und Gerichtsterminen.\nGr\u00f6\u00dfen: S bis XXXL. Farbe: Schwarz. Wie die Aussichten." },
+  { title:"Gurkes Rotwein", text:"Jahrgang: Klarblick. Garantiert kein Vielleichta.", sub:"Passt zu allem. Hilft bei nichts. \u201eAlkohol ist eine L\u00f6sung!\u201c", badge:"",
+    detail:"Jahrgang: Klarblick. Herkunft: garantiert kein Vielleichta.\nPasst zu allem. Hilft bei nichts. Aber danach ist es Ihnen egal.\n\nServierempfehlung: Auf einer Kommode sitzend, \u00fcber den Brillenrand schauend.\n\u201eAlkohol ist eine L\u00f6sung!\u201c" },
+  { title:"Der Original-Waschlappen", text:"Mit Franklins Unterschrift: ....", sub:"Limitierte Auflage. Jeder Lappen ein Unikat. Wie Franklin.", badge:"NEU",
+    detail:"Der Original-Waschlappen. Mit Franklins Unterschrift: ....\n\nLimitierte Auflage. Jeder Lappen ein Unikat. Wie Franklin selbst.\nInklusive Echtheitszertifikat: \u201eDieser Waschlappen wurde nie geteilt.\u201c" },
 ];
 
 function startMerchLaufband() {
@@ -1288,9 +1295,13 @@ function startMerchLaufband() {
       setTimeout(() => {
         card.remove();
         const mini = document.createElement('div');
-        mini.style.cssText = 'background:#1e1a14;border:1px solid #333;border-radius:.3rem;padding:.5rem;text-align:center;opacity:0;transition:opacity .5s;';
+        mini.style.cssText = 'background:#1e1a14;border:1px solid #333;border-radius:.3rem;padding:.5rem;text-align:center;opacity:0;transition:opacity .5s,border-color .3s;cursor:pointer;';
         mini.innerHTML = `<p style="font-family:'Abril Fatface',serif;font-size:.8rem;color:#B8964A;">${m.title}</p>
           <p style="font-size:.6rem;color:#666;">${m.badge || '\u2022'}</p>`;
+        const idx = mi;
+        mini.addEventListener('mouseenter', () => { mini.style.borderColor='#B8964A'; });
+        mini.addEventListener('mouseleave', () => { mini.style.borderColor='#333'; });
+        mini.addEventListener('click', () => openMerchModal(idx));
         shelf.appendChild(mini);
         requestAnimationFrame(() => { requestAnimationFrame(() => { mini.style.opacity='1'; }); });
 
@@ -1302,6 +1313,19 @@ function startMerchLaufband() {
 
   stage.scrollIntoView({ behavior:'smooth', block:'nearest' });
   showNext();
+}
+
+// === MERCH MODAL ===
+function openMerchModal(index) {
+  const m = merchItems[index];
+  document.getElementById('modal-img').style.display = 'none';
+  document.getElementById('modal-name').textContent = m.title + (m.badge ? '  ' + m.badge : '');
+  document.getElementById('modal-role').textContent = m.text;
+  document.getElementById('modal-quotes').innerHTML = m.detail.split('\n').map(l =>
+    l ? `<div style="font-style:italic;color:#999;margin-bottom:.3rem;">${l}</div>` : '<br>'
+  ).join('');
+  document.querySelector('.modal-quotes').previousElementSibling.textContent = '';
+  document.getElementById('persona-modal').classList.add('open');
 }
 
 // === FOYER JOHANNA COUNTDOWN ===
