@@ -157,6 +157,15 @@
       .clapboard{padding:.3rem .8rem!important}
       .clapboard::before{height:14px!important;top:-14px!important}
     }
+    /* Mobile: Kino-Letterbox-Bars */
+    @media(max-width:640px){
+      body::before,body::after{
+        content:'';position:fixed;left:0;right:0;height:20px;
+        background:#000;z-index:55;pointer-events:none;
+      }
+      body::before{top:0}
+      body::after{bottom:0}
+    }
     @media(max-width:380px){
       #spotlight .persona-big img{width:min(160px,55vw);height:min(160px,55vw)}
       #spotlight .persona-big h2{font-size:1.1rem}
@@ -690,6 +699,30 @@ const ads = [
       </div>
       <p style="font-size:.5rem;color:#ccc;margin-top:1rem;">Interpunktions-Eisele \u2022 Ihr Fachh\u00e4ndler f\u00fcr . , ; : ! ? seit 1953 \u2022 Auch Apostrophe (korrekte und falsche)</p>
     </div>`},
+  // Ad 3: Johanna hackt den Trailer
+  { bg:'#000', duration:10000, hack:true, html:`
+    <div style="max-width:700px;width:95%;text-align:left;font-family:'JetBrains Mono',Consolas,monospace;position:relative;">
+      <div style="background:#0a0a0a;border:2px solid #0f0;border-radius:.5rem;padding:1.5rem;box-shadow:0 0 30px rgba(0,255,0,.15);position:relative;overflow:hidden;">
+        <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,0,.03) 2px,rgba(0,255,0,.03) 4px);pointer-events:none;"></div>
+        <p style="color:#0f0;font-size:.7rem;margin-bottom:.5rem;">root@vielleichta-orbit:~$ UNAUTHORIZED ACCESS</p>
+        <p style="color:#0f0;font-size:.7rem;margin-bottom:.5rem;">>>> FIREWALL BYPASSED</p>
+        <p style="color:#0f0;font-size:.7rem;margin-bottom:1rem;">>>> TRAILER HIJACKED BY: JOHANNA</p>
+        <div style="text-align:center;margin:1.5rem 0;">
+          <img src="img/personas/Johanna.jpg" style="width:120px;height:120px;border:3px solid #0f0;border-radius:50%;filter:brightness(1.2) contrast(1.3);margin-bottom:1rem;">
+          <p style="color:#fff;font-size:clamp(1.5rem,5vw,2.5rem);font-family:'Abril Fatface',serif;margin-bottom:.5rem;">
+            Alder, haut ab!
+          </p>
+          <p style="color:#0f0;font-size:clamp(1.2rem,4vw,2rem);font-family:'Abril Fatface',serif;margin-bottom:.5rem;">
+            Bevor es zu sp\u00e4t ist!
+          </p>
+          <p style="color:#ff0;font-size:clamp(1.8rem,6vw,3rem);font-family:'Abril Fatface',serif;animation:blink .5s step-end infinite;">
+            RENNT!
+          </p>
+        </div>
+        <p style="color:#0f0;font-size:.6rem;margin-top:1rem;">>>> connection terminated by JOHANNA</p>
+        <p style="color:#0a0;font-size:.6rem;">>>> VfB &gt; alles. Hauptsache 1893.</p>
+      </div>
+    </div>`},
 ];
 
 function showAdBreak(adIndex, callback) {
@@ -711,7 +744,14 @@ function showAdBreak(adIndex, callback) {
       ad.id = 'ad-break';
       ad.style.cssText = 'position:fixed;inset:0;z-index:800;background:'+adData.bg+';display:flex;align-items:center;justify-content:center;padding:2rem;opacity:0;';
       ad.innerHTML = adData.html;
-      // Skip Ad Button (funktioniert nicht)
+      // Kein Skip bei Johanna-Hack
+      if (adData.hack) {
+        // Bildschirm flackert grün statt normal
+        ad.style.animation = 'none';
+        ad.style.boxShadow = 'inset 0 0 100px rgba(0,255,0,.1)';
+      }
+      // Skip Ad Button (funktioniert nicht) — nicht bei Hacks
+      if (!adData.hack) {
       const skip = document.createElement('div');
       skip.style.cssText = 'position:absolute;bottom:2rem;right:2rem;background:#333;color:#aaa;padding:.4rem 1rem;font-family:"Special Elite",monospace;font-size:.8rem;border:1px solid #555;border-radius:.2rem;cursor:pointer;';
       skip.innerHTML = 'Werbung \u00fcberspringen in <span id="skip-timer">5</span>s';
@@ -727,6 +767,7 @@ function showAdBreak(adIndex, callback) {
           else st.textContent = skipSec;
         }
       }, 1000);
+      } // end if !hack
       document.body.appendChild(ad);
 
       // Flackern rein (unprofessionell)
@@ -773,6 +814,12 @@ function showNextPersona() {
   if (currentIndex === 6 && !window._ad2Shown) {
     window._ad2Shown = true;
     showAdBreak(1, () => showNextPersona());
+    return;
+  }
+  // Werbepause 3 nach Persona 9 (Claudette): Johanna hackt
+  if (currentIndex === 9 && !window._ad3Shown) {
+    window._ad3Shown = true;
+    showAdBreak(2, () => showNextPersona());
     return;
   }
 
