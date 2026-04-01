@@ -144,12 +144,13 @@
     @media(max-width:640px){
       .filmstrip{display:none}
       .screen{padding-left:1rem!important;padding-right:1rem!important;padding-top:.5rem!important}
-      #spotlight{min-height:280px}
-      #spotlight .persona-big{flex-direction:column;gap:1rem;text-align:center}
-      #spotlight .persona-big img{width:min(200px,60vw);height:min(200px,60vw);min-width:auto}
-      #spotlight .persona-big h2{font-size:1.3rem}
-      #spotlight .persona-big .text-side{font-size:.9rem}
-      #spotlight .persona-big .quotes-box div{font-size:.95rem!important}
+      #spotlight{min-height:auto}
+      #spotlight .persona-big{flex-direction:row;gap:.8rem;text-align:left;align-items:flex-start}
+      #spotlight .persona-big img{width:100px;height:100px;min-width:100px;border-width:2px}
+      #spotlight .persona-big h2{font-size:1.1rem}
+      #spotlight .persona-big .role{font-size:.8rem;margin-bottom:.3rem}
+      #spotlight .persona-big .text-side{font-size:.85rem}
+      #spotlight .persona-big .quotes-box div{font-size:1.1rem!important}
       #cast-grid{grid-template-columns:repeat(auto-fill,minmax(55px,1fr));gap:.4rem}
       #cast-grid .persona-mini p{font-size:.45rem}
       .audience{height:50px}
@@ -950,7 +951,8 @@ function showNextPersona() {
   function showNextQuote() {
     if (qi >= p.quotes.length) return;
     // Groß anzeigen
-    quotesBox.innerHTML = `<div style="opacity:0;transition:opacity .5s;font-size:1.4rem;font-style:italic;color:#ccc;padding:.5rem 0;">${p.quotes[qi]}</div>`;
+    quotesBox.innerHTML = `<div style="opacity:0;transition:opacity .5s;font-size:clamp(1.1rem,4vw,1.4rem);font-style:italic;color:#ccc;padding:.5rem 0;">${p.quotes[qi]}</div>`;
+    quotesBox.scrollIntoView({ behavior:'smooth', block:'nearest' });
     const qEl = quotesBox.firstElementChild;
     requestAnimationFrame(() => { requestAnimationFrame(() => { qEl.style.opacity='1'; }); });
 
