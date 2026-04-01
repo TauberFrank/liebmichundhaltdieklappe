@@ -20,6 +20,36 @@
     }
     @keyframes projectorLight { 0%,100%{opacity:.03} 50%{opacity:.08} }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    @keyframes walkOut {
+      0%   { transform:translateX(0) translateY(0); }
+      15%  { transform:translateX(0) translateY(-40px); }
+      100% { transform:translateX(110vw) translateY(-40px); }
+    }
+    .audience-walker{
+      position:fixed;bottom:85px;z-index:61;pointer-events:none;
+      opacity:0;
+    }
+    .audience-walker.go{
+      opacity:1;
+      animation:walkOut 8s ease-in forwards;
+    }
+    .audience-walker .walker-body{
+      width:35px;height:70px;position:relative;
+    }
+    .audience-walker .walker-head{
+      width:28px;height:32px;background:#151515;border-radius:50%;
+      margin:0 auto;
+    }
+    .audience-walker .walker-torso{
+      width:35px;height:38px;background:#111;border-radius:4px 4px 0 0;
+      margin-top:-2px;
+    }
+    .audience-walker .walker-speech{
+      position:absolute;top:-35px;left:45px;white-space:nowrap;
+      font-family:'Special Elite',monospace;font-size:.7rem;color:#666;
+      background:#1a1a1a;border:1px solid #333;border-radius:.3rem;
+      padding:.2rem .6rem;
+    }
     @keyframes clapSnap { 0%{transform:rotate(-15deg)} 20%,100%{transform:rotate(0)} }
     @keyframes fadeIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
 
@@ -290,6 +320,13 @@
 <div class="filmstrip filmstrip-l"></div>
 <div class="filmstrip filmstrip-r"></div>
 <div class="audience"></div>
+<div class="audience-walker" id="walker" style="left:38%;">
+  <div class="walker-body">
+    <div class="walker-speech">Das ist mir zu anstrengend.</div>
+    <div class="walker-head"></div>
+    <div class="walker-torso"></div>
+  </div>
+</div>
 
 <!-- PERSONA MODAL -->
 <div id="persona-modal" onclick="if(event.target===this)closeModal()">
@@ -674,6 +711,22 @@ function showAdBreak(adIndex, callback) {
       ad.id = 'ad-break';
       ad.style.cssText = 'position:fixed;inset:0;z-index:800;background:'+adData.bg+';display:flex;align-items:center;justify-content:center;padding:2rem;opacity:0;';
       ad.innerHTML = adData.html;
+      // Skip Ad Button (funktioniert nicht)
+      const skip = document.createElement('div');
+      skip.style.cssText = 'position:absolute;bottom:2rem;right:2rem;background:#333;color:#aaa;padding:.4rem 1rem;font-family:"Special Elite",monospace;font-size:.8rem;border:1px solid #555;border-radius:.2rem;cursor:pointer;';
+      skip.innerHTML = 'Werbung \u00fcberspringen in <span id="skip-timer">5</span>s';
+      skip.addEventListener('click', () => { skip.textContent = 'Netter Versuch.'; skip.style.color='#B8964A'; });
+      ad.appendChild(skip);
+      // Countdown der einfriert bei 1
+      let skipSec = 5;
+      const skipInterval = setInterval(() => {
+        skipSec--;
+        const st = document.getElementById('skip-timer');
+        if (st) {
+          if (skipSec <= 1) { st.textContent = '1'; clearInterval(skipInterval); }
+          else st.textContent = skipSec;
+        }
+      }, 1000);
       document.body.appendChild(ad);
 
       // Flackern rein (unprofessionell)
@@ -724,9 +777,23 @@ function showNextPersona() {
   }
 
   if (currentIndex >= personas.length) {
+    // Mosaik: alle 12 kurz aufleuchten
     spotlight.style.minHeight = '0';
     spotlight.innerHTML = '';
-    setTimeout(showSpoilerButton, 1500);
+    const mosaic = document.createElement('div');
+    mosaic.style.cssText = 'display:grid;grid-template-columns:repeat(6,1fr);gap:.5rem;max-width:700px;margin:2rem auto;opacity:0;transition:opacity 1s ease;';
+    personas.forEach(p => {
+      mosaic.innerHTML += `<img src="${p.img}" style="width:100%;border:2px solid #B8964A;border-radius:.3rem;filter:sepia(.2);">`;
+    });
+    spotlight.appendChild(mosaic);
+    requestAnimationFrame(() => { requestAnimationFrame(() => { mosaic.style.opacity='1'; }); });
+    setTimeout(() => {
+      mosaic.style.opacity = '0';
+      setTimeout(() => {
+        spotlight.innerHTML = '';
+        showSpoilerButton();
+      }, 1000);
+    }, 3000);
     return;
   }
 
@@ -807,6 +874,12 @@ function showNextPersona() {
           mini.classList.add('visible');
         });
       });
+
+      // Zuschauer geht nach Vanessa (Index 6)
+      if (currentIndex === 6 && !window._walkerGone) {
+        window._walkerGone = true;
+        document.getElementById('walker').classList.add('go');
+      }
 
       // Next persona
       currentIndex++;
