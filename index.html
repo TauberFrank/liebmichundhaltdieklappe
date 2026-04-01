@@ -1448,40 +1448,50 @@ function startFilmLeader() {
   setTimeout(tick, 400);
 }
 
-// Loadscreen: Belinda steht auf und geht
+// Loadscreen: Countdown 3-2-1, dann Belinda steht auf und geht
 window.addEventListener('load', () => {
   const ls = document.getElementById('loadscreen');
   const txt = document.getElementById('loadscreen-text');
   const bw = document.getElementById('belinda-walker');
   const bs = document.getElementById('belinda-speech');
 
-  // 1. "Bitte nehmen Sie Ihre Plätze ein" einblenden
+  // 1. "Bitte nehmen Sie Ihre Plätze ein"
   setTimeout(() => { txt.style.opacity = '1'; }, 500);
+  setTimeout(() => { txt.style.opacity = '0'; }, 3000);
 
-  // 2. Nach 3s: Text weg
-  setTimeout(() => { txt.style.opacity = '0'; }, 3500);
+  // 2. Countdown 3...2...1 auf der Leinwand
+  setTimeout(() => {
+    txt.style.fontSize = 'clamp(4rem,15vw,8rem)';
+    txt.style.fontFamily = "'Abril Fatface',serif";
+    txt.style.color = '#B8964A';
+    txt.textContent = '3';
+    txt.style.opacity = '1';
+  }, 4000);
+  setTimeout(() => { txt.textContent = '2'; }, 5000);
+  setTimeout(() => { txt.textContent = '1'; }, 6000);
+  setTimeout(() => { txt.style.opacity = '0'; }, 7000);
 
-  // 3. Nach 5s: Belinda steht auf (nach oben bewegen)
+  // 3. Belinda steht auf
   setTimeout(() => {
     bw.style.transform = 'translateY(-30px)';
-  }, 5000);
+  }, 7500);
 
-  // 4. Sprechblase erscheint
-  setTimeout(() => { bs.style.opacity = '1'; }, 5800);
+  // 4. Sprechblase
+  setTimeout(() => { bs.style.opacity = '1'; }, 8200);
 
-  // 5. Nach 8s: Belinda läuft raus
+  // 5. Belinda läuft raus
   setTimeout(() => {
     bw.style.transition = 'transform 3s ease-in';
     bw.style.transform = 'translateY(-30px) translateX(120vw)';
-  }, 8500);
+  }, 11000);
 
-  // 6. Nach 11s: Loadscreen weg, Film startet
+  // 6. Loadscreen weg, Vorhang + Leader
   setTimeout(() => {
     ls.style.transition = 'opacity 1s ease';
     ls.style.opacity = '0';
     setTimeout(() => { ls.style.display = 'none'; }, 1000);
     setTimeout(startFilmLeader, 3800);
-  }, 11500);
+  }, 14000);
 });
 </script>
 
